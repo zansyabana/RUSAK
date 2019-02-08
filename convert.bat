@@ -1,0 +1,1 @@
+pyside-uic -o "rusakUI.py" "rusakUI.ui"
