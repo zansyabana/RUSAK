@@ -21,6 +21,18 @@ import maya.OpenMayaUI as apiUI
 import pymel.core as pm
 import maya.cmds as cmds
 
+icon_circle = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/circle.png').replace('\\','/'))
+icon_square = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/square.png').replace('\\','/'))
+icon_sphere = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/sphere.png').replace('\\','/'))
+icon_box = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/box.png').replace('\\','/'))
+icon_cross = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/cross.png').replace('\\','/'))
+icon_crossArrow = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/crossArrow.png').replace('\\','/'))
+icon_arrowDouble = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/arrowDouble.png').replace('\\','/'))
+icon_arrowBent = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/arrowBent.png').replace('\\','/'))
+icon_crossArrowBent = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/crossArrowBent.png').replace('\\','/'))
+icon_needle = QIcon(os.path.join(SCRIPT_DIRECTORY,'icons/needle.png').replace('\\','/'))
+
+
 
 def getMayaWindow():
     """
@@ -37,7 +49,17 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
     def __init__(self, parent=getMayaWindow()):
         super(MainWindow, self).__init__(parent=parent)
         self.setupUi(self)
-        
+        self.shp_Circle.setIcon(icon_circle)
+        self.shp_Square.setIcon(icon_square)
+        self.shp_Sphere.setIcon(icon_sphere)
+        self.shp_Box.setIcon(icon_box)
+        self.shp_Cross.setIcon(icon_cross)
+        self.shp_Arrow.setIcon(icon_arrowDouble)
+        self.shp_CrossArrow.setIcon(icon_crossArrow)
+        self.shp_ArrowBent.setIcon(icon_arrowBent)
+        self.shp_CrossArrowBent.setIcon(icon_crossArrowBent)
+        self.shp_Needle.setIcon(icon_needle)
+
 
 def main():
     global ui
