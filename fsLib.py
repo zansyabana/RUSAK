@@ -66,14 +66,14 @@ class createControls():
             pointZ = pointXYZ[2]
             points = (pointX, pointY, pointZ)
             cvPoints.append(points)
-            knot = obj.getKnot(i)
+            # knot = obj.getKnot(i)
             # knots.append(knot)
 
         oldDataFile = open(self.curveLibPath, 'r')
         crvShapeInfo = json.load(oldDataFile)
         oldDataFile.close()
         crvShapeInfo[name] = 'pm.curve(p={}, d={}, k={},per={})'.format(cvPoints, deg, knots,per)
-        print crvShapeInfo
+        # print crvShapeInfo
         with open(self.curveLibPath, mode='w') as insertData:
             json.dump(crvShapeInfo,insertData,indent=4)
             insertData.close()
