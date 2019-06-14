@@ -39,6 +39,7 @@ class createControls():
             jnt.drawStyle.set(2)
             pm.delete(crv)
             crv = jnt
+            pm.select(jnt)
             print crv
 
         try:

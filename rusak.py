@@ -3,6 +3,8 @@ from __future__ import (division, # unicode_literals,
 
 import os
 import sys
+import RUSAK.fsLib as fs
+from functools import partial
 
 from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
 from PySide.QtCore import Qt, Slot, QMetaObject, QAbstractTableModel, QObject, SIGNAL
@@ -44,6 +46,8 @@ def getMayaWindow():
         return shiboken.wrapInstance(long(ptr), QWidget)
 
 
+
+
 class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
 
     def __init__(self, parent=getMayaWindow()):
@@ -59,6 +63,11 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
         self.shp_ArrowBent.setIcon(icon_arrowBent)
         self.shp_CrossArrowBent.setIcon(icon_crossArrowBent)
         self.shp_Needle.setIcon(icon_needle)
+        self.shp_Circle.clicked.connect(partial(self.createControl,'circle')))
+        self.shp_Square.clicked.connect(partial(self.createControl,'square')))
+
+    def createControl(self, shp):
+        fs.createControls().crCtl(crvShp=shp,asJnt=False)
 
 
 def main():
