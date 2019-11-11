@@ -1,4 +1,5 @@
 import pymel.core as pm
+import maya.cmds as mc
 import json
 import os
 
@@ -27,7 +28,6 @@ class createControls():
         # Defines to convert the controller as shaped joint
         if asJnt == False:
             crv = eval(self.curveLib[crvShp])
-            print crv
 
         else:
             crv = eval(self.curveLib[crvShp])
@@ -46,6 +46,8 @@ class createControls():
             self.align(crv, slt[0])
         except:
             pass
+
+        return crv
 
     def saveCtl(self,name):
 
@@ -78,6 +80,37 @@ class createControls():
         with open(self.curveLibPath, mode='w') as insertData:
             json.dump(crvShapeInfo,insertData,indent=4)
             insertData.close()
+
+    def setColor(self,obj, CCode):
+        obj.overrideEnabled.set(1)
+        obj.overrideColor.set(CCode)
+
+
+def zeroTrans(sfx, keep=True,*args):
+    selected = mc.ls(sl=True)
+
+    for i in selected:
+        if keep:
+            mc.select(i)
+            mc.group(name=i + sfx)
+            select02 = mc.ls(i, i + sfx)
+            mc.copyAttr(select02[0], select02[1], v=True)
+            mc.move(0, 0, 0, i, ls=True)
+            mc.rotate(0, 0, 0, i, a=True)
+            mc.scale(1, 1, 1, i)
+        else:
+            oldSfx = "_"+i.split('_')[-1]
+            mc.select(i)
+            grp = mc.group(name=i.replace(oldSfx,sfx))
+            select02 = mc.ls(i, grp)
+            mc.copyAttr(select02[0], select02[1], v=True)
+            mc.move(0, 0, 0, i, ls=True)
+            mc.rotate(0, 0, 0, i, a=True)
+            mc.scale(1, 1, 1, i)
+
+
+
+
 
 
 def oneLiner(nName, method='s'):
