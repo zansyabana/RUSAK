@@ -7,6 +7,11 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+#---------written by:----------------------
+#-------Fauzan Syabana---------------------
+#------zansyabana@gmail.com----------------
+#Licensed under MIT License
+
 from Qt import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
@@ -69,7 +74,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.asJnt.sizePolicy().hasHeightForWidth())
         self.asJnt.setSizePolicy(sizePolicy)
-        self.asJnt.setChecked(True)
+        self.asJnt.setChecked(False)
         self.asJnt.setObjectName("asJnt")
         self.horizontalLayout.addWidget(self.asJnt)
         self.asCrv = QtWidgets.QRadioButton(self.createControlGrp)
@@ -79,6 +84,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.asCrv.sizePolicy().hasHeightForWidth())
         self.asCrv.setSizePolicy(sizePolicy)
         self.asCrv.setObjectName("asCrv")
+        self.asCrv.setChecked(True)
         self.horizontalLayout.addWidget(self.asCrv)
         spacerItem = QtWidgets.QSpacerItem(40, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)

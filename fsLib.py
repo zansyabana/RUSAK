@@ -1,8 +1,15 @@
+#---------written by:----------------------
+#-------Fauzan Syabana---------------------
+#------zansyabana@gmail.com----------------
+#Licensed under MIT License
+
 import pymel.core as pm
 import maya.cmds as mc
 import json
 import os
 
+from pymel.core.system import undo
+from pymel.core.windows import falloffCurve
 
 
 class createControls():
@@ -23,30 +30,50 @@ class createControls():
         pm.xform(tgt, ws=True, ro=rot)
 
     def crCtl(self, crvShp='circle', asJnt=False):
+        pm.undoInfo(openChunk=True)
         slt = pm.selected()
 
-        # Defines to convert the controller as shaped joint
-        if asJnt == False:
-            crv = eval(self.curveLib[crvShp])
+        if slt == []:
+            if asJnt == False:
+                crv = eval(self.curveLib[crvShp])
 
+            else:
+                crv = eval(self.curveLib[crvShp])
+                jnt = pm.joint()
+                pm.parent(jnt,w=True)
+                shp = crv.listRelatives(c=True, type='nurbsCurve')[0]
+                pm.parent(shp, jnt, s=True, r=True)
+                shp.rename(jnt + 'Shape')
+                jnt.drawStyle.set(2)
+                pm.delete(crv)
+                crv = jnt
+                pm.select(jnt)
+                print crv
         else:
-            crv = eval(self.curveLib[crvShp])
-            jnt = pm.joint()
-            pm.parent(jnt,w=True)
-            shp = crv.listRelatives(c=True, type='nurbsCurve')[0]
-            pm.parent(shp, jnt, s=True, r=True)
-            shp.rename(jnt + 'Shape')
-            jnt.drawStyle.set(2)
-            pm.delete(crv)
-            crv = jnt
-            pm.select(jnt)
-            print crv
+            for i in slt:
+                # Defines to convert the controller as shaped joint
+                if asJnt == False:
+                    crv = eval(self.curveLib[crvShp])
 
-        try:
-            self.align(crv, slt[0])
-        except:
-            pass
+                else:
+                    crv = eval(self.curveLib[crvShp])
+                    jnt = pm.joint()
+                    pm.parent(jnt,w=True)
+                    shp = crv.listRelatives(c=True, type='nurbsCurve')[0]
+                    pm.parent(shp, jnt, s=True, r=True)
+                    shp.rename(jnt + 'Shape')
+                    jnt.drawStyle.set(2)
+                    pm.delete(crv)
+                    crv = jnt
+                    pm.select(jnt)
+                    print crv
 
+                try:
+                    self.align(crv, i)
+                except:
+                    pass
+
+        pm.undoInfo(closeChunk=True)
         return crv
 
     def saveCtl(self,name):
@@ -82,11 +109,13 @@ class createControls():
             insertData.close()
 
     def setColor(self,obj, CCode):
-        obj.overrideEnabled.set(1)
-        obj.overrideColor.set(CCode)
-
+        pm.undoInfo(openChunk=True)
+        obj.getShape().overrideEnabled.set(1)
+        obj.getShape().overrideColor.set(CCode)
+        pm.undoInfo(closeChunk=True)
 
 def zeroTrans(sfx, keep=True,*args):
+    pm.undoInfo(openChunk=True)
     selected = mc.ls(sl=True)
 
     for i in selected:
@@ -107,8 +136,42 @@ def zeroTrans(sfx, keep=True,*args):
             mc.move(0, 0, 0, i, ls=True)
             mc.rotate(0, 0, 0, i, a=True)
             mc.scale(1, 1, 1, i)
+    pm.undoInfo(closeChunk=True)
+
+def transformShapes(t=0,r=0,s=0, rx=0,ry=0,rz=0, scaleVal=0, *args):
+    pm.undoInfo(openChunk=True)
+    obj = pm.selected()
+    for i in obj:
+        max = i.spans.get()
+        deg = i.d.get()
+        cvss = max+deg
+
+        if i.f.get() == 2:
+            pm.select(i.cv[0:max-1],r=True)
+        else:
+            pm.select(i.cv[0:cvss-1],r=True)
+        if s == 1:
+            if rx == 0:
+                scaleValX = 1
+            else:
+                scaleValX = scaleVal
+            if ry == 0:
+                scaleValY = 1
+            else:
+                scaleValY = scaleVal
+            if rz == 0:
+                scaleValZ = 1
+            else:
+                scaleValZ = scaleVal
 
 
+            pm.scale(scaleValX,scaleValY,scaleValZ)
+        if r == 1:
+            pm.rotate(rx,ry,rz,r=True)
+
+        pm.select(i)
+    pm.select(obj)
+    pm.undoInfo(closeChunk=True)
 
 
 

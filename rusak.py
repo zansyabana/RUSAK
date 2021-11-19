@@ -1,9 +1,15 @@
+#---------written by:----------------------
+#-------Fauzan Syabana---------------------
+#------zansyabana@gmail.com----------------
+#Licensed under MIT License
+
 from __future__ import (division, # unicode_literals,
                         absolute_import)
 
 import os
 import sys
 import RUSAK.fsLib as fs
+from pymel.core.general import scale
 reload(fs)
 from functools import partial
 
@@ -58,6 +64,7 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
     def __init__(self, parent=getMayaWindow()):
         super(MainWindow, self).__init__(parent=parent)
         self.setupUi(self)
+        self.resizeSliderVal = 0
         self.shp_Circle.setIcon(icon_circle)
         self.shp_Square.setIcon(icon_square)
         self.shp_Sphere.setIcon(icon_sphere)
@@ -93,6 +100,12 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
         self.col_pink.clicked.connect(partial(self.changeColor,20))
         self.col_brown.clicked.connect(partial(self.changeColor,10))
         self.zero_btn.clicked.connect(self.applyZero)
+        self.resizeSlider.sliderMoved.connect(self.setScale)
+        self.resizeSlider.sliderReleased.connect(self.resetSlider)
+        self.btn_rotateX.clicked.connect(self.setRotateX)
+        self.btn_rotateY.clicked.connect(self.setRotateY)
+        self.btn_rotateZ.clicked.connect(self.setRotateZ)
+        
 
     def createControl(self, shp):
         if self.asJnt.isChecked():
@@ -113,6 +126,49 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
 
     def applyZero(self):
         fs.zeroTrans(self.suffix_edit.text(),self.suffix_keep.isChecked())
+
+    def setScale(self):
+        if self.sizeX.isChecked():
+            sx = 1
+        else:
+            sx = 0
+        if self.sizeY.isChecked():
+            sy = 1
+        else:
+            sy = 0
+        if self.sizeZ.isChecked():
+            sz = 1
+        else:
+            sz = 0
+
+        sliderValue = self.resizeSlider.sliderPosition()
+        stepValue = self.sizeStepSpinBox.value()
+        if sliderValue < self.resizeSliderVal:
+            scaleValue = 1/stepValue
+        else:
+            scaleValue = stepValue
+
+        fs.transformShapes(s=1,rx=sx,ry=sy,rz=sz, scaleVal=scaleValue)
+
+        self.resizeSliderVal = sliderValue
+
+    def resetSlider(self):
+        self.resizeSlider.setValue(0)
+        self.resizeSliderVal = 0
+
+    def setRotateX(self):
+        angle = self.angle_box.value()
+        fs.transformShapes(r=1,rx=angle)
+
+    def setRotateY(self):
+        angle = self.angle_box.value()
+        fs.transformShapes(r=1,ry=angle)
+        
+    def setRotateZ(self):
+        angle = self.angle_box.value()
+        fs.transformShapes(r=1,rz=angle)
+
+
 
 
 def main():
