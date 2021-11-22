@@ -9,17 +9,19 @@ from __future__ import (division, # unicode_literals,
 import os
 import sys
 import RUSAK.fsLib as fs
-from pymel.core.general import scale
+from oneLiner import selector, oneLiner
 reload(fs)
 from functools import partial
 
 from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
-# from Qt.QtCore import Qt, Slot, QMetaObject, QAbstractTableModel, QObject, SIGNAL
-# from Qt.QtUiTools import QUiLoader
-from Qt import QtGui, QtWidgets
-from Qt.QtGui import QIcon, QColor
+#from Qt.QtCore import Qt, Slot, QMetaObject, QAbstractTableModel, QObject, SIGNAL
+#from Qt.QtUiTools import QUiLoader
+#from Qt import QtGui, QtWidgets
+from PySide2.QtGui import QIcon, QColor
 from Qt.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, QTableWidgetItem, QSizePolicy
-# from Qt.QtWebKit import QWebView, QWebPage
+#from Qt.QtWebKit import QWebView, QWebPage
+#from PySide2 import QtCore, QtGui
+
 
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
@@ -105,19 +107,49 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
         self.btn_rotateX.clicked.connect(self.setRotateX)
         self.btn_rotateY.clicked.connect(self.setRotateY)
         self.btn_rotateZ.clicked.connect(self.setRotateZ)
+        self.btn_copyShape.clicked.connect(self.replaceShape)
+        self.lineOneLiner.editingFinished.connect(self.runOneLiner)
         
 
+    def replaceShape(self):
+        pm.undoInfo(openChunk=True)
+        slt = pm.selected()
+        shp = slt[-1]
+        crvs = []
+        for i in slt:
+            if i != slt[-1]:
+                curShp = i.getShape()
+                pm.delete(curShp)
+                crv = pm.duplicate(slt[-1])[0]
+                crvShp = crv.getShape()
+                pm.parent(crvShp,i,s=True,r=True)
+                crvShp.rename(i+"Shape")
+                pm.delete(crv)
+        pm.select(slt)
+        pm.undoInfo(closeChunk=True)
+
     def createControl(self, shp):
-        if self.asJnt.isChecked():
-            fs.createControls().crCtl(crvShp=shp,asJnt=True)
-        else:
-            fs.createControls().crCtl(crvShp=shp,asJnt=False)
+        pm.undoInfo(openChunk=True)
+        slt = pm.selected()
+        crvs = []
+        for i in slt:
+            if self.asJnt.isChecked():
+                crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=True)
+                crvs.append(crv)
+            elif self.asReplace.isChecked():
+                crv = fs.createControls().crCtl(i, crvShp=shp,asReplace=True)
+                crvs.append(crv)
+
+            else:
+                crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=False)
+                crvs.append(crv)
+        pm.select(crvs)
+            
+        pm.undoInfo(closeChunk=True)
+
     def createControl2(self):
-        shp = self.comboBox.currentText()
-        if self.asJnt.isChecked():
-            fs.createControls().crCtl(crvShp=shp,asJnt=True)
-        else:
-            fs.createControls().crCtl(crvShp=shp,asJnt=False)
+        shp1 = self.comboBox.currentText()
+        self.createControl(shp1)
 
     def changeColor(self, color):
         slt = pm.selected()
@@ -148,7 +180,11 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
         else:
             scaleValue = stepValue
 
-        fs.transformShapes(s=1,rx=sx,ry=sy,rz=sz, scaleVal=scaleValue)
+        if self.spTransform.isChecked():
+            fs.transformShapes(s=1,rx=sx,ry=sy,rz=sz, scaleVal=scaleValue,objSpace=False)
+        else:
+            fs.transformShapes(s=1,rx=sx,ry=sy,rz=sz, scaleVal=scaleValue,objSpace=True)
+
 
         self.resizeSliderVal = sliderValue
 
@@ -158,17 +194,30 @@ class MainWindow(MayaQWidgetDockableMixin, QMainWindow, py_ui.Ui_MainWindow):
 
     def setRotateX(self):
         angle = self.angle_box.value()
-        fs.transformShapes(r=1,rx=angle)
+        if self.spTransform.isChecked():
+            fs.transformShapes(r=1,rx=angle,objSpace=False)
+        else:
+            fs.transformShapes(r=1,rx=angle,objSpace=True)
 
     def setRotateY(self):
         angle = self.angle_box.value()
-        fs.transformShapes(r=1,ry=angle)
-        
+        if self.spTransform.isChecked():
+            fs.transformShapes(r=1,ry=angle,objSpace=False)
+        else:
+            fs.transformShapes(r=1,ry=angle,objSpace=True)
+
     def setRotateZ(self):
         angle = self.angle_box.value()
-        fs.transformShapes(r=1,rz=angle)
+        if self.spTransform.isChecked():
+            fs.transformShapes(r=1,rz=angle,objSpace=False)
+        else:
+            fs.transformShapes(r=1,rz=angle,objSpace=True)
 
-
+    def printText(self):
+        print self.lineOneLiner.text()
+    def runOneLiner(self):
+        rnmQ = self.lineOneLiner.text()
+        oneLiner(rnmQ)
 
 
 def main():

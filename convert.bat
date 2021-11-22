@@ -1,1 +1,1 @@
-pyside-uic -o "rusakUI.py" "rusakUI.ui"
+uic -x "rusakU2I_new.ui" -o "rusakUI.py" 

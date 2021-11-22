@@ -29,49 +29,41 @@ class createControls():
         pm.xform(tgt, ws=True, t=trans)
         pm.xform(tgt, ws=True, ro=rot)
 
-    def crCtl(self, crvShp='circle', asJnt=False):
+    def crCtl(self, obj, crvShp='circle', asJnt=False, asReplace=False):
         pm.undoInfo(openChunk=True)
-        slt = pm.selected()
+            # Defines to convert the controller as shaped joint
+        if asJnt == True:
+            crv = eval(self.curveLib[crvShp])
+            jnt = pm.joint()
+            pm.parent(jnt,w=True)
+            shp = crv.getShape()
+            pm.parent(shp, jnt, s=True, r=True)
+            shp.rename(jnt + 'Shape')
+            jnt.drawStyle.set(2)
+            pm.delete(crv)
+            crv = jnt
+            
 
-        if slt == []:
-            if asJnt == False:
-                crv = eval(self.curveLib[crvShp])
 
-            else:
-                crv = eval(self.curveLib[crvShp])
-                jnt = pm.joint()
-                pm.parent(jnt,w=True)
-                shp = crv.listRelatives(c=True, type='nurbsCurve')[0]
-                pm.parent(shp, jnt, s=True, r=True)
-                shp.rename(jnt + 'Shape')
-                jnt.drawStyle.set(2)
-                pm.delete(crv)
-                crv = jnt
-                pm.select(jnt)
-                print crv
+        elif asReplace == True:
+            crv = eval(self.curveLib[crvShp])
+            curShp = obj.getShape()
+            pm.delete(curShp)
+            pm.parent(obj,r=True)
+            shp = crv.getShape()
+            pm.parent(shp, obj, s=True, r=True)
+            shp.rename(obj+"Shape")   
+            pm.delete(crv)
+            crv = obj
+            
         else:
-            for i in slt:
-                # Defines to convert the controller as shaped joint
-                if asJnt == False:
-                    crv = eval(self.curveLib[crvShp])
-
-                else:
-                    crv = eval(self.curveLib[crvShp])
-                    jnt = pm.joint()
-                    pm.parent(jnt,w=True)
-                    shp = crv.listRelatives(c=True, type='nurbsCurve')[0]
-                    pm.parent(shp, jnt, s=True, r=True)
-                    shp.rename(jnt + 'Shape')
-                    jnt.drawStyle.set(2)
-                    pm.delete(crv)
-                    crv = jnt
-                    pm.select(jnt)
-                    print crv
-
-                try:
-                    self.align(crv, i)
-                except:
-                    pass
+            crv = eval(self.curveLib[crvShp])
+            
+            
+        try:
+            self.align(crv, obj)
+        except:
+            pass
 
         pm.undoInfo(closeChunk=True)
         return crv
@@ -138,18 +130,33 @@ def zeroTrans(sfx, keep=True,*args):
             mc.scale(1, 1, 1, i)
     pm.undoInfo(closeChunk=True)
 
-def transformShapes(t=0,r=0,s=0, rx=0,ry=0,rz=0, scaleVal=0, *args):
+def transformShapes(t=0,r=0,s=0, rx=0,ry=0,rz=0, scaleVal=0, objSpace=True, *args):
     pm.undoInfo(openChunk=True)
     obj = pm.selected()
     for i in obj:
         max = i.spans.get()
         deg = i.d.get()
         cvss = max+deg
+        cvPosX = []
+        cvPosY = []
+        cvPosZ = []
 
         if i.f.get() == 2:
-            pm.select(i.cv[0:max-1],r=True)
+            endRange = max-1
         else:
-            pm.select(i.cv[0:cvss-1],r=True)
+            endRange =  cvss-1
+        for cvs in range(0,endRange):
+            cv = i.cv[cvs]
+            pos = pm.pointPosition(cv,w=True)
+            cvPosX.append(pos[0])
+            cvPosY.append(pos[1])
+            cvPosZ.append(pos[2])
+        avgPosX = sum(cvPosX)/len(cvPosX)
+        avgPosY = sum(cvPosY)/len(cvPosY)
+        avgPosZ = sum(cvPosZ)/len(cvPosZ)
+        avgPosXYZ = ["{}cm".format(avgPosX),"{}cm".format(avgPosY),"{}cm".format(avgPosZ)]
+        
+        pm.select(i.cv[0:endRange],r=True)
         if s == 1:
             if rx == 0:
                 scaleValX = 1
@@ -164,10 +171,16 @@ def transformShapes(t=0,r=0,s=0, rx=0,ry=0,rz=0, scaleVal=0, *args):
             else:
                 scaleValZ = scaleVal
 
-
-            pm.scale(scaleValX,scaleValY,scaleValZ)
+            if objSpace == True:
+                pm.scale(scaleValX,scaleValY,scaleValZ)
+            else:
+                pm.scale(scaleValX,scaleValY,scaleValZ,p=avgPosXYZ)
+                
         if r == 1:
-            pm.rotate(rx,ry,rz,r=True)
+            if objSpace == True:
+                pm.rotate(rx,ry,rz,r=True)
+            else:
+                pm.rotate(rx,ry,rz,r=True,p=avgPosXYZ)
 
         pm.select(i)
     pm.select(obj)

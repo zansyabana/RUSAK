@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\JanosMayaScripts\JanosMayaScript\scripts\RUSAK\rusakU2I_new2.ui'
 #
-# Created: Sat Nov 20 11:53:03 2021
+# Created: Sat Nov 20 11:45:55 2021
 #      by: pyside2-uic  running on PySide2 2.0.0~alpha0
 #
 # WARNING! All changes made in this file will be lost!
@@ -61,8 +61,8 @@ class Ui_MainWindow(object):
         self.toolBox.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.toolBox.setAcceptDrops(False)
         self.toolBox.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.toolBox.setAutoFillBackground(True)
-        self.toolBox.setStyleSheet("")
+        self.toolBox.setAutoFillBackground(False)
+        self.toolBox.setStyleSheet("background-color:rgb(68, 68, 68)")
         self.toolBox.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.toolBox.setFrameShadow(QtWidgets.QFrame.Raised)
         self.toolBox.setLineWidth(1)
@@ -290,7 +290,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_15.addItem(spacerItem)
         self.toolBox.addItem(self.page_control, "")
         self.page_color = QtWidgets.QWidget()
-        self.page_color.setGeometry(QtCore.QRect(0, 0, 256, 332))
+        self.page_color.setGeometry(QtCore.QRect(0, 0, 258, 334))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(1)
@@ -469,7 +469,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.addItem(spacerItem1)
         self.toolBox.addItem(self.page_color, "")
         self.pageShaper = QtWidgets.QWidget()
-        self.pageShaper.setGeometry(QtCore.QRect(0, 0, 256, 332))
+        self.pageShaper.setGeometry(QtCore.QRect(0, 0, 258, 334))
         self.pageShaper.setObjectName("pageShaper")
         self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.pageShaper)
         self.verticalLayout_17.setObjectName("verticalLayout_17")
@@ -638,7 +638,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_17.addWidget(self.resizeGrp)
         self.toolBox.addItem(self.pageShaper, "")
         self.page_rotate = QtWidgets.QWidget()
-        self.page_rotate.setGeometry(QtCore.QRect(0, 0, 256, 332))
+        self.page_rotate.setGeometry(QtCore.QRect(0, 0, 258, 334))
         self.page_rotate.setObjectName("page_rotate")
         self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.page_rotate)
         self.verticalLayout_13.setObjectName("verticalLayout_13")
@@ -718,7 +718,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_13.addWidget(self.mirrorGrp)
         self.toolBox.addItem(self.page_rotate, "")
         self.page_mirror = QtWidgets.QWidget()
-        self.page_mirror.setGeometry(QtCore.QRect(0, 0, 256, 332))
+        self.page_mirror.setGeometry(QtCore.QRect(0, 0, 258, 334))
         self.page_mirror.setObjectName("page_mirror")
         self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.page_mirror)
         self.verticalLayout_12.setObjectName("verticalLayout_12")
@@ -772,7 +772,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_12.addWidget(self.zero_grp)
         self.toolBox.addItem(self.page_mirror, "")
         self.widget = QtWidgets.QWidget()
-        self.widget.setGeometry(QtCore.QRect(0, 0, 256, 332))
+        self.widget.setGeometry(QtCore.QRect(0, 0, 258, 334))
         self.widget.setObjectName("widget")
         self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout_14.setObjectName("verticalLayout_14")
@@ -822,7 +822,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(2)
         self.toolBox.layout().setSpacing(9)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
