@@ -805,6 +805,7 @@ class Ui_MainWindow(object):
 
         self.resizeSlider_2 = QSlider(self.groupBox_4)
         self.resizeSlider_2.setObjectName(u"resizeSlider_2")
+        self.resizeSlider_2.setFocusPolicy(Qt.ClickFocus)
         self.resizeSlider_2.setMinimum(-10)
         self.resizeSlider_2.setMaximum(10)
         self.resizeSlider_2.setTracking(True)
