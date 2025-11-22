@@ -7,7 +7,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>337</width>
     <height>634</height>
    </rect>
   </property>
@@ -131,7 +131,7 @@
            <number>0</number>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>3</number>
           </property>
           <property name="tabSpacing">
            <number>9</number>
@@ -141,8 +141,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>258</width>
-             <height>311</height>
+             <width>295</width>
+             <height>343</height>
             </rect>
            </property>
            <attribute name="label">
@@ -258,7 +258,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/crossArrow.png</normaloff>:/icon/crossArrow.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -293,7 +293,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/arrowDouble.png</normaloff>:/icon/arrowDouble.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -328,7 +328,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/needle.png</normaloff>:/icon/needle.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -363,7 +363,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/arrowBent.png</normaloff>:/icon/arrowBent.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -398,7 +398,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/crossArrowBent.png</normaloff>:/icon/crossArrowBent.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -433,7 +433,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/circle.png</normaloff>:/icon/circle.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -468,7 +468,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/square.png</normaloff>:/icon/square.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -503,7 +503,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/cross.png</normaloff>:/icon/cross.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -538,7 +538,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/sphere.png</normaloff>:/icon/sphere.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -573,7 +573,7 @@
                         <string/>
                        </property>
                        <property name="icon">
-                        <iconset resource="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                        <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
                          <normaloff>:/icon/box.png</normaloff>:/icon/box.png</iconset>
                        </property>
                        <property name="iconSize">
@@ -664,8 +664,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>258</width>
-             <height>311</height>
+             <width>295</width>
+             <height>343</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1028,8 +1028,8 @@ border: 0px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>258</width>
-             <height>313</height>
+             <width>295</width>
+             <height>343</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1066,7 +1066,7 @@ border: 0px;</string>
                  <string>Transform</string>
                 </property>
                 <property name="checked">
-                 <bool>true</bool>
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -1077,6 +1077,9 @@ border: 0px;</string>
                 </property>
                 <property name="text">
                  <string>Object</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -1091,104 +1094,6 @@ border: 0px;</string>
                </size>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_16">
-               <item>
-                <widget class="QGroupBox" name="groupBox_3">
-                 <property name="title">
-                  <string>Resize</string>
-                 </property>
-                 <layout class="QVBoxLayout" name="verticalLayout_6">
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_4">
-                    <item>
-                     <widget class="QCheckBox" name="sizeX">
-                      <property name="text">
-                       <string>X</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="sizeY">
-                      <property name="text">
-                       <string>Y</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QCheckBox" name="sizeZ">
-                      <property name="text">
-                       <string>Z</string>
-                      </property>
-                      <property name="checked">
-                       <bool>true</bool>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <layout class="QHBoxLayout" name="horizontalLayout_5">
-                    <item>
-                     <widget class="QLabel" name="label_resizeStep">
-                      <property name="sizePolicy">
-                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                       </sizepolicy>
-                      </property>
-                      <property name="text">
-                       <string>Step: </string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QDoubleSpinBox" name="sizeStepSpinBox">
-                      <property name="decimals">
-                       <number>1</number>
-                      </property>
-                      <property name="singleStep">
-                       <double>0.200000000000000</double>
-                      </property>
-                      <property name="value">
-                       <double>1.200000000000000</double>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </item>
-                  <item>
-                   <widget class="QSlider" name="resizeSlider">
-                    <property name="minimum">
-                     <number>-10</number>
-                    </property>
-                    <property name="maximum">
-                     <number>10</number>
-                    </property>
-                    <property name="tracking">
-                     <bool>true</bool>
-                    </property>
-                    <property name="orientation">
-                     <enum>Qt::Horizontal</enum>
-                    </property>
-                    <property name="invertedAppearance">
-                     <bool>false</bool>
-                    </property>
-                    <property name="invertedControls">
-                     <bool>false</bool>
-                    </property>
-                    <property name="tickPosition">
-                     <enum>QSlider::TicksBelow</enum>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
                <item>
                 <widget class="QGroupBox" name="groupBox_2">
                  <property name="sizePolicy">
@@ -1387,8 +1292,8 @@ border: 0px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>258</width>
-             <height>311</height>
+             <width>295</width>
+             <height>343</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1542,8 +1447,8 @@ border: 0px;</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>258</width>
-             <height>311</height>
+             <width>295</width>
+             <height>343</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1675,40 +1580,6 @@ border: 0px;</string>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="widget">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>258</width>
-             <height>311</height>
-            </rect>
-           </property>
-           <attribute name="label">
-            <string>One Liner</string>
-           </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_14">
-            <item>
-             <widget class="QLineEdit" name="lineOneLiner"/>
-            </item>
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::MinimumExpanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </widget>
          </widget>
         </item>
         <item>
@@ -1733,50 +1604,11 @@ border: 0px;</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_mod">
+      <widget class="QWidget" name="tab_jnt">
        <attribute name="title">
-        <string>Modules</string>
+        <string>Joints</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_8">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8">
-          <property name="leftMargin">
-           <number>10</number>
-          </property>
-          <property name="rightMargin">
-           <number>10</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="text_mod">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>50</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Module:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="combo_mod">
-            <property name="minimumSize">
-             <size>
-              <width>150</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
         <item>
          <widget class="QWidget" name="widget" native="true">
           <property name="minimumSize">
@@ -1798,7 +1630,7 @@ border: 0px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>300</width>
+     <width>337</width>
      <height>21</height>
     </rect>
    </property>
@@ -1806,7 +1638,7 @@ border: 0px;</string>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="D:/JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc"/>
+  <include location="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>

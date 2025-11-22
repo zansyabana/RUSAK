@@ -8,8 +8,6 @@ from __future__ import (division, # unicode_literals,
 import os
 import sys
 import importlib
-if 'S:/prodEnv/Maya/omens/omens_td/Rigging' not in sys.path:
-    sys.path.append('S:/prodEnv/Maya/omens/omens_td/Rigging')
 from RUSAK import fsLib as fs
 from oneLiner3 import selector, oneLiner
 importlib.reload(fs)

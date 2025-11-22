@@ -8,9 +8,6 @@ import maya.cmds as mc
 import json
 import os
 
-from pymel.core.system import undo
-from pymel.core.windows import falloffCurve
-
 
 class createControls():
     def __init__(self):
