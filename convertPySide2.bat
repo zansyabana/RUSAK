@@ -1,1 +1,2 @@
-C:\Program Files\Autodesk\Maya2019\bin\mayapy.exe pyside2-uic  "D:\JanosMayaScripts\JanosMayaScript\scripts\RUSAK\rusakU2I_new2.ui" -x -o "D:\JanosMayaScripts\JanosMayaScript\scripts\RUSAK\rusakUI.py"
+"C:\Program Files\Autodesk\Maya2024\bin\pyside2-uic.exe"  rusakUI2.ui -o rusakUI.py
+pause

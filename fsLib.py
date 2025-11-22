@@ -103,21 +103,28 @@ class createControls():
         obj.getShape().overrideColor.set(CCode)
         pm.undoInfo(closeChunk=True)
 
-def zeroTrans(sfx, keep=True,*args):
+def zeroTrans(sfx, keep=True,prefix=False,*args):
     pm.undoInfo(openChunk=True)
     selected = mc.ls(sl=True)
 
     for i in selected:
         if keep:
+            if prefix:
+                grpName = sfx +"_"+ i
+            else:
+                grpName = i +"_"+ sfx
             mc.select(i)
-            mc.group(name=i + sfx)
-            select02 = mc.ls(i, i + sfx)
+            mc.group(name=grpName)
+            select02 = mc.ls(i, grpName)
             mc.copyAttr(select02[0], select02[1], v=True)
             mc.move(0, 0, 0, i, ls=True)
             mc.rotate(0, 0, 0, i, a=True)
             mc.scale(1, 1, 1, i)
         else:
-            oldSfx = "_"+i.split('_')[-1]
+            if prefix:
+                oldSfx = "_"+i.split('_')[0]
+            else:
+                oldSfx = "_"+i.split('_')[-1]
             mc.select(i)
             grp = mc.group(name=i.replace(oldSfx,sfx))
             select02 = mc.ls(i, grp)
@@ -125,65 +132,154 @@ def zeroTrans(sfx, keep=True,*args):
             mc.move(0, 0, 0, i, ls=True)
             mc.rotate(0, 0, 0, i, a=True)
             mc.scale(1, 1, 1, i)
+    pm.select(selected)
     pm.undoInfo(closeChunk=True)
 
-def transformShapes(t=0,r=0,s=0, rx=0,ry=0,rz=0, scaleVal=0, objSpace=True, *args):
-    pm.undoInfo(openChunk=True)
-    obj = pm.selected()
-    for i in obj:
-        max = i.spans.get()
-        deg = i.d.get()
-        cvss = max+deg
-        cvPosX = []
-        cvPosY = []
-        cvPosZ = []
+def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, tx=0, ty=0, tz=0, *args):
+    """
+    Optimized transformShapes:
+    - suspend viewport refresh for the whole operation
+    - avoid selecting components; operate on component lists via cmds
+    - compute pivot as numeric tuple and minimize Python/Maya round-trips
 
-        if i.f.get() == 2:
-            endRange = max-1
-        else:
-            endRange =  cvss-1
-        for cvs in range(0,endRange):
-            cv = i.cv[cvs]
-            pos = pm.pointPosition(cv,w=True)
-            cvPosX.append(pos[0])
-            cvPosY.append(pos[1])
-            cvPosZ.append(pos[2])
-        avgPosX = sum(cvPosX)/len(cvPosX)
-        avgPosY = sum(cvPosY)/len(cvPosY)
-        avgPosZ = sum(cvPosZ)/len(cvPosZ)
-        avgPosXYZ = ["{}cm".format(avgPosX),"{}cm".format(avgPosY),"{}cm".format(avgPosZ)]
-        
-        pm.select(i.cv[0:endRange],r=True)
-        if s == 1:
-            if rx == 0:
-                scaleValX = 1
-            else:
-                scaleValX = scaleVal
-            if ry == 0:
-                scaleValY = 1
-            else:
-                scaleValY = scaleVal
-            if rz == 0:
-                scaleValZ = 1
-            else:
-                scaleValZ = scaleVal
+    Inputs match the original API.
+    """
+    # preserve original selection so we can restore it later
+    orig_sel = mc.ls(sl=True)
+    # normalize selection to transform nodes (users might select components)
+    sel = pm.ls(orig_sel, transforms=True)
+    if not sel:
+        # nothing to operate on (no transform nodes found)
+        return
 
-            if objSpace == True:
-                pm.scale(scaleValX,scaleValY,scaleValZ)
+    # Note: undo handling is left to the caller (e.g. UI) so callers
+    # can group multiple incremental changes (slider dragging) into
+    # a single undo chunk. We still suspend refresh here for safety
+    # if the caller hasn't already.
+    try:
+        mc.refresh(suspend=True)
+        for i in sel:
+            # determine CV end index (mirror original logic)
+            max_spans = i.spans.get()
+            deg = i.d.get()
+            if i.f.get() == 2:
+                end_range = max_spans - 1
             else:
-                pm.scale(scaleValX,scaleValY,scaleValZ,p=avgPosXYZ)
-                
-        if r == 1:
-            if objSpace == True:
-                pm.rotate(rx,ry,rz,r=True)
+                end_range = (max_spans + deg) - 1
+
+            if end_range <= 0:
+                # nothing to do for this curve
+                continue
+
+            # build list of component names for cmds (strings are faster than PyNodes here)
+            comp_list = [str(cv) for cv in i.cv[0:end_range]]
+
+            # compute average (world) position of CVs
+            pts = [pm.pointPosition(str(i.cv[idx]), w=True) for idx in range(0, end_range)]
+            if not pts:
+                continue
+            avg_x = sum(p[0] for p in pts) / len(pts)
+            avg_y = sum(p[1] for p in pts) / len(pts)
+            avg_z = sum(p[2] for p in pts) / len(pts)
+            pivot = (avg_x, avg_y, avg_z)
+
+            # translate
+            if t == 1:
+                # apply relative translation to components
+                move_x = tx
+                move_y = ty
+                move_z = tz
+
+                # If objSpace == False we want transform-space (local to object)
+                # Try to move using cmds with object-space flag first. If that
+                # fails (different Maya builds), fall back to computing the
+                # world-space offset by transforming the local vector by the
+                # object's world matrix and move in world space.
+                try:
+                    if objSpace:
+                        mc.move(move_x, move_y, move_z, comp_list, r=True)
+                    else:
+                        # object-space move (local axes)
+                        mc.move(move_x, move_y, move_z, comp_list, r=True, os=True)
+                except Exception:
+                    try:
+                        # compute world-space delta using object's world matrix
+                        mat = i.getMatrix(worldSpace=True)
+                        local_vec = pm.datatypes.Vector(move_x, move_y, move_z)
+                        world_vec = local_vec * mat
+                        pm.select(comp_list, r=True)
+                        pm.move(world_vec.x, world_vec.y, world_vec.z, r=True, ws=True)
+                    except Exception:
+                        # last-resort fallback: selection-based world move
+                        pm.select(comp_list, r=True)
+                        pm.move(move_x, move_y, move_z, r=True, ws=True)
+
+            # scale
+            if s == 1:
+                scale_x = scaleVal if rx != 0 else 1
+                scale_y = scaleVal if ry != 0 else 1
+                scale_z = scaleVal if rz != 0 else 1
+
+                # Try cmds first (faster, no selection). Some Maya versions don't accept
+                # a pivot flag for component operations; fall back to PyMel + selection
+                try:
+                    if objSpace:
+                        mc.scale(scale_x, scale_y, scale_z, comp_list, r=True)
+                    else:
+                        mc.scale(scale_x, scale_y, scale_z, comp_list, r=True, pivot=pivot)
+                except Exception:
+                    # fallback: select components and use PyMel which accepts pivot arg
+                    pm.select(comp_list, r=True)
+                    if objSpace:
+                        pm.scale(scale_x, scale_y, scale_z, r=True)
+                    else:
+                        pm.scale(scale_x, scale_y, scale_z, r=True, p=pivot)
+
+            # rotate
+            if r == 1:
+                try:
+                    if objSpace:
+                        mc.rotate(rx, ry, rz, comp_list, r=True)
+                    else:
+                        mc.rotate(rx, ry, rz, comp_list, r=True, pivot=pivot)
+                except Exception:
+                    pm.select(comp_list, r=True)
+                    if objSpace:
+                        pm.rotate(rx, ry, rz, r=True)
+                    else:
+                        pm.rotate(rx, ry, rz, r=True, p=pivot)
+
+        # restore original selection (may contain components)
+        try:
+            if orig_sel:
+                mc.select(orig_sel, r=True)
             else:
-                pm.rotate(rx,ry,rz,r=True,p=avgPosXYZ)
+                mc.select(clear=True)
+        except Exception:
+            # best-effort restore using PyMel
+            try:
+                pm.select(orig_sel)
+            except Exception:
+                pass
 
-        pm.select(i)
-    pm.select(obj)
-    pm.undoInfo(closeChunk=True)
+    finally:
+        mc.refresh(suspend=False)
 
 
+def splitJoint(splitNum,*args):
+    sel=pm.selected(type='joint')
+    if len(sel)!=2:
+        pm.warning("Select 2 joints only")
+        return
+    else:
+        startJnt=sel[0]
+        endJnt=sel[1]
+        totalLength=pm.joint(startJnt, e=True, q=True, length=True)
+        segmentLength=totalLength/float(splitNum)
+        pm.select(startJnt)
+        for i in range(splitNum-1):
+            newJnt=pm.joint(e=True, a=True, p=(0,segmentLength,0))
+        pm.joint(e=True, zso=True, oj='xyz', sao='yup', ch=True, spa=True, name=endJnt+'_end')
 
 
 def oneLiner(nName, method='s'):
@@ -198,7 +294,7 @@ def oneLiner(nName, method='s'):
     elif nName.find('/a') != -1:
         if nName.find('>') != -1:
             method = 'a'
-            print method
+            print(method)
         nName = nName.replace('/a', '')
 
     if method == 's':
@@ -210,7 +306,7 @@ def oneLiner(nName, method='s'):
             sltH.append(i)
             for child in reversed(i.listRelatives(ad=True, type='transform')):
                 sltH.append(child)
-        print sltH
+        print(sltH)
         slt = sltH
     elif method == 'a':
         slt = pm.ls()
@@ -221,7 +317,7 @@ def oneLiner(nName, method='s'):
         if numName.find('//') != -1:
             start = int(numName[numName.find('//') + 2:len(numName)])
             numName = numName.replace(numName[numName.find('//'):len(numName)], '')
-            print start
+            # print start
         number = idx + start
         if numName.find('#') != -1:
             padding = numName.count('#')
@@ -239,7 +335,7 @@ def oneLiner(nName, method='s'):
             try:
                 pm.rename(i,i.replace(oldWord,newWord))
             except:
-                print "{} is not renamed".format(i)
+                print("{} is not renamed".format(i))
 
         # check if the first character is '-' or '+', remove character method
         elif nName[0] == '-':
@@ -247,7 +343,7 @@ def oneLiner(nName, method='s'):
             try:
                 pm.rename(i, i[0:-charToRemove])
             except:
-                print "{} is not renamed".format(i)
+                print( "{} is not renamed".format(i))
 
         elif nName[0] == '+':
             charToRemove = int(nName[1:len(nName)])
@@ -256,11 +352,10 @@ def oneLiner(nName, method='s'):
         else:
             newName = numReplace(nName, slt.index(i))
             # get current Name if '!' mentioned
-            print i
             if newName.find('!') != -1:
                 newName = newName.replace('!', str(i))
-                print newName
+                # print newName
             try:
                 pm.rename(i, newName)
             except:
-                print "{} is not renamed".format(i)
+                print("{} is not renamed".format(i))

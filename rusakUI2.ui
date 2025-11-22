@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>MainWindow</class>
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>347</width>
-    <height>923</height>
+    <width>413</width>
+    <height>1018</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>R.U.S.A.K v1.0</string>
+   <string>R.U.S.A.K v0.5</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_12">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_8">
      <item>
       <widget class="QTabWidget" name="tabWidget">
+       <property name="minimumSize">
+        <size>
+         <width>393</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="tabPosition">
+        <enum>QTabWidget::West</enum>
+       </property>
        <property name="currentIndex">
         <number>0</number>
        </property>
@@ -25,1273 +34,1999 @@
         <attribute name="title">
          <string>Controllers</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+        <layout class="QVBoxLayout" name="verticalLayout_17">
          <item>
-          <widget class="QLabel" name="label">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(172, 172, 172);
-font: 75 10pt &quot;Rubik&quot;;</string>
+          <widget class="QScrollArea" name="scrollArea">
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
            </property>
-           <property name="text">
-            <string>Control Creator</string>
+           <property name="widgetResizable">
+            <bool>true</bool>
            </property>
-          </widget>
-         </item>
-         <item>
-          <layout class="QVBoxLayout" name="verticalLayout">
-           <property name="spacing">
-            <number>0</number>
-           </property>
-           <property name="sizeConstraint">
-            <enum>QLayout::SetMinimumSize</enum>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
-             </property>
-             <property name="bottomMargin">
-              <number>6</number>
-             </property>
+           <widget class="QWidget" name="scrollAreaWidgetContents">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>349</width>
+              <height>936</height>
+             </rect>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_18">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
-               <property name="sizeConstraint">
-                <enum>QLayout::SetMinimumSize</enum>
-               </property>
-               <property name="leftMargin">
-                <number>5</number>
-               </property>
-               <property name="rightMargin">
-                <number>20</number>
-               </property>
-               <property name="bottomMargin">
-                <number>10</number>
-               </property>
+              <layout class="QVBoxLayout" name="verticalLayout_3">
                <item>
-                <widget class="QRadioButton" name="asCrv">
+                <widget class="QLabel" name="label">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(172, 172, 172);
+font: 75 10pt &quot;Rubik&quot;;
+color:rgb(0, 0, 0);</string>
+                 </property>
+                 <property name="text">
+                  <string>Control Creator</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_2">
+                   <property name="sizeConstraint">
+                    <enum>QLayout::SetDefaultConstraint</enum>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>6</number>
+                   </property>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0">
+                     <property name="sizeConstraint">
+                      <enum>QLayout::SetMinimumSize</enum>
+                     </property>
+                     <property name="leftMargin">
+                      <number>5</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>20</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>10</number>
+                     </property>
+                     <item>
+                      <widget class="QRadioButton" name="asCrv">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>as Curve</string>
+                       </property>
+                       <property name="checked">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="asJnt">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>as Joint</string>
+                       </property>
+                       <property name="checked">
+                        <bool>false</bool>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QRadioButton" name="asReplace">
+                       <property name="text">
+                        <string>Replace</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QGroupBox" name="groupBox">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="title">
+                      <string>QuickCreate</string>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_3">
+                      <property name="topMargin">
+                       <number>20</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>20</number>
+                      </property>
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout">
+                        <property name="sizeConstraint">
+                         <enum>QLayout::SetFixedSize</enum>
+                        </property>
+                        <item row="1" column="1">
+                         <widget class="QPushButton" name="shp_CrossArrow">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/crossArrow.png</normaloff>:/icon/crossArrow.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QPushButton" name="shp_Arrow">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/arrowDouble.png</normaloff>:/icon/arrowDouble.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="4">
+                         <widget class="QPushButton" name="shp_Needle">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/needle.png</normaloff>:/icon/needle.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="2">
+                         <widget class="QPushButton" name="shp_ArrowBent">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/arrowBent.png</normaloff>:/icon/arrowBent.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="3">
+                         <widget class="QPushButton" name="shp_CrossArrowBent">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/crossArrowBent.png</normaloff>:/icon/crossArrowBent.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="0">
+                         <widget class="QPushButton" name="shp_Circle">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/circle.png</normaloff>:/icon/circle.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QPushButton" name="shp_Square">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/square.png</normaloff>:/icon/square.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="4">
+                         <widget class="QPushButton" name="shp_Cross">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/cross.png</normaloff>:/icon/cross.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="2">
+                         <widget class="QPushButton" name="shp_Sphere">
+                          <property name="minimumSize">
+                           <size>
+                            <width>51</width>
+                            <height>28</height>
+                           </size>
+                          </property>
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/sphere.png</normaloff>:/icon/sphere.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="3">
+                         <widget class="QPushButton" name="shp_Box">
+                          <property name="focusPolicy">
+                           <enum>Qt::NoFocus</enum>
+                          </property>
+                          <property name="contextMenuPolicy">
+                           <enum>Qt::DefaultContextMenu</enum>
+                          </property>
+                          <property name="autoFillBackground">
+                           <bool>false</bool>
+                          </property>
+                          <property name="text">
+                           <string/>
+                          </property>
+                          <property name="icon">
+                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                            <normaloff>:/icon/box.png</normaloff>:/icon/box.png</iconset>
+                          </property>
+                          <property name="iconSize">
+                           <size>
+                            <width>20</width>
+                            <height>20</height>
+                           </size>
+                          </property>
+                          <property name="checkable">
+                           <bool>false</bool>
+                          </property>
+                          <property name="checked">
+                           <bool>false</bool>
+                          </property>
+                          <property name="flat">
+                           <bool>true</bool>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <property name="spacing">
+                    <number>10</number>
+                   </property>
+                   <property name="sizeConstraint">
+                    <enum>QLayout::SetDefaultConstraint</enum>
+                   </property>
+                   <item>
+                    <widget class="QComboBox" name="comboBox">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="btn_createCtl">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>Create</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_11">
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="text">
+                      <string>Spawn Mult:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDoubleSpinBox" name="spawnMult_spBox">
+                     <property name="decimals">
+                      <number>1</number>
+                     </property>
+                     <property name="minimum">
+                      <double>0.100000000000000</double>
+                     </property>
+                     <property name="value">
+                      <double>1.000000000000000</double>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_2">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(172, 172, 172);
+font: 75 10pt &quot;Rubik&quot;;
+color:rgb(0, 0, 0);</string>
+                 </property>
+                 <property name="text">
+                  <string>Color Picker</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QWidget" name="colorGrp" native="true">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
                    <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
+                   <verstretch>11</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="text">
-                  <string>as Curve</string>
+                 <property name="minimumSize">
+                  <size>
+                   <width>303</width>
+                   <height>82</height>
+                  </size>
                  </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="asJnt">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>as Joint</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QRadioButton" name="asReplace">
-                 <property name="text">
-                  <string>Replace</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <widget class="QGroupBox" name="groupBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="title">
-                <string>QuickCreate</string>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_3">
-                <property name="topMargin">
-                 <number>20</number>
-                </property>
-                <property name="bottomMargin">
-                 <number>20</number>
-                </property>
-                <item>
-                 <layout class="QGridLayout" name="gridLayout">
-                  <property name="sizeConstraint">
-                   <enum>QLayout::SetFixedSize</enum>
-                  </property>
-                  <item row="1" column="1">
-                   <widget class="QPushButton" name="shp_CrossArrow">
-                    <property name="focusPolicy">
-                     <enum>Qt::NoFocus</enum>
+                 <layout class="QGridLayout" name="gridLayout_2">
+                  <item row="2" column="3">
+                   <widget class="QPushButton" name="col_22">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
                     </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
                     </property>
-                    <property name="autoFillBackground">
-                     <bool>false</bool>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(255, 255, 99);
+border: 0px;</string>
                     </property>
                     <property name="text">
                      <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/crossArrow.png</normaloff>:/icon/crossArrow.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
-                     <bool>false</bool>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QPushButton" name="shp_Arrow">
+                  <item row="1" column="11">
+                   <widget class="QPushButton" name="col_18">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(100, 220, 255);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/arrowDouble.png</normaloff>:/icon/arrowDouble.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="8">
+                   <widget class="QPushButton" name="col_16">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(255, 255, 255);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QPushButton" name="col_20">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(255, 176, 176);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="4">
-                   <widget class="QPushButton" name="shp_Needle">
+                   <widget class="QPushButton" name="col_14">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 255, 0);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/needle.png</normaloff>:/icon/needle.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QPushButton" name="shp_ArrowBent">
+                   <widget class="QPushButton" name="col_12">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(153, 38, 0);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/arrowBent.png</normaloff>:/icon/arrowBent.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QPushButton" name="col_10">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(138, 72, 51);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="10">
+                   <widget class="QPushButton" name="col_17">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(255, 255, 0);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="4">
+                   <widget class="QPushButton" name="col_23">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 153, 84);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QPushButton" name="col_11">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(63, 35, 31);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="6">
+                   <widget class="QPushButton" name="col_15">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 65, 153);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QPushButton" name="col_19">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(67, 255, 163);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QPushButton" name="col_21">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(228, 172, 121);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="3">
-                   <widget class="QPushButton" name="shp_CrossArrowBent">
+                   <widget class="QPushButton" name="col_13">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(255, 0, 0);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/crossArrowBent.png</normaloff>:/icon/crossArrowBent.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="0">
-                   <widget class="QPushButton" name="shp_Circle">
+                   <widget class="QPushButton" name="col_1">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:black;
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/circle.png</normaloff>:/icon/circle.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QPushButton" name="shp_Square">
+                   <widget class="QPushButton" name="col_2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/square.png</normaloff>:/icon/square.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
-                     <bool>false</bool>
-                    </property>
-                    <property name="flat">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <widget class="QPushButton" name="shp_Cross">
-                    <property name="focusPolicy">
-                     <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
-                    </property>
-                    <property name="autoFillBackground">
-                     <bool>false</bool>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(83, 83, 83);
+border: 0px;</string>
                     </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/cross.png</normaloff>:/icon/cross.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QPushButton" name="shp_Sphere">
+                   <widget class="QPushButton" name="col_3">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(213, 213, 213);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/sphere.png</normaloff>:/icon/sphere.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="3">
-                   <widget class="QPushButton" name="shp_Box">
+                   <widget class="QPushButton" name="col_4">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
                     <property name="focusPolicy">
                      <enum>Qt::NoFocus</enum>
-                    </property>
-                    <property name="contextMenuPolicy">
-                     <enum>Qt::DefaultContextMenu</enum>
                     </property>
                     <property name="autoFillBackground">
                      <bool>false</bool>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(170, 0, 0);
+border: 0px;</string>
+                    </property>
                     <property name="text">
                      <string/>
                     </property>
-                    <property name="icon">
-                     <iconset resource="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
-                      <normaloff>:/icon/box.png</normaloff>:/icon/box.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>20</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="checked">
+                    <property name="default">
                      <bool>false</bool>
                     </property>
                     <property name="flat">
-                     <bool>true</bool>
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <widget class="QPushButton" name="col_5">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 4, 96);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="6">
+                   <widget class="QPushButton" name="col_6">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 0, 255);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="8">
+                   <widget class="QPushButton" name="col_7">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(0, 70, 25);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="10">
+                   <widget class="QPushButton" name="col_8">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(38, 0, 67);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="11">
+                   <widget class="QPushButton" name="col_9">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="autoFillBackground">
+                     <bool>false</bool>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(200, 0, 200);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="default">
+                     <bool>false</bool>
+                    </property>
+                    <property name="flat">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="6">
+                   <widget class="QPushButton" name="col_24">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(220, 147, 0);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="8">
+                   <widget class="QPushButton" name="col_25">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(221, 221, 110);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="10">
+                   <widget class="QPushButton" name="col_26">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(170, 255, 0);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="11">
+                   <widget class="QPushButton" name="col_27">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(48, 161, 93);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QPushButton" name="col_28">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(48, 161, 161);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QPushButton" name="col_29">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(48, 103, 161);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QPushButton" name="col_30">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color: rgb(170, 0, 255);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="3">
+                   <widget class="QPushButton" name="col_31">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>10</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="focusPolicy">
+                     <enum>Qt::NoFocus</enum>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">background-color:rgb(255, 83, 201);
+border: 0px;</string>
+                    </property>
+                    <property name="text">
+                     <string/>
                     </property>
                    </widget>
                   </item>
                  </layout>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <property name="spacing">
-              <number>10</number>
-             </property>
-             <property name="sizeConstraint">
-              <enum>QLayout::SetDefaultConstraint</enum>
-             </property>
-             <item>
-              <widget class="QComboBox" name="comboBox">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="btn_createCtl">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Create</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Spawn Mult:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QDoubleSpinBox" name="spawnMult_spBox">
-               <property name="decimals">
-                <number>1</number>
-               </property>
-               <property name="minimum">
-                <double>0.100000000000000</double>
-               </property>
-               <property name="value">
-                <double>1.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(172, 172, 172);
-font: 75 10pt &quot;Rubik&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Color Picker</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QWidget" name="colorGrp" native="true">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-             <horstretch>0</horstretch>
-             <verstretch>11</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>20</height>
-            </size>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_3">
-            <property name="bottomMargin">
-             <number>9</number>
-            </property>
-            <property name="horizontalSpacing">
-             <number>1</number>
-            </property>
-            <item row="0" column="4">
-             <widget class="QPushButton" name="col_purple">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(170, 0, 255);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="5">
-             <widget class="QPushButton" name="col_yellow">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 0);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="3">
-             <widget class="QPushButton" name="col_cyan">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: cyan;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QPushButton" name="col_blue">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(0, 85, 255);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="2">
-             <widget class="QPushButton" name="col_green">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(0, 255, 0);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <widget class="QPushButton" name="col_red">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:red;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="default">
-               <bool>false</bool>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QPushButton" name="col_white">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: white;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QPushButton" name="col_black">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: black;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QPushButton" name="col_blue2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: blue;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <widget class="QPushButton" name="col_green2">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:rgb(61, 122, 90);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <widget class="QPushButton" name="col_pink">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="focusPolicy">
-               <enum>Qt::NoFocus</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color:rgb(255, 85, 255);
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="5">
-             <widget class="QPushButton" name="col_brown">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>10</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: brown;
-border: 0px;</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(172, 172, 172);
-font: 75 10pt &quot;Rubik&quot;;</string>
-           </property>
-           <property name="text">
-            <string>Shape Utils</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_5">
-           <property name="title">
-            <string>Space</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_9">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_13">
-              <item>
-               <widget class="QRadioButton" name="spObject">
-                <property name="toolTip">
-                 <string>Use object transform space</string>
-                </property>
-                <property name="text">
-                 <string>Object</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="spTransform">
-                <property name="toolTip">
-                 <string>Use shape transform space</string>
-                </property>
-                <property name="text">
-                 <string>Transform</string>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_4">
-           <property name="title">
-            <string>Translate</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_10">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <item>
-               <widget class="QCheckBox" name="transX_chkBox">
-                <property name="text">
-                 <string>X</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="transY_chkBox">
-                <property name="text">
-                 <string>Y</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="transZ_chkBox">
-                <property name="text">
-                 <string>Z</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_10">
-              <item>
-               <widget class="QLabel" name="label_resizeStep_2">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Step: </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="sizeStepSpinBox_2">
-                <property name="decimals">
-                 <number>1</number>
-                </property>
-                <property name="singleStep">
-                 <double>0.200000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.200000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QSlider" name="resizeSlider_2">
-              <property name="minimum">
-               <number>-10</number>
-              </property>
-              <property name="maximum">
-               <number>10</number>
-              </property>
-              <property name="tracking">
-               <bool>true</bool>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="invertedAppearance">
-               <bool>false</bool>
-              </property>
-              <property name="invertedControls">
-               <bool>false</bool>
-              </property>
-              <property name="tickPosition">
-               <enum>QSlider::TicksBelow</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_2">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>0</width>
-             <height>110</height>
-            </size>
-           </property>
-           <property name="title">
-            <string>Rotate</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <item>
-             <widget class="QWidget" name="rotateGrp" native="true">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>80</height>
-               </size>
-              </property>
-              <layout class="QVBoxLayout" name="verticalLayout_7">
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_9">
-                 <item>
-                  <widget class="QLabel" name="label_angle">
-                   <property name="font">
-                    <font>
-                     <pointsize>10</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Angle:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QSpinBox" name="angle_box">
-                   <property name="maximum">
-                    <number>360</number>
-                   </property>
-                   <property name="singleStep">
-                    <number>45</number>
-                   </property>
-                   <property name="value">
-                    <number>90</number>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                </widget>
                </item>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
-                 <property name="sizeConstraint">
-                  <enum>QLayout::SetMaximumSize</enum>
+                <widget class="QPushButton" name="colorRandom_btn">
+                 <property name="toolTip">
+                  <string>randomize ctrl color</string>
                  </property>
-                 <item>
-                  <widget class="QPushButton" name="btn_rotateX">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>26</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(255, 70, 70);
+                 <property name="text">
+                  <string>Randomize</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="styleSheet">
+                  <string notr="true">background-color: rgb(172, 172, 172);
+font: 75 10pt &quot;Rubik&quot;;
+color:rgb(0, 0, 0);</string>
+                 </property>
+                 <property name="text">
+                  <string>Shape Utils</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_5">
+                 <property name="title">
+                  <string>Space</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_9">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_13">
+                    <item>
+                     <widget class="QRadioButton" name="spObject">
+                      <property name="toolTip">
+                       <string>Use object transform space</string>
+                      </property>
+                      <property name="text">
+                       <string>Object</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QRadioButton" name="spTransform">
+                      <property name="toolTip">
+                       <string>Use shape transform space</string>
+                      </property>
+                      <property name="text">
+                       <string>Transform</string>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_4">
+                 <property name="title">
+                  <string>Translate</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_10">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                    <item>
+                     <widget class="QCheckBox" name="transX_chkBox">
+                      <property name="text">
+                       <string>X</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="transY_chkBox">
+                      <property name="text">
+                       <string>Y</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="transZ_chkBox">
+                      <property name="text">
+                       <string>Z</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                    <item>
+                     <widget class="QLabel" name="label_resizeStep_2">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Step: </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDoubleSpinBox" name="sizeStepSpinBox_2">
+                      <property name="decimals">
+                       <number>1</number>
+                      </property>
+                      <property name="singleStep">
+                       <double>0.200000000000000</double>
+                      </property>
+                      <property name="value">
+                       <double>1.200000000000000</double>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="resizeSlider_2">
+                    <property name="minimum">
+                     <number>-10</number>
+                    </property>
+                    <property name="maximum">
+                     <number>10</number>
+                    </property>
+                    <property name="tracking">
+                     <bool>true</bool>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="invertedAppearance">
+                     <bool>false</bool>
+                    </property>
+                    <property name="invertedControls">
+                     <bool>false</bool>
+                    </property>
+                    <property name="tickPosition">
+                     <enum>QSlider::TicksBelow</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_2">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>110</height>
+                  </size>
+                 </property>
+                 <property name="title">
+                  <string>Rotate</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_5">
+                  <item>
+                   <widget class="QWidget" name="rotateGrp" native="true">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_7">
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_9">
+                       <item>
+                        <widget class="QLabel" name="label_angle">
+                         <property name="font">
+                          <font>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Angle:</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QSpinBox" name="angle_box">
+                         <property name="maximum">
+                          <number>360</number>
+                         </property>
+                         <property name="singleStep">
+                          <number>45</number>
+                         </property>
+                         <property name="value">
+                          <number>90</number>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QHBoxLayout" name="horizontalLayout_7">
+                       <property name="sizeConstraint">
+                        <enum>QLayout::SetMaximumSize</enum>
+                       </property>
+                       <item>
+                        <widget class="QPushButton" name="btn_rotateX">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>26</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(255, 70, 70);
 color: white;
 border: 0px;</string>
-                   </property>
-                   <property name="text">
-                    <string>X</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btn_rotateY">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>26</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: rgb(72, 216, 0);
+                         </property>
+                         <property name="text">
+                          <string>X</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_rotateY">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>26</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: rgb(72, 216, 0);
 color: white;
 border: 0px;</string>
-                   </property>
-                   <property name="text">
-                    <string>Y</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="btn_rotateZ">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>26</height>
-                    </size>
-                   </property>
-                   <property name="styleSheet">
-                    <string notr="true">background-color: blue;
+                         </property>
+                         <property name="text">
+                          <string>Y</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_rotateZ">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>26</height>
+                          </size>
+                         </property>
+                         <property name="styleSheet">
+                          <string notr="true">background-color: blue;
 color: white;
 border: 0px;</string>
-                   </property>
-                   <property name="text">
-                    <string>Z</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                         </property>
+                         <property name="text">
+                          <string>Z</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBox_3">
+                 <property name="title">
+                  <string>Scale</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_4">
+                    <item>
+                     <widget class="QCheckBox" name="sizeX">
+                      <property name="text">
+                       <string>X</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="sizeY">
+                      <property name="text">
+                       <string>Y</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="sizeZ">
+                      <property name="text">
+                       <string>Z</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_5">
+                    <item>
+                     <widget class="QLabel" name="label_resizeStep">
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="text">
+                       <string>Step: </string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QDoubleSpinBox" name="sizeStepSpinBox">
+                      <property name="decimals">
+                       <number>1</number>
+                      </property>
+                      <property name="singleStep">
+                       <double>0.200000000000000</double>
+                      </property>
+                      <property name="value">
+                       <double>1.200000000000000</double>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="resizeSlider">
+                    <property name="minimum">
+                     <number>-10</number>
+                    </property>
+                    <property name="maximum">
+                     <number>10</number>
+                    </property>
+                    <property name="tracking">
+                     <bool>true</bool>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="invertedAppearance">
+                     <bool>false</bool>
+                    </property>
+                    <property name="invertedControls">
+                     <bool>false</bool>
+                    </property>
+                    <property name="tickPosition">
+                     <enum>QSlider::TicksBelow</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="copyShp_Btn">
+                 <property name="toolTip">
+                  <string>copy selected ctrls to last selected ctrl shape</string>
+                 </property>
+                 <property name="text">
+                  <string>Copy Shape</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="saveShp_btn">
+                 <property name="text">
+                  <string>Save Selected Shape</string>
+                 </property>
+                </widget>
                </item>
               </layout>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QGroupBox" name="groupBox_3">
-           <property name="title">
-            <string>Scale</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <item>
-               <widget class="QCheckBox" name="sizeX">
-                <property name="text">
-                 <string>X</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="sizeY">
-                <property name="text">
-                 <string>Y</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="sizeZ">
-                <property name="text">
-                 <string>Z</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QLabel" name="label_resizeStep">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Step: </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="sizeStepSpinBox">
-                <property name="decimals">
-                 <number>1</number>
-                </property>
-                <property name="singleStep">
-                 <double>0.200000000000000</double>
-                </property>
-                <property name="value">
-                 <double>1.200000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <widget class="QSlider" name="resizeSlider">
-              <property name="minimum">
-               <number>-10</number>
-              </property>
-              <property name="maximum">
-               <number>10</number>
-              </property>
-              <property name="tracking">
-               <bool>true</bool>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="invertedAppearance">
-               <bool>false</bool>
-              </property>
-              <property name="invertedControls">
-               <bool>false</bool>
-              </property>
-              <property name="tickPosition">
-               <enum>QSlider::TicksBelow</enum>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="saveShp_btn">
-           <property name="text">
-            <string>Save Selected Shape</string>
-           </property>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -1300,68 +2035,156 @@ border: 0px;</string>
         <attribute name="title">
          <string>Joints</string>
         </attribute>
-        <widget class="QPushButton" name="pushButton">
-         <property name="geometry">
-          <rect>
-           <x>90</x>
-           <y>80</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Create Joints</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_3">
-         <property name="geometry">
-          <rect>
-           <x>180</x>
-           <y>150</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Split Joints</string>
-         </property>
-        </widget>
-        <widget class="QSpinBox" name="spinBox">
-         <property name="geometry">
-          <rect>
-           <x>80</x>
-           <y>160</y>
-           <width>81</width>
-           <height>31</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_4">
-         <property name="geometry">
-          <rect>
-           <x>120</x>
-           <y>260</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Orient Joints</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton_5">
-         <property name="geometry">
-          <rect>
-           <x>130</x>
-           <y>360</y>
-           <width>101</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Display Axis</string>
-         </property>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_16">
+         <item>
+          <widget class="QPushButton" name="crJnt_Btn">
+           <property name="text">
+            <string>Create Joints</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="groupBox_9">
+           <property name="title">
+            <string>Create Joint on Selected</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_20">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_15">
+              <item>
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="1">
+                 <widget class="QCheckBox" name="parConstraint_chkBox">
+                  <property name="text">
+                   <string>ParentConstraint</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QCheckBox" name="scaleCons_chkBox">
+                  <property name="text">
+                   <string>Scale Constraint</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="orientCons_chkBox">
+                  <property name="text">
+                   <string>OrientConstraint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="pointCons_chkBox">
+                  <property name="text">
+                   <string>PointConstraint</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="chainJnt_chkBox">
+                  <property name="text">
+                   <string>Chain</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <layout class="QHBoxLayout" name="horizontalLayout_19">
+                  <item>
+                   <widget class="QCheckBox" name="suffix_chkBox">
+                    <property name="text">
+                     <string>Suffix:</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="jntSuffixName_lineEdit">
+                    <property name="text">
+                     <string>bJnt</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <widget class="QPushButton" name="createSelJnt_Btn">
+                <property name="text">
+                 <string>Create Joint(s)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="orientJnt_Btn">
+           <property name="text">
+            <string>Orient Joint(s)</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="displayJntAxis_Btn">
+           <property name="text">
+            <string>Display Axis</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <item>
+            <widget class="QSpinBox" name="splitJnt_spBox">
+             <property name="value">
+              <number>1</number>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="splitJnt_Btn">
+             <property name="text">
+              <string>Split Joints</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QPushButton" name="mirrorJnt_Btn">
+           <property name="text">
+            <string>Mirror Joints</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tab_transforms">
         <attribute name="title">
@@ -1396,7 +2219,7 @@ border: 0px;</string>
                    <string>Prefix</string>
                   </property>
                   <property name="checked">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
@@ -1406,7 +2229,7 @@ border: 0px;</string>
                    <string>Suffix</string>
                   </property>
                   <property name="checked">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -1458,29 +2281,12 @@ border: 0px;</string>
                <number>10</number>
               </property>
               <item>
-               <widget class="QLabel" name="suffix_label">
+               <widget class="QCheckBox" name="keepSuffix_chkBox">
                 <property name="text">
-                 <string>Previous Suffix:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="suffix_keep">
-                <property name="text">
-                 <string>Keep</string>
+                 <string>Keep Previous Suffix</string>
                 </property>
                 <property name="checked">
                  <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QRadioButton" name="suffix_delete">
-                <property name="text">
-                 <string>Delete</string>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -1663,6 +2469,13 @@ border: 0px;</string>
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="parentAsChain_Btn">
+           <property name="text">
+            <string>Parent as Chain</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacer">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -1681,19 +2494,6 @@ border: 0px;</string>
         <attribute name="title">
          <string>Utilities</string>
         </attribute>
-        <widget class="QPushButton" name="pushButton_2">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>40</y>
-           <width>151</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Save Current as Defaults</string>
-         </property>
-        </widget>
        </widget>
       </widget>
      </item>
@@ -1722,7 +2522,7 @@ border: 0px;</string>
   </layout>
  </widget>
  <resources>
-  <include location="../../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc"/>
+  <include location="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc"/>
  </resources>
  <connections/>
 </ui>
