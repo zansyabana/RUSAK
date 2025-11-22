@@ -7,6 +7,7 @@ from __future__ import (division, # unicode_literals,
                         absolute_import)
 import os
 import sys
+import random
 from pathlib import Path
 filePaths = Path(__file__).parent
 icons = filePaths/'icons'
@@ -102,6 +103,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         self.parentAsChain_Btn.clicked.connect(self.chainParent)
         # self.lineOneLiner.editingFinished.connect(self.runOneLiner)
         self.splitJnt_Btn.clicked.connect(self.splitJoints)
+        self.colorRandom_btn.clicked.connect(self.randomizeColor)
         
 
     def replaceShape(self):
@@ -331,9 +333,13 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
 
     def splitJoints(self):
         jntNum = self.splitJnt_spBox.value()
-        fs.splitJoints(jntNum)
+        fs.splitJoint(jntNum)
 
-
+    def randomizeColor(self):
+        sel = pm.selected()
+        for i in sel:
+            randCol = random.randint(1,31)
+            fs.createControls().setColor(i,randCol)
 def main():
     global ui
     try:

@@ -267,19 +267,85 @@ def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, 
 
 
 def splitJoint(splitNum,*args):
-    sel=pm.selected(type='joint')
-    if len(sel)!=2:
+    """Insert intermediate joints between two selected joints.
+
+    splitNum is treated as the number of segments to divide the span into.
+    For example, splitNum=2 will insert one joint at the midpoint.
+    """
+    sel = pm.selected(type='joint')
+    if len(sel) != 2:
         pm.warning("Select 2 joints only")
         return
-    else:
-        startJnt=sel[0]
-        endJnt=sel[1]
-        totalLength=pm.joint(startJnt, e=True, q=True, length=True)
-        segmentLength=totalLength/float(splitNum)
-        pm.select(startJnt)
-        for i in range(splitNum-1):
-            newJnt=pm.joint(e=True, a=True, p=(0,segmentLength,0))
-        pm.joint(e=True, zso=True, oj='xyz', sao='yup', ch=True, spa=True, name=endJnt+'_end')
+
+    startJnt = sel[0]
+    endJnt = sel[1]
+
+    # validate splitNum
+    try:
+        n = int(splitNum)
+    except Exception:
+        pm.warning("splitNum must be an integer")
+        return
+    if n <= 0:
+        pm.warning("splitNum must be >= 1")
+        return
+
+    # get world positions
+    startJntPos = pm.xform(startJnt, q=True, ws=True, t=True)
+    endJntPos = pm.xform(endJnt, q=True, ws=True, t=True)
+
+    # compute vector and segment increment
+    distVector = pm.datatypes.Vector(endJntPos) - pm.datatypes.Vector(startJntPos)
+    totalLength = distVector.length()
+    # number of segments = n, new joints to insert = n - 1
+    if n == 1:
+        # nothing to insert
+        return
+
+    # create intermediate joints at fractional positions along the vector
+    pm.undoInfo(openChunk=True)
+    try:
+        # detach end joint so we can reparent it under the last created joint
+        orig_parent = endJnt.getParent()
+        try:
+            pm.parent(endJnt, world=True)
+        except Exception:
+            pass
+
+        new_joints = []
+        # select start joint so pm.joint creates children under it
+        pm.select(startJnt, r=True)
+        for i in range(1, n):
+            t = float(i) / float(n)
+            pos_vec = pm.datatypes.Vector(startJntPos) + (distVector * t)
+            # create joint at world position; pm.joint will parent to the current selection
+            j = pm.joint(p=(pos_vec.x, pos_vec.y, pos_vec.z))
+            new_joints.append(j)
+
+        # reparent the original end joint under the last new joint (or start if no new)
+        if new_joints:
+            try:
+                pm.parent(endJnt, new_joints[-1])
+            except Exception:
+                pass
+
+        # orient the joint chain to produce reasonable joint orientation
+        try:
+            pm.joint(startJnt, e=True, zso=True, oj='xyz', sao='yup', ch=True, spa=True)
+        except Exception:
+            pass
+
+    finally:
+        # restore original parent if it existed (only if it wasn't world)
+        try:
+            if orig_parent:
+                # if endJnt was reparented to a new joint we don't want to undo that;
+                # only attempt to restore if we failed to reparent above
+                pass
+        except Exception:
+            pass
+        pm.undoInfo(closeChunk=True)
+
 
 
 def oneLiner(nName, method='s'):

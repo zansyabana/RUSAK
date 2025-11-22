@@ -149,6 +149,9 @@ color:rgb(0, 0, 0);</string>
                        <verstretch>0</verstretch>
                       </sizepolicy>
                      </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
                      <property name="title">
                       <string>QuickCreate</string>
                      </property>
@@ -244,6 +247,9 @@ color:rgb(0, 0, 0);</string>
                           </property>
                           <property name="autoFillBackground">
                            <bool>false</bool>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(225, 225, 225);</string>
                           </property>
                           <property name="text">
                            <string/>
@@ -2157,6 +2163,9 @@ border: 0px;</string>
            </item>
            <item>
             <widget class="QPushButton" name="splitJnt_Btn">
+             <property name="toolTip">
+              <string>select start joint and end joint to split</string>
+             </property>
              <property name="text">
               <string>Split Joints</string>
              </property>
