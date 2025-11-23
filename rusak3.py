@@ -351,8 +351,9 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         fs.splitJoint(jntNum)
 
     def _defaults_path(self):
+        # Use %USERPROFILE%/Documents/maya/scripts as the defaults folder
         up = os.environ.get('USERPROFILE') or os.path.expanduser('~')
-        folder = os.path.join(up, 'maya', 'scripts')
+        folder = os.path.join(up, 'Documents', 'maya', 'scripts')
         try:
             os.makedirs(folder, exist_ok=True)
         except Exception:
@@ -389,8 +390,12 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                     data[name] = w.currentIndex()
 
             path = self._defaults_path()
-            with open(path, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=2)
+            try:
+                with open(path, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2)
+                print("[rusak] saved user defaults to:", path, "(", len(data), "items)")
+            except Exception as e:
+                print("[rusak] failed to save user defaults:", e)
         except Exception:
             pass
 
@@ -402,10 +407,12 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         try:
             with open(path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-        except Exception:
+        except Exception as e:
+            print("[rusak] failed to read defaults file:", e)
             return
 
         try:
+            print("[rusak] loading user defaults from:", path, "(", len(data), "items)")
             for name, val in data.items():
                 widget = getattr(self, name, None)
                 if widget is None:
@@ -430,18 +437,34 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                             widget.setCurrentIndex(idx)
                 except Exception:
                     pass
-        except Exception:
+        except Exception as e:
+            print("[rusak] error applying defaults:", e)
             pass
 
     def closeEvent(self, event):
+        # print("[rusak] closeEvent triggered")
         try:
             self._save_user_defaults()
-        except Exception:
+        except Exception as e:
+            print("[rusak] _save_user_defaults error:", e)
             pass
         try:
             super(MainWindow, self).closeEvent(event)
         except Exception:
             QWidget.closeEvent(self, event)
+
+    def hideEvent(self, event):
+        """Fallback save when the widget is hidden (common for dockable windows)."""
+        # print("[rusak] hideEvent triggered")
+        try:
+            self._save_user_defaults()
+        except Exception as e:
+            print("[rusak] _save_user_defaults error (hideEvent):", e)
+            pass
+        try:
+            super(MainWindow, self).hideEvent(event)
+        except Exception:
+            QWidget.hideEvent(self, event)
 
     def randomizeColor(self):
         sel = pm.selected()

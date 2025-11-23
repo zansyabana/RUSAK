@@ -1077,7 +1077,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
         self.splitJnt_spBox = QSpinBox(self.tab_jnt)
         self.splitJnt_spBox.setObjectName(u"splitJnt_spBox")
-        self.splitJnt_spBox.setValue(1)
+        self.splitJnt_spBox.setMinimum(2)
+        self.splitJnt_spBox.setValue(2)
 
         self.horizontalLayout_18.addWidget(self.splitJnt_spBox)
 
