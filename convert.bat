@@ -1,1 +1,0 @@
-uic -x "rusakU2I_new.ui" -o "rusakUI.py" 
