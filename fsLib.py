@@ -7,6 +7,7 @@ import pymel.core as pm
 import maya.cmds as mc
 import json
 import os
+from pathlib import Path
 
 
 class createControls():
@@ -16,6 +17,12 @@ class createControls():
         self.curveLib_file = open(self.curveLibPath)
         self.curveLib = json.load(self.curveLib_file)
         self.curveLib_file.close()
+
+        userPath = Path(os.getenv("USERPROFILE")) / "Documents" / "maya"/"scripts"/"rusakUserCurveLib.json"
+        if userPath.exists():
+            self.userCurveLib_file = open(userPath)
+            self.userCurveLib = json.load(self.userCurveLib_file)
+            self.curveLib.update(self.userCurveLib)
 
     def align(self,tgt, src):
         trans = pm.xform(str(src) + ".scalePivot", q=True, ws=True, t=True)
@@ -65,9 +72,10 @@ class createControls():
         pm.undoInfo(closeChunk=True)
         return crv
 
-    def saveCtl(self,name):
+    def saveCtl(self,name,obj=None,customPath=''):
+        if not obj:
+            obj = pm.selected()[0]
 
-        obj = pm.selected()[0]
         cvPoints = []
         knots = obj.getKnots()
         max = obj.spans.get()
@@ -87,13 +95,17 @@ class createControls():
             cvPoints.append(points)
             # knot = obj.getKnot(i)
             # knots.append(knot)
-
-        oldDataFile = open(self.curveLibPath, 'r')
+        if customPath:
+            savePath = customPath
+            
+        else:
+            savePath = self.curveLibPath
+        oldDataFile = open(savePath, 'r')
         crvShapeInfo = json.load(oldDataFile)
         oldDataFile.close()
         crvShapeInfo[name] = 'pm.curve(p={}, d={}, k={},per={})'.format(cvPoints, deg, knots,per)
         # print crvShapeInfo
-        with open(self.curveLibPath, mode='w') as insertData:
+        with open(savePath, mode='w') as insertData:
             json.dump(crvShapeInfo,insertData,indent=4)
             insertData.close()
 
@@ -346,7 +358,63 @@ def splitJoint(splitNum,*args):
             pass
         pm.undoInfo(closeChunk=True)
 
+def createJntOnSel(objs=[],pac=False,sc=False,oc=False,poc=False,sfx='bJnt',chain=False):
+    pm.undoInfo(openChunk=True)
+    jnts=[]
+    for obj in objs:
+        #get obj world position
+        pos=pm.xform(obj,q=True,ws=True,t=True)
+        #get obj world rotation
+        rot=pm.xform(obj,q=True,ws=True,ro=True)    
+        pm.select(clear=True)
+        jnt=pm.joint(p=pos,name=str(obj)+'_'+sfx)
+        pm.xform(jnt,ws=True,ro=rot)
+        jnts.append(jnt)
+        if jnts.index(jnt)!=0 and chain:
+            pm.parent(jnt,jnts[jnts.index(jnt)-1])
+            orientJoints([jnt])
+        else:
+            orientJoints([jnt])
+        if pac:
+            pm.parentConstraint(obj,jnt,mo=True)
+        if sc:
+            pm.scaleConstraint(obj,jnt,mo=True)
+        if oc:
+            pm.orientConstraint(obj,jnt,mo=True)
+        if poc:
+            pm.pointConstraint(obj,jnt,mo=True)
+    #orient the joints after all created, check the translate of the next joint to determine the aim vector
+    pm.select(objs)
+    pm.undoInfo(closeChunk=True)
+    return jnts
 
+def toggleJointAxis(*args):
+    sel = pm.selected(type='joint')
+    if any([i.displayLocalAxis.get() == 0 for i in sel]):
+        for i in sel:
+            i.displayLocalAxis.set(1)
+    else:
+        for i in sel:
+            i.displayLocalAxis.set(0)
+
+def orientJoints(objs=[],*args):
+    pm.undoInfo(openChunk=True)
+    if not objs:
+        objs = pm.selected(type='joint')
+    for i in objs:
+        #get world orientation
+        rot= i.getRotation(space='object')
+        #convert the rotation to quaternion
+        quat=pm.datatypes.EulerRotation(rot[0],rot[1],rot[2]).asQuaternion()
+        #get current joint orient
+        curOrient = i.getOrientation()
+        #add quat and current joint orient
+        quat = quat * curOrient
+        #set the joint orient to quaternion value
+        i.setOrientation(quat)
+        #reset the rotation to 0
+        i.rotate.set([0,0,0])
+    pm.undoInfo(closeChunk=True)
 
 def oneLiner(nName, method='s'):
 

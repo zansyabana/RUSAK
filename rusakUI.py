@@ -1091,6 +1091,7 @@ class Ui_MainWindow(object):
 
         self.mirrorJnt_Btn = QPushButton(self.tab_jnt)
         self.mirrorJnt_Btn.setObjectName(u"mirrorJnt_Btn")
+        self.mirrorJnt_Btn.setEnabled(False)
 
         self.verticalLayout_16.addWidget(self.mirrorJnt_Btn)
 
@@ -1169,6 +1170,7 @@ class Ui_MainWindow(object):
 
         self.groupBox_7 = QGroupBox(self.tab_transforms)
         self.groupBox_7.setObjectName(u"groupBox_7")
+        self.groupBox_7.setEnabled(False)
         self.verticalLayout_13 = QVBoxLayout(self.groupBox_7)
         self.verticalLayout_13.setObjectName(u"verticalLayout_13")
         self.groupBox_8 = QGroupBox(self.groupBox_7)
@@ -1417,7 +1419,7 @@ class Ui_MainWindow(object):
         self.jntSuffixName_lineEdit.setText(QCoreApplication.translate("MainWindow", u"bJnt", None))
         self.createSelJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Create Joint(s)", None))
         self.orientJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Orient Joint(s)", None))
-        self.displayJntAxis_Btn.setText(QCoreApplication.translate("MainWindow", u"Display Axis", None))
+        self.displayJntAxis_Btn.setText(QCoreApplication.translate("MainWindow", u"Toggle Display Axis", None))
 #if QT_CONFIG(tooltip)
         self.splitJnt_Btn.setToolTip(QCoreApplication.translate("MainWindow", u"select start joint and end joint to split", None))
 #endif // QT_CONFIG(tooltip)

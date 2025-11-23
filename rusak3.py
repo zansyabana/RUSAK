@@ -44,6 +44,9 @@ except:
 import maya.OpenMayaUI as apiUI
 import pymel.core as pm
 import maya.cmds as cmds
+import maya.mel as mel
+import json
+from PySide2.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
 
 
 
@@ -64,6 +67,11 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
     def __init__(self, parent=getMayaWindow()):
         super(MainWindow, self).__init__(parent=parent)
         self.setupUi(self)
+        # restore saved widget defaults (best-effort)
+        try:
+            self._load_user_defaults()
+        except Exception:
+            pass
         self.resizeSliderVal = 0
         self.shp_Circle.clicked.connect(partial(self.createControl,'circle'))
         self.shp_Sphere.clicked.connect(partial(self.createControl,'sphere'))
@@ -104,7 +112,14 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         # self.lineOneLiner.editingFinished.connect(self.runOneLiner)
         self.splitJnt_Btn.clicked.connect(self.splitJoints)
         self.colorRandom_btn.clicked.connect(self.randomizeColor)
-        
+        self.crJnt_Btn.clicked.connect(lambda:mel.eval('JointTool'))
+        self.createSelJnt_Btn.clicked.connect(self.createJntOnSelect)
+        self.pointCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
+        self.orientCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
+        self.parConstraint_chkBox.stateChanged.connect(self.uncheckPointOrientConstraint)
+        self.displayJntAxis_Btn.clicked.connect(fs.toggleJointAxis)
+        self.orientJnt_Btn.clicked.connect(fs.orientJoints)
+        self.saveShp_btn.clicked.connect(self.saveSelectedShape)
 
     def replaceShape(self):
         pm.undoInfo(openChunk=True)
@@ -335,11 +350,154 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         jntNum = self.splitJnt_spBox.value()
         fs.splitJoint(jntNum)
 
+    def _defaults_path(self):
+        up = os.environ.get('USERPROFILE') or os.path.expanduser('~')
+        folder = os.path.join(up, 'maya', 'scripts')
+        try:
+            os.makedirs(folder, exist_ok=True)
+        except Exception:
+            pass
+        return os.path.join(folder, 'rusakUserDefaults.json')
+
+    def _save_user_defaults(self):
+        """Save QLineEdit, QSpinBox/QDoubleSpinBox, QRadioButton, QCheckBox and QComboBox values to JSON."""
+        data = {}
+        try:
+            for w in self.findChildren(QLineEdit):
+                name = w.objectName()
+                if name:
+                    data[name] = w.text()
+            for w in self.findChildren(QSpinBox):
+                name = w.objectName()
+                if name:
+                    data[name] = w.value()
+            for w in self.findChildren(QDoubleSpinBox):
+                name = w.objectName()
+                if name:
+                    data[name] = w.value()
+            for w in self.findChildren(QRadioButton):
+                name = w.objectName()
+                if name:
+                    data[name] = w.isChecked()
+            for w in self.findChildren(QCheckBox):
+                name = w.objectName()
+                if name:
+                    data[name] = w.isChecked()
+            for w in self.findChildren(QComboBox):
+                name = w.objectName()
+                if name:
+                    data[name] = w.currentIndex()
+
+            path = self._defaults_path()
+            with open(path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2)
+        except Exception:
+            pass
+
+    def _load_user_defaults(self):
+        """Load defaults from JSON and apply to widgets if present."""
+        path = self._defaults_path()
+        if not os.path.exists(path):
+            return
+        try:
+            with open(path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except Exception:
+            return
+
+        try:
+            for name, val in data.items():
+                widget = getattr(self, name, None)
+                if widget is None:
+                    # try findChild by object name (any QWidget)
+                    try:
+                        widget = self.findChild(QWidget, name)
+                    except Exception:
+                        widget = None
+                if widget is None:
+                    continue
+                # apply value based on widget type
+                try:
+                    if isinstance(widget, QLineEdit):
+                        widget.setText(str(val))
+                    elif isinstance(widget, (QSpinBox, QDoubleSpinBox)):
+                        widget.setValue(val)
+                    elif isinstance(widget, (QRadioButton, QCheckBox)):
+                        widget.setChecked(bool(val))
+                    elif isinstance(widget, QComboBox):
+                        idx = int(val)
+                        if 0 <= idx < widget.count():
+                            widget.setCurrentIndex(idx)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+    def closeEvent(self, event):
+        try:
+            self._save_user_defaults()
+        except Exception:
+            pass
+        try:
+            super(MainWindow, self).closeEvent(event)
+        except Exception:
+            QWidget.closeEvent(self, event)
+
     def randomizeColor(self):
         sel = pm.selected()
         for i in sel:
             randCol = random.randint(1,31)
             fs.createControls().setColor(i,randCol)
+
+    def createJntOnSelect(self):
+        sel = pm.selected()
+        sfx = self.jntSuffixName_lineEdit.text()
+        pac = self.parConstraint_chkBox.isChecked()
+        sc = self.scaleCons_chkBox.isChecked()
+        oc = self.orientCons_chkBox.isChecked()
+        poc = self.pointCons_chkBox.isChecked()
+        chain = self.chainJnt_chkBox.isChecked()
+        fs.createJntOnSel(sel,pac,sc,oc,poc,sfx,chain)
+    def uncheckParentConstraint(self):
+        if self.pointCons_chkBox.isChecked() or self.orientCons_chkBox.isChecked():
+            self.parConstraint_chkBox.setChecked(False)
+    def uncheckPointOrientConstraint(self):
+        if self.parConstraint_chkBox.isChecked():
+            self.pointCons_chkBox.setChecked(False)
+            self.orientCons_chkBox.setChecked(False)
+
+    def saveSelectedShape(self):
+        slt = pm.selected(type='transform')
+        slt = [i for i in slt if i.getShape() and isinstance(i.getShape(), pm.nodetypes.NurbsCurve)]
+        if slt == []:
+            pm.warning("Please select a curve shape to save")
+            return
+        else:
+            shp = slt[-1]
+            #open a dialog to get the name
+            # name, ok = fs.simpleInputDialog.getText(self, "Save Curve Shape", "Enter name for the curve shape:")
+            resulf = pm.promptDialog(
+                title='Save Curve Shape',
+                message='Enter name for the curve shape:',
+                button=['OK', 'Cancel'],
+                defaultButton='OK',
+                cancelButton='Cancel',
+            )
+            if resulf == 'OK':
+                name = pm.promptDialog(query=True, text=True)
+                ok = True
+            if ok and name:
+                savePath = Path(os.getenv('USERPROFILE') or os.path.expanduser('~'))/'Documents'/'maya'/'scripts'/'rusakUserCurveLib.json'
+                if not savePath.exists():
+                    savePath.parent.mkdir(parents=True, exist_ok=True)
+                    #create empty json file
+                    with open(savePath.as_posix(), 'w') as f:
+                        json.dump({}, f)
+                fs.createControls().saveCtl(name,obj=shp,customPath=savePath.as_posix())
+                pm.informBox("Save Curve Shape", "Curve shape '{}' saved successfully.".format(name))
+            self.comboBox.clear()
+            self.comboBox.addItems([i for i in fs.createControls().curveLib])
+        
 def main():
     global ui
     try:

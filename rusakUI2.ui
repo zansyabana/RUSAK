@@ -2151,7 +2151,7 @@ border: 0px;</string>
          <item>
           <widget class="QPushButton" name="displayJntAxis_Btn">
            <property name="text">
-            <string>Display Axis</string>
+            <string>Toggle Display Axis</string>
            </property>
           </widget>
          </item>
@@ -2178,6 +2178,9 @@ border: 0px;</string>
          </item>
          <item>
           <widget class="QPushButton" name="mirrorJnt_Btn">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="text">
             <string>Mirror Joints</string>
            </property>
@@ -2316,6 +2319,9 @@ border: 0px;</string>
          </item>
          <item>
           <widget class="QGroupBox" name="groupBox_7">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="title">
             <string>Mirror Transform</string>
            </property>
