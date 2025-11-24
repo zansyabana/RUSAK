@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>413</width>
-    <height>1018</height>
+    <height>1025</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,7 +49,7 @@
               <x>0</x>
               <y>0</y>
               <width>349</width>
-              <height>936</height>
+              <height>943</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_18">
@@ -182,7 +182,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/crossArrow.png</normaloff>:/icon/crossArrow.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -217,7 +217,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/arrowDouble.png</normaloff>:/icon/arrowDouble.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -255,7 +255,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/needle.png</normaloff>:/icon/needle.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -290,7 +290,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/arrowBent.png</normaloff>:/icon/arrowBent.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -325,7 +325,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/crossArrowBent.png</normaloff>:/icon/crossArrowBent.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -360,7 +360,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/circle.png</normaloff>:/icon/circle.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -395,7 +395,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/square.png</normaloff>:/icon/square.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -430,7 +430,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/cross.png</normaloff>:/icon/cross.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -471,7 +471,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/sphere.png</normaloff>:/icon/sphere.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -506,7 +506,7 @@ color:rgb(0, 0, 0);</string>
                            <string/>
                           </property>
                           <property name="icon">
-                           <iconset resource="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc">
+                           <iconset resource="icons/icons.qrc">
                             <normaloff>:/icon/box.png</normaloff>:/icon/box.png</iconset>
                           </property>
                           <property name="iconSize">
@@ -2044,7 +2044,7 @@ border: 0px;</string>
         <attribute name="title">
          <string>Joints</string>
         </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_16">
+        <layout class="QVBoxLayout" name="verticalLayout_22">
          <item>
           <widget class="QPushButton" name="crJnt_Btn">
            <property name="text">
@@ -2142,18 +2142,243 @@ border: 0px;</string>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="orientJnt_Btn">
-           <property name="text">
-            <string>Orient Joint(s)</string>
+          <widget class="QGroupBox" name="groupBox_10">
+           <property name="title">
+            <string>Orient Joint</string>
            </property>
+           <layout class="QVBoxLayout" name="verticalLayout_21">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_25">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_16">
+                <item>
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>Primary Axis:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_8">
+                  <property name="text">
+                   <string>Secondary Axis:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>Secondary Axis World Orientation:</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_19">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_21">
+                  <item>
+                   <widget class="QRadioButton" name="orientPAxisX_rBtn">
+                    <property name="text">
+                     <string>X</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientPAxisY_rBtn">
+                    <property name="text">
+                     <string>Y</string>
+                    </property>
+                    <property name="autoExclusive">
+                     <bool>false</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientPAxisZ_rBtn">
+                    <property name="text">
+                     <string>Z</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_22">
+                  <item>
+                   <widget class="QRadioButton" name="orientSecAxisX_rBtn">
+                    <property name="text">
+                     <string>X</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_2</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientSecAxisY_rBtn">
+                    <property name="text">
+                     <string>Y</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_2</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientSecAxisZ_rBtn">
+                    <property name="text">
+                     <string>Z</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_2</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_24">
+                  <item>
+                   <widget class="QRadioButton" name="orientWorldAxisX_rBtn">
+                    <property name="text">
+                     <string>X</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_3</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientWorldAxisY_rBtn">
+                    <property name="text">
+                     <string>Y</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_3</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="orientWorldAxisZ_rBtn">
+                    <property name="text">
+                     <string>Z</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_3</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_20">
+                <item>
+                 <widget class="QCheckBox" name="orientPrimeNeg_chkBox">
+                  <property name="text">
+                   <string>-</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="orientSecNeg_chkBox">
+                  <property name="text">
+                   <string>-</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="orientWorldNeg_chkBox">
+                  <property name="text">
+                   <string>-</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="orientChd_chkBox">
+              <property name="text">
+               <string>Children</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_23">
+              <item>
+               <widget class="QPushButton" name="orientJntHelper_Btn">
+                <property name="text">
+                 <string>Create/Update Helper(s)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="orientJnt_Btn">
+                <property name="text">
+                 <string>Orient Joint(s)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="displayJntAxis_Btn">
-           <property name="text">
-            <string>Toggle Display Axis</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_26">
+           <item>
+            <widget class="QPushButton" name="displayJntAxis_Btn">
+             <property name="text">
+              <string>Toggle Display Axis</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="axisChd_chkBox">
+             <property name="text">
+              <string>Children</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_18">
@@ -2543,7 +2768,12 @@ border: 0px;</string>
   </layout>
  </widget>
  <resources>
-  <include location="../../JanosMayaScripts/JanosMayaScript/scripts/RUSAK/icons/icons.qrc"/>
+  <include location="icons/icons.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+ </buttongroups>
 </ui>

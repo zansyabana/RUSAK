@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(413, 1018)
+        MainWindow.resize(413, 1025)
         self.verticalLayout_12 = QVBoxLayout(MainWindow)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_8 = QVBoxLayout()
@@ -37,7 +37,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 936))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 943))
         self.verticalLayout_18 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalLayout_3 = QVBoxLayout()
@@ -990,12 +990,12 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_ctrl, "")
         self.tab_jnt = QWidget()
         self.tab_jnt.setObjectName(u"tab_jnt")
-        self.verticalLayout_16 = QVBoxLayout(self.tab_jnt)
-        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.verticalLayout_22 = QVBoxLayout(self.tab_jnt)
+        self.verticalLayout_22.setObjectName(u"verticalLayout_22")
         self.crJnt_Btn = QPushButton(self.tab_jnt)
         self.crJnt_Btn.setObjectName(u"crJnt_Btn")
 
-        self.verticalLayout_16.addWidget(self.crJnt_Btn)
+        self.verticalLayout_22.addWidget(self.crJnt_Btn)
 
         self.groupBox_9 = QGroupBox(self.tab_jnt)
         self.groupBox_9.setObjectName(u"groupBox_9")
@@ -1061,17 +1061,183 @@ class Ui_MainWindow(object):
         self.horizontalLayout_20.addLayout(self.verticalLayout_15)
 
 
-        self.verticalLayout_16.addWidget(self.groupBox_9)
+        self.verticalLayout_22.addWidget(self.groupBox_9)
 
-        self.orientJnt_Btn = QPushButton(self.tab_jnt)
+        self.groupBox_10 = QGroupBox(self.tab_jnt)
+        self.groupBox_10.setObjectName(u"groupBox_10")
+        self.verticalLayout_21 = QVBoxLayout(self.groupBox_10)
+        self.verticalLayout_21.setObjectName(u"verticalLayout_21")
+        self.horizontalLayout_25 = QHBoxLayout()
+        self.horizontalLayout_25.setObjectName(u"horizontalLayout_25")
+        self.verticalLayout_16 = QVBoxLayout()
+        self.verticalLayout_16.setObjectName(u"verticalLayout_16")
+        self.label_7 = QLabel(self.groupBox_10)
+        self.label_7.setObjectName(u"label_7")
+
+        self.verticalLayout_16.addWidget(self.label_7)
+
+        self.label_8 = QLabel(self.groupBox_10)
+        self.label_8.setObjectName(u"label_8")
+
+        self.verticalLayout_16.addWidget(self.label_8)
+
+        self.label_9 = QLabel(self.groupBox_10)
+        self.label_9.setObjectName(u"label_9")
+
+        self.verticalLayout_16.addWidget(self.label_9)
+
+
+        self.horizontalLayout_25.addLayout(self.verticalLayout_16)
+
+        self.verticalLayout_19 = QVBoxLayout()
+        self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
+        self.orientPAxisX_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup = QButtonGroup(MainWindow)
+        self.buttonGroup.setObjectName(u"buttonGroup")
+        self.buttonGroup.addButton(self.orientPAxisX_rBtn)
+        self.orientPAxisX_rBtn.setObjectName(u"orientPAxisX_rBtn")
+        self.orientPAxisX_rBtn.setChecked(True)
+
+        self.horizontalLayout_21.addWidget(self.orientPAxisX_rBtn)
+
+        self.orientPAxisY_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup.addButton(self.orientPAxisY_rBtn)
+        self.orientPAxisY_rBtn.setObjectName(u"orientPAxisY_rBtn")
+        self.orientPAxisY_rBtn.setAutoExclusive(False)
+
+        self.horizontalLayout_21.addWidget(self.orientPAxisY_rBtn)
+
+        self.orientPAxisZ_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup.addButton(self.orientPAxisZ_rBtn)
+        self.orientPAxisZ_rBtn.setObjectName(u"orientPAxisZ_rBtn")
+
+        self.horizontalLayout_21.addWidget(self.orientPAxisZ_rBtn)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_21)
+
+        self.horizontalLayout_22 = QHBoxLayout()
+        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
+        self.orientSecAxisX_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_2 = QButtonGroup(MainWindow)
+        self.buttonGroup_2.setObjectName(u"buttonGroup_2")
+        self.buttonGroup_2.addButton(self.orientSecAxisX_rBtn)
+        self.orientSecAxisX_rBtn.setObjectName(u"orientSecAxisX_rBtn")
+        self.orientSecAxisX_rBtn.setChecked(False)
+
+        self.horizontalLayout_22.addWidget(self.orientSecAxisX_rBtn)
+
+        self.orientSecAxisY_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_2.addButton(self.orientSecAxisY_rBtn)
+        self.orientSecAxisY_rBtn.setObjectName(u"orientSecAxisY_rBtn")
+        self.orientSecAxisY_rBtn.setChecked(False)
+
+        self.horizontalLayout_22.addWidget(self.orientSecAxisY_rBtn)
+
+        self.orientSecAxisZ_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_2.addButton(self.orientSecAxisZ_rBtn)
+        self.orientSecAxisZ_rBtn.setObjectName(u"orientSecAxisZ_rBtn")
+        self.orientSecAxisZ_rBtn.setChecked(True)
+
+        self.horizontalLayout_22.addWidget(self.orientSecAxisZ_rBtn)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_22)
+
+        self.horizontalLayout_24 = QHBoxLayout()
+        self.horizontalLayout_24.setObjectName(u"horizontalLayout_24")
+        self.orientWorldAxisX_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_3 = QButtonGroup(MainWindow)
+        self.buttonGroup_3.setObjectName(u"buttonGroup_3")
+        self.buttonGroup_3.addButton(self.orientWorldAxisX_rBtn)
+        self.orientWorldAxisX_rBtn.setObjectName(u"orientWorldAxisX_rBtn")
+        self.orientWorldAxisX_rBtn.setChecked(False)
+
+        self.horizontalLayout_24.addWidget(self.orientWorldAxisX_rBtn)
+
+        self.orientWorldAxisY_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_3.addButton(self.orientWorldAxisY_rBtn)
+        self.orientWorldAxisY_rBtn.setObjectName(u"orientWorldAxisY_rBtn")
+
+        self.horizontalLayout_24.addWidget(self.orientWorldAxisY_rBtn)
+
+        self.orientWorldAxisZ_rBtn = QRadioButton(self.groupBox_10)
+        self.buttonGroup_3.addButton(self.orientWorldAxisZ_rBtn)
+        self.orientWorldAxisZ_rBtn.setObjectName(u"orientWorldAxisZ_rBtn")
+        self.orientWorldAxisZ_rBtn.setChecked(True)
+
+        self.horizontalLayout_24.addWidget(self.orientWorldAxisZ_rBtn)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_24)
+
+
+        self.horizontalLayout_25.addLayout(self.verticalLayout_19)
+
+        self.verticalLayout_20 = QVBoxLayout()
+        self.verticalLayout_20.setObjectName(u"verticalLayout_20")
+        self.orientPrimeNeg_chkBox = QCheckBox(self.groupBox_10)
+        self.orientPrimeNeg_chkBox.setObjectName(u"orientPrimeNeg_chkBox")
+
+        self.verticalLayout_20.addWidget(self.orientPrimeNeg_chkBox)
+
+        self.orientSecNeg_chkBox = QCheckBox(self.groupBox_10)
+        self.orientSecNeg_chkBox.setObjectName(u"orientSecNeg_chkBox")
+
+        self.verticalLayout_20.addWidget(self.orientSecNeg_chkBox)
+
+        self.orientWorldNeg_chkBox = QCheckBox(self.groupBox_10)
+        self.orientWorldNeg_chkBox.setObjectName(u"orientWorldNeg_chkBox")
+
+        self.verticalLayout_20.addWidget(self.orientWorldNeg_chkBox)
+
+
+        self.horizontalLayout_25.addLayout(self.verticalLayout_20)
+
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_25)
+
+        self.orientChd_chkBox = QCheckBox(self.groupBox_10)
+        self.orientChd_chkBox.setObjectName(u"orientChd_chkBox")
+        self.orientChd_chkBox.setChecked(True)
+
+        self.verticalLayout_21.addWidget(self.orientChd_chkBox)
+
+        self.horizontalLayout_23 = QHBoxLayout()
+        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
+        self.orientJntHelper_Btn = QPushButton(self.groupBox_10)
+        self.orientJntHelper_Btn.setObjectName(u"orientJntHelper_Btn")
+
+        self.horizontalLayout_23.addWidget(self.orientJntHelper_Btn)
+
+        self.orientJnt_Btn = QPushButton(self.groupBox_10)
         self.orientJnt_Btn.setObjectName(u"orientJnt_Btn")
 
-        self.verticalLayout_16.addWidget(self.orientJnt_Btn)
+        self.horizontalLayout_23.addWidget(self.orientJnt_Btn)
 
+
+        self.verticalLayout_21.addLayout(self.horizontalLayout_23)
+
+
+        self.verticalLayout_22.addWidget(self.groupBox_10)
+
+        self.horizontalLayout_26 = QHBoxLayout()
+        self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
         self.displayJntAxis_Btn = QPushButton(self.tab_jnt)
         self.displayJntAxis_Btn.setObjectName(u"displayJntAxis_Btn")
 
-        self.verticalLayout_16.addWidget(self.displayJntAxis_Btn)
+        self.horizontalLayout_26.addWidget(self.displayJntAxis_Btn)
+
+        self.axisChd_chkBox = QCheckBox(self.tab_jnt)
+        self.axisChd_chkBox.setObjectName(u"axisChd_chkBox")
+        self.axisChd_chkBox.setChecked(True)
+
+        self.horizontalLayout_26.addWidget(self.axisChd_chkBox)
+
+
+        self.verticalLayout_22.addLayout(self.horizontalLayout_26)
 
         self.horizontalLayout_18 = QHBoxLayout()
         self.horizontalLayout_18.setObjectName(u"horizontalLayout_18")
@@ -1088,17 +1254,17 @@ class Ui_MainWindow(object):
         self.horizontalLayout_18.addWidget(self.splitJnt_Btn)
 
 
-        self.verticalLayout_16.addLayout(self.horizontalLayout_18)
+        self.verticalLayout_22.addLayout(self.horizontalLayout_18)
 
         self.mirrorJnt_Btn = QPushButton(self.tab_jnt)
         self.mirrorJnt_Btn.setObjectName(u"mirrorJnt_Btn")
         self.mirrorJnt_Btn.setEnabled(False)
 
-        self.verticalLayout_16.addWidget(self.mirrorJnt_Btn)
+        self.verticalLayout_22.addWidget(self.mirrorJnt_Btn)
 
         self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_16.addItem(self.verticalSpacer_2)
+        self.verticalLayout_22.addItem(self.verticalSpacer_2)
 
         self.tabWidget.addTab(self.tab_jnt, "")
         self.tab_transforms = QWidget()
@@ -1419,8 +1585,27 @@ class Ui_MainWindow(object):
         self.suffix_chkBox.setText(QCoreApplication.translate("MainWindow", u"Suffix:", None))
         self.jntSuffixName_lineEdit.setText(QCoreApplication.translate("MainWindow", u"bJnt", None))
         self.createSelJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Create Joint(s)", None))
+        self.groupBox_10.setTitle(QCoreApplication.translate("MainWindow", u"Orient Joint", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Primary Axis:", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Secondary Axis:", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Secondary Axis World Orientation:", None))
+        self.orientPAxisX_rBtn.setText(QCoreApplication.translate("MainWindow", u"X", None))
+        self.orientPAxisY_rBtn.setText(QCoreApplication.translate("MainWindow", u"Y", None))
+        self.orientPAxisZ_rBtn.setText(QCoreApplication.translate("MainWindow", u"Z", None))
+        self.orientSecAxisX_rBtn.setText(QCoreApplication.translate("MainWindow", u"X", None))
+        self.orientSecAxisY_rBtn.setText(QCoreApplication.translate("MainWindow", u"Y", None))
+        self.orientSecAxisZ_rBtn.setText(QCoreApplication.translate("MainWindow", u"Z", None))
+        self.orientWorldAxisX_rBtn.setText(QCoreApplication.translate("MainWindow", u"X", None))
+        self.orientWorldAxisY_rBtn.setText(QCoreApplication.translate("MainWindow", u"Y", None))
+        self.orientWorldAxisZ_rBtn.setText(QCoreApplication.translate("MainWindow", u"Z", None))
+        self.orientPrimeNeg_chkBox.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.orientSecNeg_chkBox.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.orientWorldNeg_chkBox.setText(QCoreApplication.translate("MainWindow", u"-", None))
+        self.orientChd_chkBox.setText(QCoreApplication.translate("MainWindow", u"Children", None))
+        self.orientJntHelper_Btn.setText(QCoreApplication.translate("MainWindow", u"Create Helper(s)", None))
         self.orientJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Orient Joint(s)", None))
         self.displayJntAxis_Btn.setText(QCoreApplication.translate("MainWindow", u"Toggle Display Axis", None))
+        self.axisChd_chkBox.setText(QCoreApplication.translate("MainWindow", u"Children", None))
 #if QT_CONFIG(tooltip)
         self.splitJnt_Btn.setToolTip(QCoreApplication.translate("MainWindow", u"select start joint and end joint to split", None))
 #endif // QT_CONFIG(tooltip)

@@ -118,7 +118,8 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         self.orientCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
         self.parConstraint_chkBox.stateChanged.connect(self.uncheckPointOrientConstraint)
         self.displayJntAxis_Btn.clicked.connect(fs.toggleJointAxis)
-        self.orientJnt_Btn.clicked.connect(fs.orientJoints)
+        self.orientJnt_Btn.clicked.connect(lambda: self.orientJoints(helper=False))
+        self.orientJntHelper_Btn.clicked.connect(lambda: self.orientJoints(helper=True))
         self.saveShp_btn.clicked.connect(self.saveSelectedShape)
 
     def replaceShape(self):
@@ -520,6 +521,37 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                 pm.informBox("Save Curve Shape", "Curve shape '{}' saved successfully.".format(name))
             self.comboBox.clear()
             self.comboBox.addItems([i for i in fs.createControls().curveLib])
+    def orientJoints(self,helper=False):
+        if self.orientPAxisX_rBtn.isChecked():
+            primeAxis = 'X'
+        elif self.orientPAxisY_rBtn.isChecked():
+            primeAxis = 'Y'
+        else:
+            primeAxis = 'Z'
+        
+        if self.orientSecAxisX_rBtn.isChecked():
+            secondaryAxis = 'X'
+        elif self.orientSecAxisY_rBtn.isChecked():
+            secondaryAxis = 'Y'
+        else:
+            secondaryAxis = 'Z'
+        if self.orientWorldAxisX_rBtn.isChecked():
+            worldAxis = 'X'
+        elif self.orientWorldAxisY_rBtn.isChecked():
+            worldAxis = 'Y'
+        else:
+            worldAxis = 'Z'
+        primeNegative = self.orientPrimeNeg_chkBox.isChecked()
+        secondaryNegative = self.orientSecNeg_chkBox.isChecked()
+        worldNegative = self.orientWorldNeg_chkBox.isChecked()
+        children = self.orientChd_chkBox.isChecked()
+        fs.orientJoints(primeAxis=primeAxis,
+                        secondaryAxis=secondaryAxis,
+                        worldAxis=worldAxis,
+                        primeNegative=primeNegative,
+                        secondaryNegative=secondaryNegative,
+                        worldNegative=worldNegative,
+                        children=children,helper=helper)
         
 def main():
     global ui
