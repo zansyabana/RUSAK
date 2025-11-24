@@ -117,7 +117,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         self.pointCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
         self.orientCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
         self.parConstraint_chkBox.stateChanged.connect(self.uncheckPointOrientConstraint)
-        self.displayJntAxis_Btn.clicked.connect(fs.toggleJointAxis)
+        self.displayJntAxis_Btn.clicked.connect(self.toggleJointAxis)
         self.orientJnt_Btn.clicked.connect(lambda: self.orientJoints(helper=False))
         self.orientJntHelper_Btn.clicked.connect(lambda: self.orientJoints(helper=True))
         self.saveShp_btn.clicked.connect(self.saveSelectedShape)
@@ -552,6 +552,10 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                         secondaryNegative=secondaryNegative,
                         worldNegative=worldNegative,
                         children=children,helper=helper)
+    def toggleJointAxis(self):
+        childs = self.axisChd_chkBox.isChecked()
+        fs.toggleJointAxis(childs)
+        
         
 def main():
     global ui

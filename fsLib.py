@@ -388,8 +388,18 @@ def createJntOnSel(objs=[],pac=False,sc=False,oc=False,poc=False,sfx='bJnt',chai
     pm.undoInfo(closeChunk=True)
     return jnts
 
-def toggleJointAxis(*args):
+def toggleJointAxis(children=False,*args):
     sel = pm.selected(type='joint')
+    if children:
+        jntList = []
+        for i in sel:
+            jntList.append(i)
+            children = i.listRelatives(ad=True, type='joint')
+            #reverse the list to make sure the parent joint is first
+            children.reverse()
+            for child in children:
+                jntList.append(child)
+        sel = jntList
     if any([i.displayLocalAxis.get() == 0 for i in sel]):
         for i in sel:
             i.displayLocalAxis.set(1)
