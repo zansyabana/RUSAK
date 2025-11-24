@@ -427,9 +427,11 @@ def orientJoints(objs=[],children=False,
             children.reverse()
             for child in children:
                 jntList.append(child)
-        objs = jntList
+        objs = objs+jntList
     #create a helper locators to help orient the joints
     helperLocs = [i.getParent() for i in pm.ls('*_orientHelper*',type='locator')]
+    #sort the helper locs to make sure the parent joint helper is first
+    helperLocs.sort(key=lambda x: len(x.getAllParents()))
     helperDict = {}
     for i in helperLocs:
         helperDict[i] = {'new':False}
@@ -475,14 +477,16 @@ def orientJoints(objs=[],children=False,
                 worldUpVector = pm.datatypes.Vector(0,0,worldValue)
             #aim constraint the helper locator to the joint child
             if helper or helperDict[loc]['new']:
-                aimCon = pm.aimConstraint(jntChildren[0], loc, aim=aimVector, u=upVector, wut='vector', wu=worldUpVector, worldUpVector=worldUpVector)
+                aimCon = pm.aimConstraint(jntChildren[0], loc, aim=aimVector, u=upVector, wut='vector', wu=worldUpVector)
                 pm.delete(aimCon)
+    print(helperDict)
     if not helper:  
-        for i in helperDict:
-            jnt = i.getParent()
+        for loc in helperDict:
+            jnt = loc.getParent()
+            print(jnt)
             #get world orientation
             jntRot = jnt.getRotation(space='object')
-            locRot= i.getRotation(space='object')
+            locRot= loc.getRotation(space='object')
             finalRot = [locRot[0]+jntRot[0], locRot[1]+jntRot[1], locRot[2]+jntRot[2]]
             #get the jnt children
             jntChildDict = {}
@@ -491,10 +495,13 @@ def orientJoints(objs=[],children=False,
                 for chd in jntChildren:
                     jntChildDict[chd] = {'location':chd.getTranslation(space='world'),
                                         'rotation':chd.getRotation(space='world')}
+                    if pm.objExists(chd+'_orientHelper'):
+                       helpLoc = pm.PyNode(chd+'_orientHelper')
+                       jntChildDict[chd]['LocLocation'] = helpLoc.getTranslation(space='world')
+                       jntChildDict[chd]['LocRotation'] = helpLoc.getRotation(space='world')
             jnt.setRotation(finalRot, space='object')
-            i.setRotation([0,0,0], space='object')
+            loc.setRotation([0,0,0], space='object')
 
-            print(jntRot)
             #convert the rotation to quaternion
             quat=pm.datatypes.EulerRotation(finalRot[0],finalRot[1],finalRot[2]).asQuaternion()
             #get current joint orient
@@ -505,15 +512,20 @@ def orientJoints(objs=[],children=False,
             jnt.setOrientation(quat)
             #reset the rotation to 0
             jnt.rotate.set([0,0,0])
+            jnt.displayLocalAxis.set(1)
             # #reposition the joint children to avoid translation offset after orienting the joint
             if jntChildDict:
                 for chd,value in jntChildDict.items():
                     print(f"Repositioning {chd} to {value}")
                     chd.setTranslation(value['location'], space='world')
                     chd.setRotation(value['rotation'], space='world')
+                    if value.get('LocLocation'):
+                        helpLoc = pm.PyNode(chd+'_orientHelper')
+                        helpLoc.setTranslation(value['LocLocation'], space='world')
+                        helpLoc.setRotation(value['LocRotation'], space='world')
         #delete the helper locators
-        for loc in helperDict:
-            pm.delete(loc)
+        # for loc in helperDict:
+        #     pm.delete(loc)
     pm.undoInfo(closeChunk=True)
 
 def oneLiner(nName, method='s'):

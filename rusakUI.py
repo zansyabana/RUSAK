@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(413, 841)
+        MainWindow.resize(413, 926)
         self.verticalLayout_12 = QVBoxLayout(MainWindow)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_8 = QVBoxLayout()
@@ -37,30 +37,23 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 759))
-        self.verticalLayout_23 = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 844))
+        self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.label = QLabel(self.scrollAreaWidgetContents)
         self.label.setObjectName(u"label")
         self.label.setStyleSheet(u"background-color: rgb(172, 172, 172);\n"
 "font: 75 10pt \"Rubik\";\n"
 "color:rgb(0, 0, 0);")
 
-        self.verticalLayout_23.addWidget(self.label)
+        self.verticalLayout_2.addWidget(self.label)
 
         self.verticalLayout = QVBoxLayout()
-        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setSizeConstraint(QLayout.SetMinimumSize)
-        self.verticalLayout.setContentsMargins(-1, -1, -1, 0)
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.verticalLayout_2.setContentsMargins(-1, -1, -1, 6)
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetMinimumSize)
-        self.horizontalLayout.setContentsMargins(5, -1, 20, 5)
+        self.horizontalLayout.setContentsMargins(5, -1, 10, 5)
         self.asCrv = QRadioButton(self.scrollAreaWidgetContents)
         self.asCrv.setObjectName(u"asCrv")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -85,8 +78,50 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.asReplace)
 
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout_2.addLayout(self.horizontalLayout)
+        self.horizontalLayout.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
+        self.horizontalLayout_27 = QHBoxLayout()
+        self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
+        self.horizontalLayout_11 = QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(0, -1, 0, -1)
+        self.label_6 = QLabel(self.scrollAreaWidgetContents)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout_11.addWidget(self.label_6)
+
+        self.spawnMult_spBox = QDoubleSpinBox(self.scrollAreaWidgetContents)
+        self.spawnMult_spBox.setObjectName(u"spawnMult_spBox")
+        self.spawnMult_spBox.setDecimals(1)
+        self.spawnMult_spBox.setMinimum(0.100000000000000)
+        self.spawnMult_spBox.setValue(1.000000000000000)
+
+        self.horizontalLayout_11.addWidget(self.spawnMult_spBox)
+
+        self.horizontalSpacer = QSpacerItem(100, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_11.addItem(self.horizontalSpacer)
+
+
+        self.horizontalLayout_27.addLayout(self.horizontalLayout_11)
+
+        self.label_2 = QLabel(self.scrollAreaWidgetContents)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_27.addWidget(self.label_2)
+
+        self.createCtlSfx_lineEdit = QLineEdit(self.scrollAreaWidgetContents)
+        self.createCtlSfx_lineEdit.setObjectName(u"createCtlSfx_lineEdit")
+
+        self.horizontalLayout_27.addWidget(self.createCtlSfx_lineEdit)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_27)
 
         self.groupBox = QGroupBox(self.scrollAreaWidgetContents)
         self.groupBox.setObjectName(u"groupBox")
@@ -258,10 +293,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addLayout(self.gridLayout)
 
 
-        self.verticalLayout_2.addWidget(self.groupBox)
-
-
-        self.verticalLayout.addLayout(self.verticalLayout_2)
+        self.verticalLayout.addWidget(self.groupBox)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setSpacing(10)
@@ -291,26 +323,8 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_2)
 
-        self.horizontalLayout_11 = QHBoxLayout()
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.label_6 = QLabel(self.scrollAreaWidgetContents)
-        self.label_6.setObjectName(u"label_6")
 
-        self.horizontalLayout_11.addWidget(self.label_6)
-
-        self.spawnMult_spBox = QDoubleSpinBox(self.scrollAreaWidgetContents)
-        self.spawnMult_spBox.setObjectName(u"spawnMult_spBox")
-        self.spawnMult_spBox.setDecimals(1)
-        self.spawnMult_spBox.setMinimum(0.100000000000000)
-        self.spawnMult_spBox.setValue(1.000000000000000)
-
-        self.horizontalLayout_11.addWidget(self.spawnMult_spBox)
-
-
-        self.verticalLayout.addLayout(self.horizontalLayout_11)
-
-
-        self.verticalLayout_23.addLayout(self.verticalLayout)
+        self.verticalLayout_2.addLayout(self.verticalLayout)
 
         self.toolBox = QToolBox(self.scrollAreaWidgetContents)
         self.toolBox.setObjectName(u"toolBox")
@@ -318,7 +332,7 @@ class Ui_MainWindow(object):
         self.toolBox.setSizePolicy(sizePolicy1)
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 331, 513))
+        self.page.setGeometry(QRect(0, 0, 331, 503))
         self.verticalLayout_3 = QVBoxLayout(self.page)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.colorGrp = QWidget(self.page)
@@ -727,7 +741,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.page, u"Color Picker")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 331, 428))
+        self.page_2.setGeometry(QRect(0, 0, 331, 503))
         self.verticalLayout_18 = QVBoxLayout(self.page_2)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.groupBox_5 = QGroupBox(self.page_2)
@@ -903,10 +917,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.rotateGrp)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_3)
-
 
         self.verticalLayout_18.addWidget(self.groupBox_2)
 
@@ -972,19 +982,23 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_18.addWidget(self.groupBox_3)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_18.addItem(self.verticalSpacer_3)
+
         self.toolBox.addItem(self.page_2, u"Shape Transforms")
 
-        self.verticalLayout_23.addWidget(self.toolBox)
+        self.verticalLayout_2.addWidget(self.toolBox)
 
         self.copyShp_Btn = QPushButton(self.scrollAreaWidgetContents)
         self.copyShp_Btn.setObjectName(u"copyShp_Btn")
 
-        self.verticalLayout_23.addWidget(self.copyShp_Btn)
+        self.verticalLayout_2.addWidget(self.copyShp_Btn)
 
         self.saveShp_btn = QPushButton(self.scrollAreaWidgetContents)
         self.saveShp_btn.setObjectName(u"saveShp_btn")
 
-        self.verticalLayout_23.addWidget(self.saveShp_btn)
+        self.verticalLayout_2.addWidget(self.saveShp_btn)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1499,6 +1513,9 @@ class Ui_MainWindow(object):
         self.asCrv.setText(QCoreApplication.translate("MainWindow", u"as Curve", None))
         self.asJnt.setText(QCoreApplication.translate("MainWindow", u"as Joint", None))
         self.asReplace.setText(QCoreApplication.translate("MainWindow", u"Replace", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Spawn Mult:", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Suffix: ", None))
+        self.createCtlSfx_lineEdit.setText(QCoreApplication.translate("MainWindow", u"Ctrl", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"QuickCreate", None))
         self.shp_CrossArrow.setText("")
         self.shp_Arrow.setText("")
@@ -1511,7 +1528,6 @@ class Ui_MainWindow(object):
         self.shp_Sphere.setText("")
         self.shp_Box.setText("")
         self.btn_createCtl.setText(QCoreApplication.translate("MainWindow", u"Create", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Spawn Mult:", None))
         self.col_22.setText("")
         self.col_18.setText("")
         self.col_16.setText("")

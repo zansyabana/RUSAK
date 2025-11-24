@@ -122,6 +122,13 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         self.orientJntHelper_Btn.clicked.connect(lambda: self.orientJoints(helper=True))
         self.saveShp_btn.clicked.connect(self.saveSelectedShape)
 
+        self.asReplace.toggled.connect(self.ctrlSfxEnableDisable)
+
+    def ctrlSfxEnableDisable(self):
+        if self.asReplace.isChecked():
+            self.createCtlSfx_lineEdit.setEnabled(False)
+        else:
+            self.createCtlSfx_lineEdit.setEnabled(True)
     def replaceShape(self):
         pm.undoInfo(openChunk=True)
         slt = pm.selected()
@@ -149,13 +156,14 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         except Exception:
             spawn_mult = 1.0
 
-
+        suffix = self.createCtlSfx_lineEdit.text()
         print(spawn_mult)
         if slt == []:
             dummyGrp = pm.group(em=True,w=True)
             if self.asJnt.isChecked():
                 crv = fs.createControls().crCtl(dummyGrp,crvShp=shp,asJnt=True)
                 crvs.append(crv)
+                crv.rename(suffix)
             elif self.asReplace.isChecked():
                 crv = fs.createControls().crCtl(dummyGrp, crvShp=shp,asReplace=True)
                 crvs.append(crv)
@@ -163,6 +171,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             else:
                 crv = fs.createControls().crCtl(dummyGrp,crvShp=shp,asJnt=False)
                 crvs.append(crv)
+                crv.rename(suffix)
            
             pm.delete(dummyGrp)
         else:
@@ -170,6 +179,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                 if self.asJnt.isChecked():
                     crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=True)
                     crvs.append(crv)
+                    crv.rename(i+"_"+suffix)
                 elif self.asReplace.isChecked():
                     crv = fs.createControls().crCtl(i, crvShp=shp,asReplace=True)
                     crvs.append(crv)
@@ -177,6 +187,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                 else:
                     crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=False)
                     crvs.append(crv)
+                    crv.rename(i+"_"+suffix)
 
         try:
             pm.select(crvs)
