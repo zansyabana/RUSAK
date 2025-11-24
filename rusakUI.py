@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(413, 1025)
+        MainWindow.resize(413, 841)
         self.verticalLayout_12 = QVBoxLayout(MainWindow)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
         self.verticalLayout_8 = QVBoxLayout()
@@ -37,18 +37,16 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 943))
-        self.verticalLayout_18 = QVBoxLayout(self.scrollAreaWidgetContents)
-        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
-        self.verticalLayout_3 = QVBoxLayout()
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 349, 759))
+        self.verticalLayout_23 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
         self.label = QLabel(self.scrollAreaWidgetContents)
         self.label.setObjectName(u"label")
         self.label.setStyleSheet(u"background-color: rgb(172, 172, 172);\n"
 "font: 75 10pt \"Rubik\";\n"
 "color:rgb(0, 0, 0);")
 
-        self.verticalLayout_3.addWidget(self.label)
+        self.verticalLayout_23.addWidget(self.label)
 
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setSpacing(0)
@@ -62,7 +60,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setSizeConstraint(QLayout.SetMinimumSize)
-        self.horizontalLayout.setContentsMargins(5, -1, 20, 10)
+        self.horizontalLayout.setContentsMargins(5, -1, 20, 5)
         self.asCrv = QRadioButton(self.scrollAreaWidgetContents)
         self.asCrv.setObjectName(u"asCrv")
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
@@ -92,7 +90,7 @@ class Ui_MainWindow(object):
 
         self.groupBox = QGroupBox(self.scrollAreaWidgetContents)
         self.groupBox.setObjectName(u"groupBox")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
@@ -100,7 +98,7 @@ class Ui_MainWindow(object):
         self.groupBox.setStyleSheet(u"")
         self.horizontalLayout_3 = QHBoxLayout(self.groupBox)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.horizontalLayout_3.setContentsMargins(-1, 20, -1, 20)
+        self.horizontalLayout_3.setContentsMargins(-1, 5, -1, 5)
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setSizeConstraint(QLayout.SetFixedSize)
@@ -312,17 +310,18 @@ class Ui_MainWindow(object):
         self.verticalLayout.addLayout(self.horizontalLayout_11)
 
 
-        self.verticalLayout_3.addLayout(self.verticalLayout)
+        self.verticalLayout_23.addLayout(self.verticalLayout)
 
-        self.label_2 = QLabel(self.scrollAreaWidgetContents)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setStyleSheet(u"background-color: rgb(172, 172, 172);\n"
-"font: 75 10pt \"Rubik\";\n"
-"color:rgb(0, 0, 0);")
-
-        self.verticalLayout_3.addWidget(self.label_2)
-
-        self.colorGrp = QWidget(self.scrollAreaWidgetContents)
+        self.toolBox = QToolBox(self.scrollAreaWidgetContents)
+        self.toolBox.setObjectName(u"toolBox")
+        sizePolicy1.setHeightForWidth(self.toolBox.sizePolicy().hasHeightForWidth())
+        self.toolBox.setSizePolicy(sizePolicy1)
+        self.page = QWidget()
+        self.page.setObjectName(u"page")
+        self.page.setGeometry(QRect(0, 0, 331, 513))
+        self.verticalLayout_3 = QVBoxLayout(self.page)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.colorGrp = QWidget(self.page)
         self.colorGrp.setObjectName(u"colorGrp")
         sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
         sizePolicy4.setHorizontalStretch(0)
@@ -716,20 +715,22 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.colorGrp)
 
-        self.colorRandom_btn = QPushButton(self.scrollAreaWidgetContents)
+        self.colorRandom_btn = QPushButton(self.page)
         self.colorRandom_btn.setObjectName(u"colorRandom_btn")
 
         self.verticalLayout_3.addWidget(self.colorRandom_btn)
 
-        self.label_3 = QLabel(self.scrollAreaWidgetContents)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setStyleSheet(u"background-color: rgb(172, 172, 172);\n"
-"font: 75 10pt \"Rubik\";\n"
-"color:rgb(0, 0, 0);")
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_3.addWidget(self.label_3)
+        self.verticalLayout_3.addItem(self.verticalSpacer_4)
 
-        self.groupBox_5 = QGroupBox(self.scrollAreaWidgetContents)
+        self.toolBox.addItem(self.page, u"Color Picker")
+        self.page_2 = QWidget()
+        self.page_2.setObjectName(u"page_2")
+        self.page_2.setGeometry(QRect(0, 0, 331, 428))
+        self.verticalLayout_18 = QVBoxLayout(self.page_2)
+        self.verticalLayout_18.setObjectName(u"verticalLayout_18")
+        self.groupBox_5 = QGroupBox(self.page_2)
         self.groupBox_5.setObjectName(u"groupBox_5")
         self.verticalLayout_9 = QVBoxLayout(self.groupBox_5)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
@@ -751,9 +752,9 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.addLayout(self.horizontalLayout_13)
 
 
-        self.verticalLayout_3.addWidget(self.groupBox_5)
+        self.verticalLayout_18.addWidget(self.groupBox_5)
 
-        self.groupBox_4 = QGroupBox(self.scrollAreaWidgetContents)
+        self.groupBox_4 = QGroupBox(self.page_2)
         self.groupBox_4.setObjectName(u"groupBox_4")
         self.verticalLayout_10 = QVBoxLayout(self.groupBox_4)
         self.verticalLayout_10.setObjectName(u"verticalLayout_10")
@@ -817,25 +818,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_10.addWidget(self.resizeSlider_2)
 
 
-        self.verticalLayout_3.addWidget(self.groupBox_4)
+        self.verticalLayout_18.addWidget(self.groupBox_4)
 
-        self.groupBox_2 = QGroupBox(self.scrollAreaWidgetContents)
+        self.groupBox_2 = QGroupBox(self.page_2)
         self.groupBox_2.setObjectName(u"groupBox_2")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
-        self.groupBox_2.setSizePolicy(sizePolicy7)
+        sizePolicy1.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
+        self.groupBox_2.setSizePolicy(sizePolicy1)
         self.groupBox_2.setMinimumSize(QSize(0, 110))
         self.verticalLayout_5 = QVBoxLayout(self.groupBox_2)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.rotateGrp = QWidget(self.groupBox_2)
         self.rotateGrp.setObjectName(u"rotateGrp")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.rotateGrp.sizePolicy().hasHeightForWidth())
-        self.rotateGrp.setSizePolicy(sizePolicy8)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.rotateGrp.sizePolicy().hasHeightForWidth())
+        self.rotateGrp.setSizePolicy(sizePolicy7)
         self.rotateGrp.setMinimumSize(QSize(0, 80))
         self.verticalLayout_7 = QVBoxLayout(self.rotateGrp)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -865,11 +863,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setSizeConstraint(QLayout.SetMaximumSize)
         self.btn_rotateX = QPushButton(self.rotateGrp)
         self.btn_rotateX.setObjectName(u"btn_rotateX")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
-        sizePolicy9.setHorizontalStretch(0)
-        sizePolicy9.setVerticalStretch(0)
-        sizePolicy9.setHeightForWidth(self.btn_rotateX.sizePolicy().hasHeightForWidth())
-        self.btn_rotateX.setSizePolicy(sizePolicy9)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.btn_rotateX.sizePolicy().hasHeightForWidth())
+        self.btn_rotateX.setSizePolicy(sizePolicy8)
         self.btn_rotateX.setMinimumSize(QSize(0, 26))
         self.btn_rotateX.setStyleSheet(u"background-color: rgb(255, 70, 70);\n"
 "color: white;\n"
@@ -879,8 +877,8 @@ class Ui_MainWindow(object):
 
         self.btn_rotateY = QPushButton(self.rotateGrp)
         self.btn_rotateY.setObjectName(u"btn_rotateY")
-        sizePolicy9.setHeightForWidth(self.btn_rotateY.sizePolicy().hasHeightForWidth())
-        self.btn_rotateY.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.btn_rotateY.sizePolicy().hasHeightForWidth())
+        self.btn_rotateY.setSizePolicy(sizePolicy8)
         self.btn_rotateY.setMinimumSize(QSize(0, 26))
         self.btn_rotateY.setStyleSheet(u"background-color: rgb(72, 216, 0);\n"
 "color: white;\n"
@@ -890,8 +888,8 @@ class Ui_MainWindow(object):
 
         self.btn_rotateZ = QPushButton(self.rotateGrp)
         self.btn_rotateZ.setObjectName(u"btn_rotateZ")
-        sizePolicy9.setHeightForWidth(self.btn_rotateZ.sizePolicy().hasHeightForWidth())
-        self.btn_rotateZ.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.btn_rotateZ.sizePolicy().hasHeightForWidth())
+        self.btn_rotateZ.setSizePolicy(sizePolicy8)
         self.btn_rotateZ.setMinimumSize(QSize(0, 26))
         self.btn_rotateZ.setStyleSheet(u"background-color: blue;\n"
 "color: white;\n"
@@ -905,10 +903,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.rotateGrp)
 
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_3.addWidget(self.groupBox_2)
+        self.verticalLayout_5.addItem(self.verticalSpacer_3)
 
-        self.groupBox_3 = QGroupBox(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_18.addWidget(self.groupBox_2)
+
+        self.groupBox_3 = QGroupBox(self.page_2)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.verticalLayout_6 = QVBoxLayout(self.groupBox_3)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
@@ -968,20 +970,21 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.resizeSlider)
 
 
-        self.verticalLayout_3.addWidget(self.groupBox_3)
+        self.verticalLayout_18.addWidget(self.groupBox_3)
+
+        self.toolBox.addItem(self.page_2, u"Shape Transforms")
+
+        self.verticalLayout_23.addWidget(self.toolBox)
 
         self.copyShp_Btn = QPushButton(self.scrollAreaWidgetContents)
         self.copyShp_Btn.setObjectName(u"copyShp_Btn")
 
-        self.verticalLayout_3.addWidget(self.copyShp_Btn)
+        self.verticalLayout_23.addWidget(self.copyShp_Btn)
 
         self.saveShp_btn = QPushButton(self.scrollAreaWidgetContents)
         self.saveShp_btn.setObjectName(u"saveShp_btn")
 
-        self.verticalLayout_3.addWidget(self.saveShp_btn)
-
-
-        self.verticalLayout_18.addLayout(self.verticalLayout_3)
+        self.verticalLayout_23.addWidget(self.saveShp_btn)
 
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
 
@@ -1297,11 +1300,11 @@ class Ui_MainWindow(object):
 
         self.label_suffix = QLabel(self.groupBox_6)
         self.label_suffix.setObjectName(u"label_suffix")
-        sizePolicy10 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
-        sizePolicy10.setHorizontalStretch(0)
-        sizePolicy10.setVerticalStretch(0)
-        sizePolicy10.setHeightForWidth(self.label_suffix.sizePolicy().hasHeightForWidth())
-        self.label_suffix.setSizePolicy(sizePolicy10)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.label_suffix.sizePolicy().hasHeightForWidth())
+        self.label_suffix.setSizePolicy(sizePolicy9)
         self.label_suffix.setMinimumSize(QSize(50, 0))
 
         self.horizontalLayout_12.addWidget(self.label_suffix)
@@ -1383,8 +1386,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.btnMirrorX = QPushButton(self.groupBox_7)
         self.btnMirrorX.setObjectName(u"btnMirrorX")
-        sizePolicy9.setHeightForWidth(self.btnMirrorX.sizePolicy().hasHeightForWidth())
-        self.btnMirrorX.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.btnMirrorX.sizePolicy().hasHeightForWidth())
+        self.btnMirrorX.setSizePolicy(sizePolicy8)
         self.btnMirrorX.setMinimumSize(QSize(0, 24))
         font1 = QFont()
         font1.setFamily(u"Arial")
@@ -1400,8 +1403,8 @@ class Ui_MainWindow(object):
 
         self.btn_mirrorY = QPushButton(self.groupBox_7)
         self.btn_mirrorY.setObjectName(u"btn_mirrorY")
-        sizePolicy9.setHeightForWidth(self.btn_mirrorY.sizePolicy().hasHeightForWidth())
-        self.btn_mirrorY.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.btn_mirrorY.sizePolicy().hasHeightForWidth())
+        self.btn_mirrorY.setSizePolicy(sizePolicy8)
         self.btn_mirrorY.setMinimumSize(QSize(0, 24))
         self.btn_mirrorY.setFont(font1)
         self.btn_mirrorY.setStyleSheet(u"background-color: rgb(72, 216, 0);\n"
@@ -1412,8 +1415,8 @@ class Ui_MainWindow(object):
 
         self.btn_mirrorZ = QPushButton(self.groupBox_7)
         self.btn_mirrorZ.setObjectName(u"btn_mirrorZ")
-        sizePolicy9.setHeightForWidth(self.btn_mirrorZ.sizePolicy().hasHeightForWidth())
-        self.btn_mirrorZ.setSizePolicy(sizePolicy9)
+        sizePolicy8.setHeightForWidth(self.btn_mirrorZ.sizePolicy().hasHeightForWidth())
+        self.btn_mirrorZ.setSizePolicy(sizePolicy8)
         self.btn_mirrorZ.setMinimumSize(QSize(0, 24))
         self.btn_mirrorZ.setFont(font1)
         self.btn_mirrorZ.setStyleSheet(u"background-color: blue;\n"
@@ -1463,6 +1466,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
         self.col_18.setDefault(False)
         self.col_16.setDefault(False)
         self.col_20.setDefault(False)
@@ -1508,7 +1512,6 @@ class Ui_MainWindow(object):
         self.shp_Box.setText("")
         self.btn_createCtl.setText(QCoreApplication.translate("MainWindow", u"Create", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Spawn Mult:", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Color Picker", None))
         self.col_22.setText("")
         self.col_18.setText("")
         self.col_16.setText("")
@@ -1544,7 +1547,7 @@ class Ui_MainWindow(object):
         self.colorRandom_btn.setToolTip(QCoreApplication.translate("MainWindow", u"randomize ctrl color", None))
 #endif // QT_CONFIG(tooltip)
         self.colorRandom_btn.setText(QCoreApplication.translate("MainWindow", u"Randomize", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Shape Utils", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page), QCoreApplication.translate("MainWindow", u"Color Picker", None))
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"Space", None))
 #if QT_CONFIG(tooltip)
         self.spObject.setToolTip(QCoreApplication.translate("MainWindow", u"Use object transform space", None))
@@ -1569,6 +1572,7 @@ class Ui_MainWindow(object):
         self.sizeY.setText(QCoreApplication.translate("MainWindow", u"Y", None))
         self.sizeZ.setText(QCoreApplication.translate("MainWindow", u"Z", None))
         self.label_resizeStep.setText(QCoreApplication.translate("MainWindow", u"Step: ", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.page_2), QCoreApplication.translate("MainWindow", u"Shape Transforms", None))
 #if QT_CONFIG(tooltip)
         self.copyShp_Btn.setToolTip(QCoreApplication.translate("MainWindow", u"copy selected ctrls to last selected ctrl shape", None))
 #endif // QT_CONFIG(tooltip)
@@ -1602,7 +1606,7 @@ class Ui_MainWindow(object):
         self.orientSecNeg_chkBox.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.orientWorldNeg_chkBox.setText(QCoreApplication.translate("MainWindow", u"-", None))
         self.orientChd_chkBox.setText(QCoreApplication.translate("MainWindow", u"Children", None))
-        self.orientJntHelper_Btn.setText(QCoreApplication.translate("MainWindow", u"Create Helper(s)", None))
+        self.orientJntHelper_Btn.setText(QCoreApplication.translate("MainWindow", u"Create/Update Helper(s)", None))
         self.orientJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Orient Joint(s)", None))
         self.displayJntAxis_Btn.setText(QCoreApplication.translate("MainWindow", u"Toggle Display Axis", None))
         self.axisChd_chkBox.setText(QCoreApplication.translate("MainWindow", u"Children", None))
