@@ -234,7 +234,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             scaleFactor = (1.0 / stepValue) ** (-delta)
 
         # force transform-space (pivoted) behavior regardless of UI mode
-        objSpace = False
+        objSpace = self.spTransform.isChecked()
 
         # caller (beginScale/resetSlider) handles undo and refresh so we only
         # perform the transform here.
@@ -331,23 +331,23 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
     def setRotateX(self):
         angle = self.angle_box.value()
         if self.spTransform.isChecked():
-            fs.transformShapes(r=1,rx=angle,objSpace=False)
-        else:
             fs.transformShapes(r=1,rx=angle,objSpace=True)
+        else:
+            fs.transformShapes(r=1,rx=angle,objSpace=False)
 
     def setRotateY(self):
         angle = self.angle_box.value()
         if self.spTransform.isChecked():
-            fs.transformShapes(r=1,ry=angle,objSpace=False)
-        else:
             fs.transformShapes(r=1,ry=angle,objSpace=True)
+        else:
+            fs.transformShapes(r=1,ry=angle,objSpace=False)
 
     def setRotateZ(self):
         angle = self.angle_box.value()
         if self.spTransform.isChecked():
-            fs.transformShapes(r=1,rz=angle,objSpace=False)
-        else:
             fs.transformShapes(r=1,rz=angle,objSpace=True)
+        else:
+            fs.transformShapes(r=1,rz=angle,objSpace=False)
 
     def printText(self):
         print(self.lineOneLiner.text())

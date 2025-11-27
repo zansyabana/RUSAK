@@ -186,14 +186,24 @@ def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, 
             # build list of component names for cmds (strings are faster than PyNodes here)
             comp_list = [str(cv) for cv in i.cv[0:end_range]]
 
-            # compute average (world) position of CVs
+            # compute geometric center (bounding box center) of CVs for objSpace=False
             pts = [pm.pointPosition(str(i.cv[idx]), w=True) for idx in range(0, end_range)]
             if not pts:
                 continue
-            avg_x = sum(p[0] for p in pts) / len(pts)
-            avg_y = sum(p[1] for p in pts) / len(pts)
-            avg_z = sum(p[2] for p in pts) / len(pts)
-            pivot = (avg_x, avg_y, avg_z)
+            # Get bounding box min/max for geometric center
+            min_x = min(p[0] for p in pts)
+            max_x = max(p[0] for p in pts)
+            min_y = min(p[1] for p in pts)
+            max_y = max(p[1] for p in pts)
+            min_z = min(p[2] for p in pts)
+            max_z = max(p[2] for p in pts)
+            # Geometric center is the midpoint of the bounding box
+            cv_center_pivot = ((min_x + max_x) / 2, (min_y + max_y) / 2, (min_z + max_z) / 2)
+
+            # get transform node's pivot for objSpace=True
+            # Convert to tuple for Maya commands compatibility
+            pivot_vec = i.getRotatePivot(space='world')
+            transform_pivot = (pivot_vec[0], pivot_vec[1], pivot_vec[2])
 
             # translate
             if t == 1:
@@ -232,34 +242,32 @@ def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, 
                 scale_y = scaleVal if ry != 0 else 1
                 scale_z = scaleVal if rz != 0 else 1
 
+                # Choose pivot based on objSpace flag
+                # objSpace=True: use transform node's pivot
+                # objSpace=False: use CV bounding box center (geometric center)
+                scale_pivot = transform_pivot if objSpace else cv_center_pivot
+
                 # Try cmds first (faster, no selection). Some Maya versions don't accept
                 # a pivot flag for component operations; fall back to PyMel + selection
                 try:
-                    if objSpace:
-                        mc.scale(scale_x, scale_y, scale_z, comp_list, r=True)
-                    else:
-                        mc.scale(scale_x, scale_y, scale_z, comp_list, r=True, pivot=pivot)
+                    mc.scale(scale_x, scale_y, scale_z, comp_list, r=True, pivot=scale_pivot)
                 except Exception:
                     # fallback: select components and use PyMel which accepts pivot arg
                     pm.select(comp_list, r=True)
-                    if objSpace:
-                        pm.scale(scale_x, scale_y, scale_z, r=True)
-                    else:
-                        pm.scale(scale_x, scale_y, scale_z, r=True, p=pivot)
+                    pm.scale(scale_x, scale_y, scale_z, r=True, p=scale_pivot)
 
             # rotate
             if r == 1:
+                # Choose pivot based on objSpace flag
+                # objSpace=True: use transform node's pivot
+                # objSpace=False: use CV bounding box center (geometric center)
+                rotate_pivot = transform_pivot if objSpace else cv_center_pivot
+
                 try:
-                    if objSpace:
-                        mc.rotate(rx, ry, rz, comp_list, r=True)
-                    else:
-                        mc.rotate(rx, ry, rz, comp_list, r=True, pivot=pivot)
+                    mc.rotate(rx, ry, rz, comp_list, r=True, pivot=rotate_pivot)
                 except Exception:
                     pm.select(comp_list, r=True)
-                    if objSpace:
-                        pm.rotate(rx, ry, rz, r=True)
-                    else:
-                        pm.rotate(rx, ry, rz, r=True, p=pivot)
+                    pm.rotate(rx, ry, rz, r=True, p=rotate_pivot)
 
         # restore original selection (may contain components)
         try:
@@ -422,12 +430,13 @@ def orientJoints(objs=[],children=False,
         jntList = []
         for i in objs:
             jntList.append(i)
-            children = i.listRelatives(ad=True, type='joint')
-            #reverse the list to make sure the parent joint is first
-            children.reverse()
-            for child in children:
-                jntList.append(child)
-        objs = objs+jntList
+            childJoints = i.listRelatives(ad=True, type='joint')
+            if childJoints:
+                #reverse the list to make sure the parent joint is first
+                childJoints.reverse()
+                for child in childJoints:
+                    jntList.append(child)
+        objs = jntList
     #create a helper locators to help orient the joints
     helperLocs = [i.getParent() for i in pm.ls('*_orientHelper*',type='locator')]
     #sort the helper locs to make sure the parent joint helper is first
@@ -480,15 +489,11 @@ def orientJoints(objs=[],children=False,
                 aimCon = pm.aimConstraint(jntChildren[0], loc, aim=aimVector, u=upVector, wut='vector', wu=worldUpVector)
                 pm.delete(aimCon)
     print(helperDict)
-    if not helper:  
+    if not helper:
         for loc in helperDict:
             jnt = loc.getParent()
             print(jnt)
-            #get world orientation
-            jntRot = jnt.getRotation(space='object')
-            locRot= loc.getRotation(space='object')
-            finalRot = [locRot[0]+jntRot[0], locRot[1]+jntRot[1], locRot[2]+jntRot[2]]
-            #get the jnt children
+            #store the jnt children world transforms before orientation
             jntChildDict = {}
             jntChildren = jnt.getChildren(type='joint')
             if jntChildren:
@@ -499,21 +504,34 @@ def orientJoints(objs=[],children=False,
                        helpLoc = pm.PyNode(chd+'_orientHelper')
                        jntChildDict[chd]['LocLocation'] = helpLoc.getTranslation(space='world')
                        jntChildDict[chd]['LocRotation'] = helpLoc.getRotation(space='world')
-            jnt.setRotation(finalRot, space='object')
-            loc.setRotation([0,0,0], space='object')
 
-            #convert the rotation to quaternion
-            quat=pm.datatypes.EulerRotation(finalRot[0],finalRot[1],finalRot[2]).asQuaternion()
-            #get current joint orient
+            #get the helper locator's world rotation as the target orientation
+            locWorldRot = loc.getRotation(space='world')
+
+            #set the joint's rotation to match the helper in world space
+            jnt.setRotation(locWorldRot, space='world')
+
+            #now transfer the rotation to joint orient
+            #get the current rotation in object space
+            currentRot = jnt.getRotation(space='object')
+
+            #convert to quaternion and add to current joint orient
+            quat = pm.datatypes.EulerRotation(currentRot[0], currentRot[1], currentRot[2]).asQuaternion()
             curOrient = jnt.getOrientation()
-            #add quat and current joint orient
             quat = quat * curOrient
-            #set the joint orient to quaternion value
+
+            #set the new joint orient
             jnt.setOrientation(quat)
+
             #reset the rotation to 0
             jnt.rotate.set([0,0,0])
+
+            #reset helper to 0 rotation in object space
+            loc.setRotation([0,0,0], space='object')
+
             jnt.displayLocalAxis.set(1)
-            # #reposition the joint children to avoid translation offset after orienting the joint
+
+            #reposition the joint children to avoid translation offset after orienting the joint
             if jntChildDict:
                 for chd,value in jntChildDict.items():
                     print(f"Repositioning {chd} to {value}")
@@ -523,9 +541,9 @@ def orientJoints(objs=[],children=False,
                         helpLoc = pm.PyNode(chd+'_orientHelper')
                         helpLoc.setTranslation(value['LocLocation'], space='world')
                         helpLoc.setRotation(value['LocRotation'], space='world')
-        #delete the helper locators
-        # for loc in helperDict:
-        #     pm.delete(loc)
+        # delete the helper locators
+        for loc in helperDict:
+            pm.delete(loc)
     pm.undoInfo(closeChunk=True)
 
 def oneLiner(nName, method='s'):
