@@ -8,9 +8,15 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
+try:
+        from PySide2.QtCore import *
+        from PySide2.QtGui import *
+        from PySide2.QtWidgets import *
+except:
+        from PySide6.QtCore import *
+        from PySide6.QtGui import *
+        from PySide6.QtWidgets import *
+
 
 import icons_rc
 
@@ -1407,7 +1413,12 @@ class Ui_MainWindow(object):
         font1.setFamily(u"Arial")
         font1.setPointSize(10)
         font1.setBold(False)
-        font1.setWeight(50)
+        try:
+            # PySide6 uses QFont.Weight enum
+            font1.setWeight(QFont.Weight.Normal)
+        except AttributeError:
+            # PySide2 uses integer values
+            font1.setWeight(50)
         self.btnMirrorX.setFont(font1)
         self.btnMirrorX.setStyleSheet(u"background-color: rgb(255, 70, 70);\n"
 "color: white;\n"

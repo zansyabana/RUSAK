@@ -24,9 +24,14 @@ from maya.app.general.mayaMixin import MayaQWidgetDockableMixin
 #from Qt.QtCore import Qt, Slot, QMetaObject, QAbstractTableModel, QObject, SIGNAL
 #from Qt.QtUiTools import QUiLoader
 #from Qt import QtGui, QtWidgets
-from PySide2.QtGui import QIcon, QColor
-from PySide2.QtCore import Qt
-from PySide2.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, QTableWidgetItem, QSizePolicy
+try:
+    from PySide2.QtGui import QIcon, QColor
+    from PySide2.QtCore import Qt
+    from PySide2.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, QTableWidgetItem, QSizePolicy
+except:
+    from PySide6.QtGui import QIcon, QColor
+    from PySide6.QtCore import Qt
+    from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, QTableWidgetItem, QSizePolicy
 #from Qt.QtWebKit import QWebView, QWebPage
 #from PySide2 import QtCore, QtGui
 
@@ -35,19 +40,22 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QMessageBox, QWidget, Q
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 
-import rusakUI as py_ui
+from rusakUI import Ui_MainWindow
 importlib.reload(py_ui)
 try:
-    import shiboken as sb
+    import shiboken2 as sb
 except:
-    import  shiboken2 as sb
+    import  shiboken6 as sb
 import maya.OpenMayaUI as apiUI
 import pymel.core as pm
 import maya.cmds as cmds
 import maya.mel as mel
 import json
-from PySide2.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
+try:
+    from PySide2.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
 
+except:
+    from PySide6.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
 
 
 def getMayaWindow():
@@ -62,73 +70,74 @@ def getMayaWindow():
 
 
 
-class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
+class MainWindow(MayaQWidgetDockableMixin, QWidget):
 
     def __init__(self, parent=getMayaWindow()):
         super(MainWindow, self).__init__(parent=parent)
-        self.setupUi(self)
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
         # restore saved widget defaults (best-effort)
         try:
             self._load_user_defaults()
         except Exception:
             pass
         self.resizeSliderVal = 0
-        self.shp_Circle.clicked.connect(partial(self.createControl,'circle'))
-        self.shp_Sphere.clicked.connect(partial(self.createControl,'sphere'))
-        self.shp_Square.clicked.connect(partial(self.createControl,'square'))
-        self.shp_Box.clicked.connect(partial(self.createControl,'box'))
-        self.shp_Cross.clicked.connect(partial(self.createControl,'cross'))
-        self.shp_Arrow.clicked.connect(partial(self.createControl,'arrowDouble'))
-        self.shp_CrossArrow.clicked.connect(partial(self.createControl,'crossArrow'))
-        self.shp_ArrowBent.clicked.connect(partial(self.createControl,'arrowDoubleCurve'))
-        self.shp_CrossArrowBent.clicked.connect(partial(self.createControl,'crossArrowBent'))
-        self.shp_Needle.clicked.connect(partial(self.createControl,'needleCircle'))
-        self.comboBox.addItems([i for i in fs.createControls().curveLib])
-        self.btn_createCtl.clicked.connect(self.createControl2)
+        self.ui.shp_Circle.clicked.connect(partial(self.createControl,'circle'))
+        self.ui.shp_Sphere.clicked.connect(partial(self.createControl,'sphere'))
+        self.ui.shp_Square.clicked.connect(partial(self.createControl,'square'))
+        self.ui.shp_Box.clicked.connect(partial(self.createControl,'box'))
+        self.ui.shp_Cross.clicked.connect(partial(self.createControl,'cross'))
+        self.ui.shp_Arrow.clicked.connect(partial(self.createControl,'arrowDouble'))
+        self.ui.shp_CrossArrow.clicked.connect(partial(self.createControl,'crossArrow'))
+        self.ui.shp_ArrowBent.clicked.connect(partial(self.createControl,'arrowDoubleCurve'))
+        self.ui.shp_CrossArrowBent.clicked.connect(partial(self.createControl,'crossArrowBent'))
+        self.ui.shp_Needle.clicked.connect(partial(self.createControl,'needleCircle'))
+        self.ui.comboBox.addItems([i for i in fs.createControls().curveLib])
+        self.ui.btn_createCtl.clicked.connect(self.createControl2)
         # color button wiring: map UI `col_<name>` buttons to their color index
         for idx in range(1,32):
-            btn = getattr(self, 'col_{}'.format(idx), None)
+            btn = getattr(self.ui, 'col_{}'.format(idx), None)
             if btn is not None:
                 btn.clicked.connect(lambda checked=False, i=idx: self.changeColor(i))
-        self.zero_btn.clicked.connect(self.applyZero)
-        self.resizeSlider.sliderPressed.connect(self.beginScale)
-        self.resizeSlider.sliderMoved.connect(self.setScale)
-        self.resizeSlider.sliderReleased.connect(self.resetSlider)
+        self.ui.zero_btn.clicked.connect(self.applyZero)
+        self.ui.resizeSlider.sliderPressed.connect(self.beginScale)
+        self.ui.resizeSlider.sliderMoved.connect(self.setScale)
+        self.ui.resizeSlider.sliderReleased.connect(self.resetSlider)
         # translation controls
         # slider + step/spinbox: resizeSlider_2 and sizeStepSpinBox_2 in UI
         self.translateSliderVal = 0
         try:
-            self.resizeSlider_2.sliderPressed.connect(self.beginTranslate)
-            self.resizeSlider_2.sliderMoved.connect(self.setTranslate)
-            self.resizeSlider_2.sliderReleased.connect(self.resetTranslate)
+            self.ui.resizeSlider_2.sliderPressed.connect(self.beginTranslate)
+            self.ui.resizeSlider_2.sliderMoved.connect(self.setTranslate)
+            self.ui.resizeSlider_2.sliderReleased.connect(self.resetTranslate)
         except Exception:
             # UI may not have the widgets in some layouts; fail silently
             pass
-        self.btn_rotateX.clicked.connect(self.setRotateX)
-        self.btn_rotateY.clicked.connect(self.setRotateY)
-        self.btn_rotateZ.clicked.connect(self.setRotateZ)
-        self.copyShp_Btn.clicked.connect(self.replaceShape)
-        self.parentAsChain_Btn.clicked.connect(self.chainParent)
-        # self.lineOneLiner.editingFinished.connect(self.runOneLiner)
-        self.splitJnt_Btn.clicked.connect(self.splitJoints)
-        self.colorRandom_btn.clicked.connect(self.randomizeColor)
-        self.crJnt_Btn.clicked.connect(lambda:mel.eval('JointTool'))
-        self.createSelJnt_Btn.clicked.connect(self.createJntOnSelect)
-        self.pointCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
-        self.orientCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
-        self.parConstraint_chkBox.stateChanged.connect(self.uncheckPointOrientConstraint)
-        self.displayJntAxis_Btn.clicked.connect(self.toggleJointAxis)
-        self.orientJnt_Btn.clicked.connect(lambda: self.orientJoints(helper=False))
-        self.orientJntHelper_Btn.clicked.connect(lambda: self.orientJoints(helper=True))
-        self.saveShp_btn.clicked.connect(self.saveSelectedShape)
+        self.ui.btn_rotateX.clicked.connect(self.setRotateX)
+        self.ui.btn_rotateY.clicked.connect(self.setRotateY)
+        self.ui.btn_rotateZ.clicked.connect(self.setRotateZ)
+        self.ui.copyShp_Btn.clicked.connect(self.replaceShape)
+        self.ui.parentAsChain_Btn.clicked.connect(self.chainParent)
+        # self.ui.lineOneLiner.editingFinished.connect(self.runOneLiner)
+        self.ui.splitJnt_Btn.clicked.connect(self.splitJoints)
+        self.ui.colorRandom_btn.clicked.connect(self.randomizeColor)
+        self.ui.crJnt_Btn.clicked.connect(lambda:mel.eval('JointTool'))
+        self.ui.createSelJnt_Btn.clicked.connect(self.createJntOnSelect)
+        self.ui.pointCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
+        self.ui.orientCons_chkBox.stateChanged.connect(self.uncheckParentConstraint)
+        self.ui.parConstraint_chkBox.stateChanged.connect(self.uncheckPointOrientConstraint)
+        self.ui.displayJntAxis_Btn.clicked.connect(self.toggleJointAxis)
+        self.ui.orientJnt_Btn.clicked.connect(lambda: self.orientJoints(helper=False))
+        self.ui.orientJntHelper_Btn.clicked.connect(lambda: self.orientJoints(helper=True))
+        self.ui.saveShp_btn.clicked.connect(self.saveSelectedShape)
 
-        self.asReplace.toggled.connect(self.ctrlSfxEnableDisable)
+        self.ui.asReplace.toggled.connect(self.ctrlSfxEnableDisable)
 
     def ctrlSfxEnableDisable(self):
-        if self.asReplace.isChecked():
-            self.createCtlSfx_lineEdit.setEnabled(False)
+        if self.ui.asReplace.isChecked():
+            self.ui.createCtlSfx_lineEdit.setEnabled(False)
         else:
-            self.createCtlSfx_lineEdit.setEnabled(True)
+            self.ui.createCtlSfx_lineEdit.setEnabled(True)
     def replaceShape(self):
         pm.undoInfo(openChunk=True)
         slt = pm.selected()
@@ -152,19 +161,19 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         crvs = []
         # read spawn multiplier from UI (safe fallback to 1.0)
         try:
-            spawn_mult = float(self.spawnMult_spBox.value())
+            spawn_mult = float(self.ui.spawnMult_spBox.value())
         except Exception:
             spawn_mult = 1.0
 
-        suffix = self.createCtlSfx_lineEdit.text()
+        suffix = self.ui.createCtlSfx_lineEdit.text()
         print(spawn_mult)
         if slt == []:
             dummyGrp = pm.group(em=True,w=True)
-            if self.asJnt.isChecked():
+            if self.ui.asJnt.isChecked():
                 crv = fs.createControls().crCtl(dummyGrp,crvShp=shp,asJnt=True)
                 crvs.append(crv)
                 crv.rename(suffix)
-            elif self.asReplace.isChecked():
+            elif self.ui.asReplace.isChecked():
                 crv = fs.createControls().crCtl(dummyGrp, crvShp=shp,asReplace=True)
                 crvs.append(crv)
 
@@ -176,11 +185,11 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             pm.delete(dummyGrp)
         else:
             for i in slt:
-                if self.asJnt.isChecked():
+                if self.ui.asJnt.isChecked():
                     crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=True)
                     crvs.append(crv)
                     crv.rename(i+"_"+suffix)
-                elif self.asReplace.isChecked():
+                elif self.ui.asReplace.isChecked():
                     crv = fs.createControls().crCtl(i, crvShp=shp,asReplace=True)
                     crvs.append(crv)
 
@@ -200,7 +209,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         pm.undoInfo(closeChunk=True)
 
     def createControl2(self):
-        shp1 = self.comboBox.currentText()
+        shp1 = self.ui.comboBox.currentText()
         self.createControl(shp1)
 
     def changeColor(self, color):
@@ -210,17 +219,17 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             fs.createControls().setColor(i,color)
 
     def applyZero(self):
-        prefix = self.prefix_rBtn.isChecked()
-        fs.zeroTrans(self.suffix_edit.text(),self.keepSuffix_chkBox.isChecked(),prefix)
+        prefix = self.ui.prefix_rBtn.isChecked()
+        fs.zeroTrans(self.ui.suffix_edit.text(),self.ui.keepSuffix_chkBox.isChecked(),prefix)
 
     def setScale(self):
         # read axis flags as ints (faster/clearer)
-        sx = 1 if self.sizeX.isChecked() else 0
-        sy = 1 if self.sizeY.isChecked() else 0
-        sz = 1 if self.sizeZ.isChecked() else 0
+        sx = 1 if self.ui.sizeX.isChecked() else 0
+        sy = 1 if self.ui.sizeY.isChecked() else 0
+        sz = 1 if self.ui.sizeZ.isChecked() else 0
 
-        sliderValue = self.resizeSlider.sliderPosition()
-        stepValue = float(self.sizeStepSpinBox.value())
+        sliderValue = self.ui.resizeSlider.sliderPosition()
+        stepValue = float(self.ui.sizeStepSpinBox.value())
 
         # compute how many "steps" changed since last call
         delta = sliderValue - self.resizeSliderVal
@@ -234,7 +243,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             scaleFactor = (1.0 / stepValue) ** (-delta)
 
         # force transform-space (pivoted) behavior regardless of UI mode
-        objSpace = self.spTransform.isChecked()
+        objSpace = self.ui.spTransform.isChecked()
 
         # caller (beginScale/resetSlider) handles undo and refresh so we only
         # perform the transform here.
@@ -254,12 +263,12 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         except Exception:
             pass
 
-        self.resizeSlider.setValue(0)
+        self.ui.resizeSlider.setValue(0)
         self.resizeSliderVal = 0
 
     def beginScale(self):
         # start a single undo chunk for the slider drag and suspend refresh
-        self.resizeSliderVal = self.resizeSlider.sliderPosition()
+        self.resizeSliderVal = self.ui.resizeSlider.sliderPosition()
         try:
             pm.undoInfo(openChunk=True)
         except Exception:
@@ -274,12 +283,12 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         to selected shapes' CVs using the step value and axis checkboxes.
         """
         # axis flags
-        tx_flag = 1 if getattr(self, 'transX_chkBox', None) and self.transX_chkBox.isChecked() else 0
-        ty_flag = 1 if getattr(self, 'transY_chkBox', None) and self.transY_chkBox.isChecked() else 0
-        tz_flag = 1 if getattr(self, 'transZ_chkBox', None) and self.transZ_chkBox.isChecked() else 0
+        tx_flag = 1 if getattr(self.ui, 'transX_chkBox', None) and self.ui.transX_chkBox.isChecked() else 0
+        ty_flag = 1 if getattr(self.ui, 'transY_chkBox', None) and self.ui.transY_chkBox.isChecked() else 0
+        tz_flag = 1 if getattr(self.ui, 'transZ_chkBox', None) and self.ui.transZ_chkBox.isChecked() else 0
 
-        sliderValue = self.resizeSlider_2.sliderPosition() if hasattr(self, 'resizeSlider_2') else 0
-        stepValue = float(self.sizeStepSpinBox_2.value()) if hasattr(self, 'sizeStepSpinBox_2') else 1.0
+        sliderValue = self.ui.resizeSlider_2.sliderPosition() if hasattr(self.ui, 'resizeSlider_2') else 0
+        stepValue = float(self.ui.sizeStepSpinBox_2.value()) if hasattr(self.ui, 'sizeStepSpinBox_2') else 1.0
 
         # delta from last call
         delta = sliderValue - self.translateSliderVal
@@ -312,13 +321,13 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         except Exception:
             pass
 
-        if hasattr(self, 'resizeSlider_2'):
-            self.resizeSlider_2.setValue(0)
+        if hasattr(self.ui, 'resizeSlider_2'):
+            self.ui.resizeSlider_2.setValue(0)
         self.translateSliderVal = 0
 
     def beginTranslate(self):
         # start a single undo chunk for the translate slider drag and suspend refresh
-        self.translateSliderVal = self.resizeSlider_2.sliderPosition() if hasattr(self, 'resizeSlider_2') else 0
+        self.translateSliderVal = self.ui.resizeSlider_2.sliderPosition() if hasattr(self.ui, 'resizeSlider_2') else 0
         try:
             pm.undoInfo(openChunk=True)
         except Exception:
@@ -329,22 +338,22 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
             pass
 
     def setRotateX(self):
-        angle = self.angle_box.value()
-        if self.spTransform.isChecked():
+        angle = self.ui.angle_box.value()
+        if self.ui.spTransform.isChecked():
             fs.transformShapes(r=1,rx=angle,objSpace=True)
         else:
             fs.transformShapes(r=1,rx=angle,objSpace=False)
 
     def setRotateY(self):
-        angle = self.angle_box.value()
-        if self.spTransform.isChecked():
+        angle = self.ui.angle_box.value()
+        if self.ui.spTransform.isChecked():
             fs.transformShapes(r=1,ry=angle,objSpace=True)
         else:
             fs.transformShapes(r=1,ry=angle,objSpace=False)
 
     def setRotateZ(self):
-        angle = self.angle_box.value()
-        if self.spTransform.isChecked():
+        angle = self.ui.angle_box.value()
+        if self.ui.spTransform.isChecked():
             fs.transformShapes(r=1,rz=angle,objSpace=True)
         else:
             fs.transformShapes(r=1,rz=angle,objSpace=False)
@@ -359,7 +368,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                 pm.parent(i, sel[sel.index(i)+1])
 
     def splitJoints(self):
-        jntNum = self.splitJnt_spBox.value()
+        jntNum = self.ui.splitJnt_spBox.value()
         fs.splitJoint(jntNum)
 
     def _defaults_path(self):
@@ -426,7 +435,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
         try:
             print("[rusak] loading user defaults from:", path, "(", len(data), "items)")
             for name, val in data.items():
-                widget = getattr(self, name, None)
+                widget = getattr(self.ui, name, None)
                 if widget is None:
                     # try findChild by object name (any QWidget)
                     try:
@@ -486,20 +495,20 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
 
     def createJntOnSelect(self):
         sel = pm.selected()
-        sfx = self.jntSuffixName_lineEdit.text()
-        pac = self.parConstraint_chkBox.isChecked()
-        sc = self.scaleCons_chkBox.isChecked()
-        oc = self.orientCons_chkBox.isChecked()
-        poc = self.pointCons_chkBox.isChecked()
-        chain = self.chainJnt_chkBox.isChecked()
+        sfx = self.ui.jntSuffixName_lineEdit.text()
+        pac = self.ui.parConstraint_chkBox.isChecked()
+        sc = self.ui.scaleCons_chkBox.isChecked()
+        oc = self.ui.orientCons_chkBox.isChecked()
+        poc = self.ui.pointCons_chkBox.isChecked()
+        chain = self.ui.chainJnt_chkBox.isChecked()
         fs.createJntOnSel(sel,pac,sc,oc,poc,sfx,chain)
     def uncheckParentConstraint(self):
-        if self.pointCons_chkBox.isChecked() or self.orientCons_chkBox.isChecked():
-            self.parConstraint_chkBox.setChecked(False)
+        if self.ui.pointCons_chkBox.isChecked() or self.ui.orientCons_chkBox.isChecked():
+            self.ui.parConstraint_chkBox.setChecked(False)
     def uncheckPointOrientConstraint(self):
-        if self.parConstraint_chkBox.isChecked():
-            self.pointCons_chkBox.setChecked(False)
-            self.orientCons_chkBox.setChecked(False)
+        if self.ui.parConstraint_chkBox.isChecked():
+            self.ui.pointCons_chkBox.setChecked(False)
+            self.ui.orientCons_chkBox.setChecked(False)
 
     def saveSelectedShape(self):
         slt = pm.selected(type='transform')
@@ -530,32 +539,32 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                         json.dump({}, f)
                 fs.createControls().saveCtl(name,obj=shp,customPath=savePath.as_posix())
                 pm.informBox("Save Curve Shape", "Curve shape '{}' saved successfully.".format(name))
-            self.comboBox.clear()
-            self.comboBox.addItems([i for i in fs.createControls().curveLib])
+            self.ui.comboBox.clear()
+            self.ui.comboBox.addItems([i for i in fs.createControls().curveLib])
     def orientJoints(self,helper=False):
-        if self.orientPAxisX_rBtn.isChecked():
+        if self.ui.orientPAxisX_rBtn.isChecked():
             primeAxis = 'X'
-        elif self.orientPAxisY_rBtn.isChecked():
+        elif self.ui.orientPAxisY_rBtn.isChecked():
             primeAxis = 'Y'
         else:
             primeAxis = 'Z'
-        
-        if self.orientSecAxisX_rBtn.isChecked():
+
+        if self.ui.orientSecAxisX_rBtn.isChecked():
             secondaryAxis = 'X'
-        elif self.orientSecAxisY_rBtn.isChecked():
+        elif self.ui.orientSecAxisY_rBtn.isChecked():
             secondaryAxis = 'Y'
         else:
             secondaryAxis = 'Z'
-        if self.orientWorldAxisX_rBtn.isChecked():
+        if self.ui.orientWorldAxisX_rBtn.isChecked():
             worldAxis = 'X'
-        elif self.orientWorldAxisY_rBtn.isChecked():
+        elif self.ui.orientWorldAxisY_rBtn.isChecked():
             worldAxis = 'Y'
         else:
             worldAxis = 'Z'
-        primeNegative = self.orientPrimeNeg_chkBox.isChecked()
-        secondaryNegative = self.orientSecNeg_chkBox.isChecked()
-        worldNegative = self.orientWorldNeg_chkBox.isChecked()
-        children = self.orientChd_chkBox.isChecked()
+        primeNegative = self.ui.orientPrimeNeg_chkBox.isChecked()
+        secondaryNegative = self.ui.orientSecNeg_chkBox.isChecked()
+        worldNegative = self.ui.orientWorldNeg_chkBox.isChecked()
+        children = self.ui.orientChd_chkBox.isChecked()
         fs.orientJoints(primeAxis=primeAxis,
                         secondaryAxis=secondaryAxis,
                         worldAxis=worldAxis,
@@ -564,7 +573,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget, py_ui.Ui_MainWindow):
                         worldNegative=worldNegative,
                         children=children,helper=helper)
     def toggleJointAxis(self):
-        childs = self.axisChd_chkBox.isChecked()
+        childs = self.ui.axisChd_chkBox.isChecked()
         fs.toggleJointAxis(childs)
         
         
@@ -577,11 +586,12 @@ def main():
     ui = MainWindow()
     # Show as dockable, but floating by default so it's not docked on first open.
     # User can dock it later via the Maya workspace control UI.
-    try:
-        ui.show(dockable=True, floating=True)
-    except Exception:
-        # Fallback to plain show() if the Maya mixin doesn't accept these args
-        ui.show()
+    # try:
+    #     ui.show(dockable=True, floating=True)
+    # except Exception:
+    #     # Fallback to plain show() if the Maya mixin doesn't accept these args
+    #     ui.show()
+    ui.show(dockable=True, floating=True)
     ui.raise_()
 
 if __name__ == '__main__':
