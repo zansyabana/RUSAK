@@ -147,7 +147,7 @@ def zeroTrans(sfx, keep=True,prefix=False,*args):
     pm.select(selected)
     pm.undoInfo(closeChunk=True)
 
-def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, tx=0, ty=0, tz=0, *args):
+def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, tx=0, ty=0, tz=0, obj=[], *args):
     """
     Optimized transformShapes:
     - suspend viewport refresh for the whole operation
@@ -157,7 +157,10 @@ def transformShapes(t=0, r=0, s=0, rx=0, ry=0, rz=0, scaleVal=0, objSpace=True, 
     Inputs match the original API.
     """
     # preserve original selection so we can restore it later
-    orig_sel = mc.ls(sl=True)
+    if obj:
+        orig_sel = obj
+    else:
+        orig_sel = mc.ls(sl=True)
     # normalize selection to transform nodes (users might select components)
     sel = pm.ls(orig_sel, transforms=True)
     if not sel:
