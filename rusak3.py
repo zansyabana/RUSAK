@@ -39,9 +39,11 @@ except:
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
+sys.path.append(SCRIPT_DIRECTORY)
 
-from rusakUI import Ui_MainWindow
-importlib.reload(py_ui)
+
+import rusakUI
+importlib.reload(rusakUI)
 try:
     import shiboken2 as sb
 except:
@@ -74,7 +76,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
 
     def __init__(self, parent=getMayaWindow()):
         super(MainWindow, self).__init__(parent=parent)
-        self.ui = Ui_MainWindow()
+        self.ui = rusakUI.Ui_MainWindow()
         self.ui.setupUi(self)
         # restore saved widget defaults (best-effort)
         try:
