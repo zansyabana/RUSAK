@@ -153,9 +153,18 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
         self.ui.attrVisibility_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
 
         # custom attribute creation
-        self.ui.customAttrApply_Btn.clicked.connect(self.createCustomAttribute)
+        self.ui.customAttrList_cBox.clear()
+        self.toggleEditAttrRadioButtons()
+        self.ui.customAttrApply_Btn.clicked.connect(self.runCustomAttributeFunction)
         self.ui.customAttrResetVal_Btn.clicked.connect(self.resetCustomAttributeFields)
         self.ui.customAttrLoad_Btn.clicked.connect(self.loadCustomAttrOnSelection)
+        self.ui.customAttrEdit_rBtn.toggled.connect(self.toggleEditAttrRadioButtons)
+        self.ui.customAttrList_cBox.currentTextChanged.connect(self.loadSelectedCustomAttr)
+
+        #temp disable grpBoxes
+        self.ui.oneLiner_grpBox.setEnabled(False)
+        self.ui.mirrorTransforms_grpBox.setEnabled(False)
+        self.ui.spawnAvgLoc_grpBox.setEnabled(False)
 
     def ctrlSfxEnableDisable(self):
         if self.ui.asReplace.isChecked():
@@ -664,6 +673,76 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
         if self.ui.attrAuto_chkBox.isChecked():
             self.setChannelBoxTransforms()
 
+    def runCustomAttributeFunction(self):
+        if self.ui.customAttrEdit_rBtn.isChecked():
+            self.editCustomAttribute()
+        else:
+            self.createCustomAttribute()
+    def editCustomAttribute(self):
+        attrName = self.ui.customAttrList_cBox.currentText()
+        if not attrName:
+            pm.warning("Please select an attribute to edit")
+            return
+        slt = pm.selected()
+        for i in slt:
+            try:
+                attrFull = f'{i}.{attrName}'
+                atrType = pm.getAttr(attrFull, type=True)
+                # print("attrFull:", attrFull)
+                # print("atrType:", atrType)
+                if not pm.attributeQuery(attrName, node=i, exists=True):
+                    pm.warning(f"Attribute '{attrName}' does not exist on '{i}'")
+                    continue
+                # get new name
+                newAttrName = self.ui.customAttrName_lineEdit.text()
+                if newAttrName and newAttrName != attrName:
+                    pm.renameAttr(attrFull, newAttrName)
+                    attrFull = f'{i}.{newAttrName}'
+                    attrName = newAttrName  # update for subsequent uses
+                # get new nice name
+                attrNiceName = self.ui.customAttrNiceName_lineEdit.text()
+                if attrNiceName and attrNiceName != pm.attributeQuery(attrName, node=i, niceName=True):
+                    pm.addAttr(attrFull, e=True, niceName=attrNiceName)
+                pm.refreshEditorTemplates()
+                if atrType in ['long','double']:
+                    # get min/max
+                    if self.ui.customAttrMin_chkBox.isChecked():
+                        minVal = self.ui.customAttrMinVal_spinBox.value()
+                        pm.addAttr(attrFull, e=True, hasMinValue=True)
+                        pm.addAttr(attrFull, e=True, minValue=minVal)
+                    else:
+                        pm.addAttr(attrFull, e=True, hasMinValue=False)
+                    if self.ui.customAttrMax_chkBox.isChecked():
+                        maxVal = self.ui.customAttrMaxVal_spinBox.value()
+                        pm.addAttr(attrFull, e=True, hasMaxValue=True)
+                        pm.addAttr(attrFull, e=True, maxValue=maxVal)
+                    else:
+                        pm.addAttr(attrFull, e=True, hasMaxValue=False)
+                    # get new default value
+                    newDefaultValue = self.ui.customAttrValue_lineEdit.text()
+                    if newDefaultValue:
+                        try:
+                            if atrType == 'long':
+                                intVal = int(newDefaultValue)
+                                pm.setAttr(attrFull, intVal)
+                            elif atrType == 'double':
+                                floatVal = float(newDefaultValue)
+                                pm.setAttr(attrFull, floatVal)
+                        except:
+                            pass
+                elif atrType == 'enum':
+                    # get enum names from line edit, split by comma
+                    enumNames = self.ui.customAttrEnumNames_lineEdit.text()
+                    # print("enumNames:", enumNames)
+                    enumNamesList = [name.strip() for name in enumNames.split(',') if name.strip()]
+                    # print("enumNamesList:", enumNamesList)
+                    if enumNamesList:
+                        pm.addAttr(attrFull, e=True,en=':'.join(enumNamesList))
+            except Exception as e:
+                print(f"Error editing attribute: {e}")                
+
+        if not self.ui.customAttrKeepVal_chkBox.isChecked():
+            self.resetCustomAttributeFields()
     def createCustomAttribute(self):
         attrName = self.ui.customAttrName_lineEdit.text()
         attrNiceName = self.ui.customAttrNiceName_lineEdit.text()
@@ -768,21 +847,77 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
     def loadCustomAttrOnSelection(self):
         #get custom attributes available from all selected object
         slt = pm.selected()
-        customAttrs = []
+        customAttrsLs = []
         for i in slt:
             allAttrs = pm.listAttr(i, userDefined=True)
-            for attr in allAttrs:
-                if slt.index(i) == 0:
-                    customAttrs.append(attr)
-                else:
-                    if attr not in customAttrs:
-                        customAttrs.remove(attr)
-                    for attr2 in customAttrs:
-                        if attr2 not in allAttrs:
-                            customAttrs.remove(attr2)
+            customAttrsLs.append(allAttrs)
+        #get the intersection of all custom attributes
+        customAttrs = set(customAttrsLs[0]) if customAttrsLs else set()
+        for attrs in customAttrsLs[1:]:
+            customAttrs &= set(attrs)
+        customAttrs = list(customAttrs)
+
         self.ui.customAttrList_cBox.clear()
         self.ui.customAttrList_cBox.addItems(customAttrs)
         return customAttrs
+    
+    def toggleEditAttrRadioButtons(self):
+        if self.ui.customAttrEdit_rBtn.isChecked():
+            self.ui.customAttrApply_Btn.setText("Edit Attribute")
+            self.ui.customAttrType_grpBox.setEnabled(False)
+        else:
+            self.ui.customAttrApply_Btn.setText("Create Attribute")
+            self.ui.customAttrType_grpBox.setEnabled(True)
+
+    def loadSelectedCustomAttr(self):
+        attrName = self.ui.customAttrList_cBox.currentText()
+        if attrName:
+            slt = pm.selected()
+            if not slt:
+                return
+            firstObj = slt[0]
+            if not pm.attributeQuery(attrName, node=firstObj, exists=True):
+                pm.warning(f"Attribute '{attrName}' does not exist on the first selected object.")
+                return
+            attrType = pm.getAttr(f'{firstObj}.{attrName}', type=True)
+            self.ui.customAttrName_lineEdit.setText(attrName)
+            self.ui.customAttrNiceName_lineEdit.setText(pm.attributeQuery(attrName, node=firstObj, niceName=True))
+            if attrType == 'long':
+                self.ui.customAttrInt_rBtn.setChecked(True)
+            elif attrType == 'double':
+                self.ui.customAttrFloat_rBtn.setChecked(True)
+            elif attrType == 'bool':
+                self.ui.customAttrBool_rBtn.setChecked(True)
+            elif attrType == 'enum':
+                self.ui.customAttrEnum_rBtn.setChecked(True)
+                enumNames = pm.attributeQuery(attrName, node=firstObj, le=True)[0]
+                self.ui.customAttrEnumNames_lineEdit.setText(enumNames.replace(':', ', '))
+            elif attrType == 'string':
+                self.ui.customAttrString_rBtn.setChecked(True)
+            elif attrType == 'double3':
+                self.ui.customAttrVector_rBtn.setChecked(True)
+            # get default value
+            try:
+                defaultValue = pm.getAttr(f'{firstObj}.{attrName}')
+                self.ui.customAttrValue_lineEdit.setText(str(defaultValue))
+            except Exception:
+                self.ui.customAttrValue_lineEdit.setText("")
+            if attrType in ['long','double']:
+                hasMin = pm.attributeQuery(attrName, node=firstObj, mne=True)
+                hasMax = pm.attributeQuery(attrName, node=firstObj, mxe=True)
+                self.ui.customAttrMin_chkBox.setChecked(hasMin)
+                self.ui.customAttrMax_chkBox.setChecked(hasMax)
+                if hasMin:
+                    minVal = pm.attributeQuery(attrName, node=firstObj, min=True)
+                    if minVal:
+                        minVal = float(minVal[0])
+                    self.ui.customAttrMinVal_spinBox.setValue(minVal)
+                if hasMax:
+                    maxVal = pm.attributeQuery(attrName, node=firstObj, max=True)
+                    if maxVal:
+                        maxVal = float(maxVal[0])
+                    self.ui.customAttrMaxVal_spinBox.setValue(maxVal)
+
         
 def main():
     global ui

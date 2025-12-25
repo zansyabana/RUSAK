@@ -38,8 +38,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-</string>
+        <string notr="true"/>
        </property>
        <property name="tabPosition">
         <enum>QTabWidget::West</enum>
@@ -2549,7 +2548,7 @@ border: 0px;</string>
                 <item>
                  <widget class="QPushButton" name="customAttrLoad_Btn">
                   <property name="text">
-                   <string>Load</string>
+                   <string>Load Custom Attrs</string>
                   </property>
                  </widget>
                 </item>
@@ -2604,7 +2603,7 @@ border: 0px;</string>
                </layout>
               </item>
               <item>
-               <widget class="QGroupBox" name="groupBox_16">
+               <widget class="QGroupBox" name="keyable_grpBox">
                 <property name="title">
                  <string>Keyable</string>
                 </property>
@@ -2653,7 +2652,7 @@ border: 0px;</string>
                </widget>
               </item>
               <item>
-               <widget class="QGroupBox" name="groupBox_17">
+               <widget class="QGroupBox" name="customAttrType_grpBox">
                 <property name="title">
                  <string>Type</string>
                 </property>
@@ -2835,7 +2834,7 @@ border: 0px;</string>
                  <string>create/apply edits on selected</string>
                 </property>
                 <property name="text">
-                 <string>Apply</string>
+                 <string>Create Attribute</string>
                 </property>
                </widget>
               </item>
@@ -3382,7 +3381,7 @@ border: 0px;</string>
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_7">
+          <widget class="QGroupBox" name="mirrorTransforms_grpBox">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -3578,7 +3577,7 @@ border: 0px;</string>
         </attribute>
         <layout class="QVBoxLayout" name="verticalLayout_28">
          <item>
-          <widget class="QGroupBox" name="groupBox_18">
+          <widget class="QGroupBox" name="spawnAvgLoc_grpBox">
            <property name="title">
             <string>Spawn Average Locator</string>
            </property>
@@ -3608,7 +3607,7 @@ border: 0px;</string>
           </widget>
          </item>
          <item>
-          <widget class="QGroupBox" name="groupBox_12">
+          <widget class="QGroupBox" name="oneLiner_grpBox">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -4014,12 +4013,12 @@ border: 0px;</string>
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="customAttrCreateEdit_bGrp"/>
   <buttongroup name="ctrlAs_bGrp"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="spawnAt_bGrp"/>
+  <buttongroup name="customAttrCreateEdit_bGrp"/>
   <buttongroup name="buttonGroup_3"/>
   <buttongroup name="customAttrType_bGrp"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
