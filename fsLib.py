@@ -24,16 +24,25 @@ class createControls():
             self.userCurveLib = json.load(self.userCurveLib_file)
             self.curveLib.update(self.userCurveLib)
 
-    def align(self,tgt, src):
-        trans = pm.xform(str(src) + ".scalePivot", q=True, ws=True, t=True)
-        rot = pm.xform(src, q=True, ws=True, ro=True)
-        transX = trans[0]
-        transY = trans[1]
-        transZ = trans[2]
-        pm.xform(tgt, ws=True, t=trans)
-        pm.xform(tgt, ws=True, ro=rot)
+    def align(self,tgt, src,center=False):
+        if center:
+            bbox = pm.exactWorldBoundingBox(src)
+            centerX = (bbox[0] + bbox[3]) / 2
+            centerY = (bbox[1] + bbox[4]) / 2
+            centerZ = (bbox[2] + bbox[5]) / 2
+            pm.xform(tgt, ws=True, t=(centerX, centerY, centerZ))
+            rot = pm.xform(src, q=True, ws=True, ro=True)
+            pm.xform(tgt, ws=True, ro=rot)
+        else:
+            trans = pm.xform(str(src) + ".scalePivot", q=True, ws=True, t=True)
+            rot = pm.xform(src, q=True, ws=True, ro=True)
+            transX = trans[0]
+            transY = trans[1]
+            transZ = trans[2]
+            pm.xform(tgt, ws=True, t=trans)
+            pm.xform(tgt, ws=True, ro=rot)
 
-    def crCtl(self, obj, crvShp='circle', asJnt=False, asReplace=False):
+    def crCtl(self, obj, crvShp='circle', asJnt=False, asReplace=False, atCenter=False):
         pm.undoInfo(openChunk=True)
             # Defines to convert the controller as shaped joint
         if asJnt == True:
@@ -65,7 +74,7 @@ class createControls():
             
             
         try:
-            self.align(crv, obj)
+            self.align(crv, obj,center=atCenter)
         except:
             pass
 

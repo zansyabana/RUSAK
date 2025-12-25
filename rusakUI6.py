@@ -3,26 +3,31 @@
 ################################################################################
 ## Form generated from reading UI file 'rusakUI2.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.10.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-try:
-    from PySide2.QtCore import *
-    from PySide2.QtGui import *
-    from PySide2.QtWidgets import *
-except:
-    from PySide6.QtCore import *
-    from PySide6.QtGui import *
-    from PySide6.QtWidgets import *
 
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QButtonGroup, QCheckBox, QComboBox,
+    QDoubleSpinBox, QFrame, QGridLayout, QGroupBox,
+    QHBoxLayout, QLabel, QLayout, QLineEdit,
+    QPushButton, QRadioButton, QScrollArea, QSizePolicy,
+    QSlider, QSpacerItem, QSpinBox, QTabWidget,
+    QToolBox, QVBoxLayout, QWidget)
 import icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(440, 1018)
+        MainWindow.resize(440, 1074)
         MainWindow.setMinimumSize(QSize(440, 0))
         self.verticalLayout_12 = QVBoxLayout(MainWindow)
         self.verticalLayout_12.setObjectName(u"verticalLayout_12")
@@ -31,9 +36,18 @@ class Ui_MainWindow(object):
         self.tabWidget = QTabWidget(MainWindow)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setMinimumSize(QSize(393, 0))
+        font = QFont()
+        font.setBold(False)
+        font.setKerning(True)
+        self.tabWidget.setFont(font)
+        self.tabWidget.setStyleSheet(u"")
         self.tabWidget.setTabPosition(QTabWidget.West)
         self.tab_ctrl = QWidget()
         self.tab_ctrl.setObjectName(u"tab_ctrl")
+        font1 = QFont()
+        font1.setBold(False)
+        self.tab_ctrl.setFont(font1)
+        self.tab_ctrl.setStyleSheet(u"")
         self.verticalLayout_17 = QVBoxLayout(self.tab_ctrl)
         self.verticalLayout_17.setObjectName(u"verticalLayout_17")
         self.scrollArea = QScrollArea(self.tab_ctrl)
@@ -42,7 +56,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 376, 936))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 373, 992))
         self.verticalLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.scrollAreaWidgetContents)
@@ -60,7 +74,7 @@ class Ui_MainWindow(object):
         self.ctrlAs_bGrp.setObjectName(u"ctrlAs_bGrp")
         self.ctrlAs_bGrp.addButton(self.asCrv)
         self.asCrv.setObjectName(u"asCrv")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.asCrv.sizePolicy().hasHeightForWidth())
@@ -86,8 +100,8 @@ class Ui_MainWindow(object):
 
         self.line = QFrame(self.scrollAreaWidgetContents)
         self.line.setObjectName(u"line")
-        self.line.setFrameShape(QFrame.VLine)
-        self.line.setFrameShadow(QFrame.Sunken)
+        self.line.setFrameShape(QFrame.Shape.VLine)
+        self.line.setFrameShadow(QFrame.Shadow.Sunken)
 
         self.horizontalLayout.addWidget(self.line)
 
@@ -96,14 +110,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.label_14)
 
-        self.spawnAtEach_rBtn = QRadioButton(self.scrollAreaWidgetContents)
+        self.spawnAtPivot_rBtn = QRadioButton(self.scrollAreaWidgetContents)
         self.spawnAt_bGrp = QButtonGroup(MainWindow)
         self.spawnAt_bGrp.setObjectName(u"spawnAt_bGrp")
-        self.spawnAt_bGrp.addButton(self.spawnAtEach_rBtn)
-        self.spawnAtEach_rBtn.setObjectName(u"spawnAtEach_rBtn")
-        self.spawnAtEach_rBtn.setChecked(True)
+        self.spawnAt_bGrp.addButton(self.spawnAtPivot_rBtn)
+        self.spawnAtPivot_rBtn.setObjectName(u"spawnAtPivot_rBtn")
+        self.spawnAtPivot_rBtn.setChecked(True)
 
-        self.horizontalLayout.addWidget(self.spawnAtEach_rBtn)
+        self.horizontalLayout.addWidget(self.spawnAtPivot_rBtn)
 
         self.spawnAtCenter_rBtn = QRadioButton(self.scrollAreaWidgetContents)
         self.spawnAt_bGrp.addButton(self.spawnAtCenter_rBtn)
@@ -132,7 +146,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.spawnMult_spBox)
 
-        self.horizontalSpacer = QSpacerItem(100, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(100, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_11.addItem(self.horizontalSpacer)
 
@@ -154,7 +168,7 @@ class Ui_MainWindow(object):
 
         self.groupBox = QGroupBox(self.scrollAreaWidgetContents)
         self.groupBox.setObjectName(u"groupBox")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Minimum)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.groupBox.sizePolicy().hasHeightForWidth())
@@ -172,7 +186,7 @@ class Ui_MainWindow(object):
         self.shp_CrossArrow.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_CrossArrow.setAutoFillBackground(False)
         icon = QIcon()
-        icon.addFile(u":/icon/crossArrow.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icon/crossArrow.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_CrossArrow.setIcon(icon)
         self.shp_CrossArrow.setIconSize(QSize(20, 20))
         self.shp_CrossArrow.setCheckable(False)
@@ -187,7 +201,7 @@ class Ui_MainWindow(object):
         self.shp_Arrow.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Arrow.setAutoFillBackground(False)
         icon1 = QIcon()
-        icon1.addFile(u":/icon/arrowDouble.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon1.addFile(u":/icon/arrowDouble.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Arrow.setIcon(icon1)
         self.shp_Arrow.setIconSize(QSize(20, 20))
         self.shp_Arrow.setCheckable(False)
@@ -203,7 +217,7 @@ class Ui_MainWindow(object):
         self.shp_Needle.setAutoFillBackground(False)
         self.shp_Needle.setStyleSheet(u"background-color: rgb(225, 225, 225);")
         icon2 = QIcon()
-        icon2.addFile(u":/icon/needle.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon2.addFile(u":/icon/needle.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Needle.setIcon(icon2)
         self.shp_Needle.setIconSize(QSize(20, 20))
         self.shp_Needle.setCheckable(False)
@@ -218,7 +232,7 @@ class Ui_MainWindow(object):
         self.shp_ArrowBent.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_ArrowBent.setAutoFillBackground(False)
         icon3 = QIcon()
-        icon3.addFile(u":/icon/arrowBent.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon3.addFile(u":/icon/arrowBent.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_ArrowBent.setIcon(icon3)
         self.shp_ArrowBent.setIconSize(QSize(20, 20))
         self.shp_ArrowBent.setCheckable(False)
@@ -233,7 +247,7 @@ class Ui_MainWindow(object):
         self.shp_CrossArrowBent.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_CrossArrowBent.setAutoFillBackground(False)
         icon4 = QIcon()
-        icon4.addFile(u":/icon/crossArrowBent.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon4.addFile(u":/icon/crossArrowBent.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_CrossArrowBent.setIcon(icon4)
         self.shp_CrossArrowBent.setIconSize(QSize(20, 20))
         self.shp_CrossArrowBent.setCheckable(False)
@@ -248,7 +262,7 @@ class Ui_MainWindow(object):
         self.shp_Circle.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Circle.setAutoFillBackground(False)
         icon5 = QIcon()
-        icon5.addFile(u":/icon/circle.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon5.addFile(u":/icon/circle.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Circle.setIcon(icon5)
         self.shp_Circle.setIconSize(QSize(20, 20))
         self.shp_Circle.setCheckable(False)
@@ -263,7 +277,7 @@ class Ui_MainWindow(object):
         self.shp_Square.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Square.setAutoFillBackground(False)
         icon6 = QIcon()
-        icon6.addFile(u":/icon/square.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon6.addFile(u":/icon/square.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Square.setIcon(icon6)
         self.shp_Square.setIconSize(QSize(20, 20))
         self.shp_Square.setCheckable(False)
@@ -278,7 +292,7 @@ class Ui_MainWindow(object):
         self.shp_Cross.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Cross.setAutoFillBackground(False)
         icon7 = QIcon()
-        icon7.addFile(u":/icon/cross.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u":/icon/cross.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Cross.setIcon(icon7)
         self.shp_Cross.setIconSize(QSize(20, 20))
         self.shp_Cross.setCheckable(False)
@@ -294,7 +308,7 @@ class Ui_MainWindow(object):
         self.shp_Sphere.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Sphere.setAutoFillBackground(False)
         icon8 = QIcon()
-        icon8.addFile(u":/icon/sphere.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon8.addFile(u":/icon/sphere.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Sphere.setIcon(icon8)
         self.shp_Sphere.setIconSize(QSize(20, 20))
         self.shp_Sphere.setCheckable(False)
@@ -309,7 +323,7 @@ class Ui_MainWindow(object):
         self.shp_Box.setContextMenuPolicy(Qt.DefaultContextMenu)
         self.shp_Box.setAutoFillBackground(False)
         icon9 = QIcon()
-        icon9.addFile(u":/icon/box.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon9.addFile(u":/icon/box.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.shp_Box.setIcon(icon9)
         self.shp_Box.setIconSize(QSize(20, 20))
         self.shp_Box.setCheckable(False)
@@ -330,7 +344,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.comboBox = QComboBox(self.scrollAreaWidgetContents)
         self.comboBox.setObjectName(u"comboBox")
-        sizePolicy2 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.MinimumExpanding, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
@@ -341,7 +355,7 @@ class Ui_MainWindow(object):
 
         self.btn_createCtl = QPushButton(self.scrollAreaWidgetContents)
         self.btn_createCtl.setObjectName(u"btn_createCtl")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.btn_createCtl.sizePolicy().hasHeightForWidth())
@@ -358,12 +372,12 @@ class Ui_MainWindow(object):
         self.toolBox.setSizePolicy(sizePolicy1)
         self.page = QWidget()
         self.page.setObjectName(u"page")
-        self.page.setGeometry(QRect(0, 0, 321, 135))
+        self.page.setGeometry(QRect(0, 0, 355, 660))
         self.verticalLayout_3 = QVBoxLayout(self.page)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.colorGrp = QWidget(self.page)
         self.colorGrp.setObjectName(u"colorGrp")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
         sizePolicy4.setHorizontalStretch(0)
         sizePolicy4.setVerticalStretch(11)
         sizePolicy4.setHeightForWidth(self.colorGrp.sizePolicy().hasHeightForWidth())
@@ -373,7 +387,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.col_22 = QPushButton(self.colorGrp)
         self.col_22.setObjectName(u"col_22")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy5.setHorizontalStretch(0)
         sizePolicy5.setVerticalStretch(10)
         sizePolicy5.setHeightForWidth(self.col_22.sizePolicy().hasHeightForWidth())
@@ -760,14 +774,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.colorRandom_btn)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_3.addItem(self.verticalSpacer_4)
 
         self.toolBox.addItem(self.page, u"Color Picker")
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
-        self.page_2.setGeometry(QRect(0, 0, 358, 604))
+        self.page_2.setGeometry(QRect(0, 0, 355, 660))
         self.verticalLayout_18 = QVBoxLayout(self.page_2)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.groupBox_5 = QGroupBox(self.page_2)
@@ -825,7 +839,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.label_resizeStep_2 = QLabel(self.groupBox_4)
         self.label_resizeStep_2.setObjectName(u"label_resizeStep_2")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy6.setHorizontalStretch(0)
         sizePolicy6.setVerticalStretch(0)
         sizePolicy6.setHeightForWidth(self.label_resizeStep_2.sizePolicy().hasHeightForWidth())
@@ -869,7 +883,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.rotateGrp = QWidget(self.groupBox_2)
         self.rotateGrp.setObjectName(u"rotateGrp")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
         sizePolicy7.setHorizontalStretch(0)
         sizePolicy7.setVerticalStretch(0)
         sizePolicy7.setHeightForWidth(self.rotateGrp.sizePolicy().hasHeightForWidth())
@@ -881,9 +895,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.label_angle = QLabel(self.rotateGrp)
         self.label_angle.setObjectName(u"label_angle")
-        font = QFont()
-        font.setPointSize(10)
-        self.label_angle.setFont(font)
+        font2 = QFont()
+        font2.setPointSize(10)
+        self.label_angle.setFont(font2)
 
         self.horizontalLayout_9.addWidget(self.label_angle)
 
@@ -903,7 +917,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setSizeConstraint(QLayout.SetMaximumSize)
         self.btn_rotateX = QPushButton(self.rotateGrp)
         self.btn_rotateX.setObjectName(u"btn_rotateX")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
         sizePolicy8.setHorizontalStretch(0)
         sizePolicy8.setVerticalStretch(0)
         sizePolicy8.setHeightForWidth(self.btn_rotateX.sizePolicy().hasHeightForWidth())
@@ -1008,7 +1022,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_18.addWidget(self.groupBox_3)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_18.addItem(self.verticalSpacer_3)
 
@@ -1030,101 +1044,178 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_17.addWidget(self.scrollArea)
 
-        self.tabWidget.addTab(self.tab_ctrl, "")
-        self.tab = QWidget()
-        self.tab.setObjectName(u"tab")
-        self.verticalLayout_27 = QVBoxLayout(self.tab)
+        self.tabWidget.addTab(self.tab_ctrl, icon5, "")
+        self.tab_attr = QWidget()
+        self.tab_attr.setObjectName(u"tab_attr")
+        self.verticalLayout_27 = QVBoxLayout(self.tab_attr)
         self.verticalLayout_27.setObjectName(u"verticalLayout_27")
-        self.groupBox_11 = QGroupBox(self.tab)
+        self.groupBox_11 = QGroupBox(self.tab_attr)
         self.groupBox_11.setObjectName(u"groupBox_11")
-        self.groupBox_11.setMinimumSize(QSize(0, 211))
-        self.verticalLayout_23 = QVBoxLayout(self.groupBox_11)
-        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
-        self.attrTranslate_grpBox = QGroupBox(self.groupBox_11)
-        self.attrTranslate_grpBox.setObjectName(u"attrTranslate_grpBox")
-        self.attrTranslate_grpBox.setMinimumSize(QSize(0, 45))
-        self.attrTranslate_grpBox.setFlat(False)
-        self.attrTranslate_grpBox.setCheckable(True)
-        self.horizontalLayout_28 = QHBoxLayout(self.attrTranslate_grpBox)
+        self.groupBox_11.setMinimumSize(QSize(0, 230))
+        self.verticalLayout_31 = QVBoxLayout(self.groupBox_11)
+        self.verticalLayout_31.setObjectName(u"verticalLayout_31")
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.horizontalLayout_28 = QHBoxLayout()
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.attrTransX_chkBox = QCheckBox(self.attrTranslate_grpBox)
-        self.attrTransX_chkBox.setObjectName(u"attrTransX_chkBox")
-        self.attrTransX_chkBox.setChecked(True)
+        self.attrTranslate_chkBox = QCheckBox(self.groupBox_11)
+        self.attrTranslate_chkBox.setObjectName(u"attrTranslate_chkBox")
+        self.attrTranslate_chkBox.setChecked(True)
 
-        self.horizontalLayout_28.addWidget(self.attrTransX_chkBox)
+        self.horizontalLayout_28.addWidget(self.attrTranslate_chkBox)
 
-        self.attrTransY_chkBox = QCheckBox(self.attrTranslate_grpBox)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_28.addItem(self.horizontalSpacer_2)
+
+
+        self.verticalLayout_2.addLayout(self.horizontalLayout_28)
+
+        self.horizontalLayout_44 = QHBoxLayout()
+        self.horizontalLayout_44.setObjectName(u"horizontalLayout_44")
+        self.horizontalLayout_44.setContentsMargins(25, -1, -1, -1)
+        self.attrTransY_chkBox = QCheckBox(self.groupBox_11)
         self.attrTransY_chkBox.setObjectName(u"attrTransY_chkBox")
         self.attrTransY_chkBox.setChecked(True)
 
-        self.horizontalLayout_28.addWidget(self.attrTransY_chkBox)
+        self.horizontalLayout_44.addWidget(self.attrTransY_chkBox)
 
-        self.attrTransZ_chkBox = QCheckBox(self.attrTranslate_grpBox)
+        self.attrTransX_chkBox = QCheckBox(self.groupBox_11)
+        self.attrTransX_chkBox.setObjectName(u"attrTransX_chkBox")
+        self.attrTransX_chkBox.setChecked(True)
+
+        self.horizontalLayout_44.addWidget(self.attrTransX_chkBox)
+
+        self.attrTransZ_chkBox = QCheckBox(self.groupBox_11)
         self.attrTransZ_chkBox.setObjectName(u"attrTransZ_chkBox")
         self.attrTransZ_chkBox.setChecked(True)
 
-        self.horizontalLayout_28.addWidget(self.attrTransZ_chkBox)
+        self.horizontalLayout_44.addWidget(self.attrTransZ_chkBox)
 
 
-        self.verticalLayout_23.addWidget(self.attrTranslate_grpBox)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_44)
 
-        self.attrRotate_grpBox = QGroupBox(self.groupBox_11)
-        self.attrRotate_grpBox.setObjectName(u"attrRotate_grpBox")
-        self.attrRotate_grpBox.setMinimumSize(QSize(0, 45))
-        self.attrRotate_grpBox.setCheckable(True)
-        self.horizontalLayout_29 = QHBoxLayout(self.attrRotate_grpBox)
+
+        self.verticalLayout_31.addLayout(self.verticalLayout_2)
+
+        self.line_2 = QFrame(self.groupBox_11)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setFrameShape(QFrame.Shape.HLine)
+        self.line_2.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.verticalLayout_31.addWidget(self.line_2)
+
+        self.verticalLayout_23 = QVBoxLayout()
+        self.verticalLayout_23.setObjectName(u"verticalLayout_23")
+        self.horizontalLayout_29 = QHBoxLayout()
         self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
-        self.attrRotateX_chkBox = QCheckBox(self.attrRotate_grpBox)
+        self.attrRotate_chkBox = QCheckBox(self.groupBox_11)
+        self.attrRotate_chkBox.setObjectName(u"attrRotate_chkBox")
+        self.attrRotate_chkBox.setChecked(True)
+
+        self.horizontalLayout_29.addWidget(self.attrRotate_chkBox)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_29.addItem(self.horizontalSpacer_5)
+
+
+        self.verticalLayout_23.addLayout(self.horizontalLayout_29)
+
+        self.horizontalLayout_45 = QHBoxLayout()
+        self.horizontalLayout_45.setObjectName(u"horizontalLayout_45")
+        self.horizontalLayout_45.setContentsMargins(25, -1, -1, -1)
+        self.attrRotateX_chkBox = QCheckBox(self.groupBox_11)
         self.attrRotateX_chkBox.setObjectName(u"attrRotateX_chkBox")
         self.attrRotateX_chkBox.setChecked(True)
 
-        self.horizontalLayout_29.addWidget(self.attrRotateX_chkBox)
+        self.horizontalLayout_45.addWidget(self.attrRotateX_chkBox)
 
-        self.attrRotateY_chkBox = QCheckBox(self.attrRotate_grpBox)
+        self.attrRotateY_chkBox = QCheckBox(self.groupBox_11)
         self.attrRotateY_chkBox.setObjectName(u"attrRotateY_chkBox")
         self.attrRotateY_chkBox.setChecked(True)
 
-        self.horizontalLayout_29.addWidget(self.attrRotateY_chkBox)
+        self.horizontalLayout_45.addWidget(self.attrRotateY_chkBox)
 
-        self.attrRotateZ_chkBox = QCheckBox(self.attrRotate_grpBox)
+        self.attrRotateZ_chkBox = QCheckBox(self.groupBox_11)
         self.attrRotateZ_chkBox.setObjectName(u"attrRotateZ_chkBox")
         self.attrRotateZ_chkBox.setChecked(True)
 
-        self.horizontalLayout_29.addWidget(self.attrRotateZ_chkBox)
+        self.horizontalLayout_45.addWidget(self.attrRotateZ_chkBox)
 
 
-        self.verticalLayout_23.addWidget(self.attrRotate_grpBox)
+        self.verticalLayout_23.addLayout(self.horizontalLayout_45)
 
-        self.attrScale_grpBox = QGroupBox(self.groupBox_11)
-        self.attrScale_grpBox.setObjectName(u"attrScale_grpBox")
-        self.attrScale_grpBox.setMinimumSize(QSize(0, 45))
-        self.attrScale_grpBox.setCheckable(True)
-        self.horizontalLayout_30 = QHBoxLayout(self.attrScale_grpBox)
-        self.horizontalLayout_30.setObjectName(u"horizontalLayout_30")
-        self.attrScaleX_chkBox = QCheckBox(self.attrScale_grpBox)
+
+        self.verticalLayout_31.addLayout(self.verticalLayout_23)
+
+        self.line_3 = QFrame(self.groupBox_11)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setFrameShape(QFrame.Shape.HLine)
+        self.line_3.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.verticalLayout_31.addWidget(self.line_3)
+
+        self.verticalLayout_30 = QVBoxLayout()
+        self.verticalLayout_30.setObjectName(u"verticalLayout_30")
+        self.horizontalLayout_46 = QHBoxLayout()
+        self.horizontalLayout_46.setObjectName(u"horizontalLayout_46")
+        self.attrScale_chkBox = QCheckBox(self.groupBox_11)
+        self.attrScale_chkBox.setObjectName(u"attrScale_chkBox")
+        self.attrScale_chkBox.setChecked(True)
+
+        self.horizontalLayout_46.addWidget(self.attrScale_chkBox)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_46.addItem(self.horizontalSpacer_6)
+
+
+        self.verticalLayout_30.addLayout(self.horizontalLayout_46)
+
+        self.horizontalLayout_47 = QHBoxLayout()
+        self.horizontalLayout_47.setObjectName(u"horizontalLayout_47")
+        self.horizontalLayout_47.setContentsMargins(25, -1, -1, -1)
+        self.attrScaleX_chkBox = QCheckBox(self.groupBox_11)
         self.attrScaleX_chkBox.setObjectName(u"attrScaleX_chkBox")
         self.attrScaleX_chkBox.setChecked(True)
 
-        self.horizontalLayout_30.addWidget(self.attrScaleX_chkBox)
+        self.horizontalLayout_47.addWidget(self.attrScaleX_chkBox)
 
-        self.attrScaleY_chkBox = QCheckBox(self.attrScale_grpBox)
+        self.attrScaleY_chkBox = QCheckBox(self.groupBox_11)
         self.attrScaleY_chkBox.setObjectName(u"attrScaleY_chkBox")
         self.attrScaleY_chkBox.setChecked(True)
 
-        self.horizontalLayout_30.addWidget(self.attrScaleY_chkBox)
+        self.horizontalLayout_47.addWidget(self.attrScaleY_chkBox)
 
-        self.attrScaleZ_chkBox = QCheckBox(self.attrScale_grpBox)
+        self.attrScaleZ_chkBox = QCheckBox(self.groupBox_11)
         self.attrScaleZ_chkBox.setObjectName(u"attrScaleZ_chkBox")
         self.attrScaleZ_chkBox.setChecked(True)
 
-        self.horizontalLayout_30.addWidget(self.attrScaleZ_chkBox)
+        self.horizontalLayout_47.addWidget(self.attrScaleZ_chkBox)
 
 
-        self.verticalLayout_23.addWidget(self.attrScale_grpBox)
+        self.verticalLayout_30.addLayout(self.horizontalLayout_47)
+
+
+        self.verticalLayout_31.addLayout(self.verticalLayout_30)
+
+        self.line_4 = QFrame(self.groupBox_11)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setFrameShape(QFrame.Shape.HLine)
+        self.line_4.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.verticalLayout_31.addWidget(self.line_4)
+
+        self.attrVisibility_chkBox = QCheckBox(self.groupBox_11)
+        self.attrVisibility_chkBox.setObjectName(u"attrVisibility_chkBox")
+        self.attrVisibility_chkBox.setChecked(True)
+
+        self.verticalLayout_31.addWidget(self.attrVisibility_chkBox)
 
         self.horizontalLayout_31 = QHBoxLayout()
         self.horizontalLayout_31.setObjectName(u"horizontalLayout_31")
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_31.addItem(self.horizontalSpacer_3)
 
@@ -1136,16 +1227,17 @@ class Ui_MainWindow(object):
 
         self.attrSet_Btn = QPushButton(self.groupBox_11)
         self.attrSet_Btn.setObjectName(u"attrSet_Btn")
+        self.attrSet_Btn.setMinimumSize(QSize(0, 20))
 
         self.horizontalLayout_31.addWidget(self.attrSet_Btn)
 
 
-        self.verticalLayout_23.addLayout(self.horizontalLayout_31)
+        self.verticalLayout_31.addLayout(self.horizontalLayout_31)
 
 
         self.verticalLayout_27.addWidget(self.groupBox_11)
 
-        self.groupBox_15 = QGroupBox(self.tab)
+        self.groupBox_15 = QGroupBox(self.tab_attr)
         self.groupBox_15.setObjectName(u"groupBox_15")
         self.verticalLayout_26 = QVBoxLayout(self.groupBox_15)
         self.verticalLayout_26.setObjectName(u"verticalLayout_26")
@@ -1200,10 +1292,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_37.addWidget(self.label_11)
 
-        self.lineEdit_3 = QLineEdit(self.groupBox_15)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.customAttrName_lineEdit = QLineEdit(self.groupBox_15)
+        self.customAttrName_lineEdit.setObjectName(u"customAttrName_lineEdit")
 
-        self.horizontalLayout_37.addWidget(self.lineEdit_3)
+        self.horizontalLayout_37.addWidget(self.customAttrName_lineEdit)
 
 
         self.verticalLayout_25.addLayout(self.horizontalLayout_37)
@@ -1216,10 +1308,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_38.addWidget(self.label_12)
 
-        self.lineEdit_4 = QLineEdit(self.groupBox_15)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.customAttrNiceName_lineEdit = QLineEdit(self.groupBox_15)
+        self.customAttrNiceName_lineEdit.setObjectName(u"customAttrNiceName_lineEdit")
 
-        self.horizontalLayout_38.addWidget(self.lineEdit_4)
+        self.horizontalLayout_38.addWidget(self.customAttrNiceName_lineEdit)
 
 
         self.verticalLayout_25.addLayout(self.horizontalLayout_38)
@@ -1229,23 +1321,23 @@ class Ui_MainWindow(object):
         self.horizontalLayout_40 = QHBoxLayout(self.groupBox_16)
         self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
         self.horizontalLayout_40.setSizeConstraint(QLayout.SetDefaultConstraint)
-        self.radioButton_8 = QRadioButton(self.groupBox_16)
-        self.radioButton_8.setObjectName(u"radioButton_8")
-        self.radioButton_8.setChecked(True)
+        self.customAttrKeyable_rBtn = QRadioButton(self.groupBox_16)
+        self.customAttrKeyable_rBtn.setObjectName(u"customAttrKeyable_rBtn")
+        self.customAttrKeyable_rBtn.setChecked(True)
 
-        self.horizontalLayout_40.addWidget(self.radioButton_8)
+        self.horizontalLayout_40.addWidget(self.customAttrKeyable_rBtn)
 
-        self.radioButton_9 = QRadioButton(self.groupBox_16)
-        self.radioButton_9.setObjectName(u"radioButton_9")
+        self.customAttrNonKeyable_rBtn = QRadioButton(self.groupBox_16)
+        self.customAttrNonKeyable_rBtn.setObjectName(u"customAttrNonKeyable_rBtn")
 
-        self.horizontalLayout_40.addWidget(self.radioButton_9)
+        self.horizontalLayout_40.addWidget(self.customAttrNonKeyable_rBtn)
 
-        self.radioButton_10 = QRadioButton(self.groupBox_16)
-        self.radioButton_10.setObjectName(u"radioButton_10")
+        self.customAttrHidden_rBtn = QRadioButton(self.groupBox_16)
+        self.customAttrHidden_rBtn.setObjectName(u"customAttrHidden_rBtn")
 
-        self.horizontalLayout_40.addWidget(self.radioButton_10)
+        self.horizontalLayout_40.addWidget(self.customAttrHidden_rBtn)
 
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_40.addItem(self.horizontalSpacer_4)
 
@@ -1259,38 +1351,44 @@ class Ui_MainWindow(object):
         self.horizontalLayout_41.setSizeConstraint(QLayout.SetMinAndMaxSize)
         self.horizontalLayout_32 = QHBoxLayout()
         self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
-        self.radioButton_2 = QRadioButton(self.groupBox_17)
+        self.customAttrFloat_rBtn = QRadioButton(self.groupBox_17)
         self.customAttrType_bGrp = QButtonGroup(MainWindow)
         self.customAttrType_bGrp.setObjectName(u"customAttrType_bGrp")
-        self.customAttrType_bGrp.addButton(self.radioButton_2)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-        self.radioButton_2.setChecked(True)
+        self.customAttrType_bGrp.addButton(self.customAttrFloat_rBtn)
+        self.customAttrFloat_rBtn.setObjectName(u"customAttrFloat_rBtn")
+        self.customAttrFloat_rBtn.setChecked(True)
 
-        self.horizontalLayout_32.addWidget(self.radioButton_2)
+        self.horizontalLayout_32.addWidget(self.customAttrFloat_rBtn)
 
-        self.radioButton = QRadioButton(self.groupBox_17)
-        self.customAttrType_bGrp.addButton(self.radioButton)
-        self.radioButton.setObjectName(u"radioButton")
+        self.customAttrInt_rBtn = QRadioButton(self.groupBox_17)
+        self.customAttrType_bGrp.addButton(self.customAttrInt_rBtn)
+        self.customAttrInt_rBtn.setObjectName(u"customAttrInt_rBtn")
 
-        self.horizontalLayout_32.addWidget(self.radioButton)
+        self.horizontalLayout_32.addWidget(self.customAttrInt_rBtn)
 
-        self.radioButton_3 = QRadioButton(self.groupBox_17)
-        self.customAttrType_bGrp.addButton(self.radioButton_3)
-        self.radioButton_3.setObjectName(u"radioButton_3")
+        self.customAttrBool_rBtn = QRadioButton(self.groupBox_17)
+        self.customAttrType_bGrp.addButton(self.customAttrBool_rBtn)
+        self.customAttrBool_rBtn.setObjectName(u"customAttrBool_rBtn")
 
-        self.horizontalLayout_32.addWidget(self.radioButton_3)
+        self.horizontalLayout_32.addWidget(self.customAttrBool_rBtn)
 
-        self.radioButton_4 = QRadioButton(self.groupBox_17)
-        self.customAttrType_bGrp.addButton(self.radioButton_4)
-        self.radioButton_4.setObjectName(u"radioButton_4")
+        self.customAttrEnum_rBtn = QRadioButton(self.groupBox_17)
+        self.customAttrType_bGrp.addButton(self.customAttrEnum_rBtn)
+        self.customAttrEnum_rBtn.setObjectName(u"customAttrEnum_rBtn")
 
-        self.horizontalLayout_32.addWidget(self.radioButton_4)
+        self.horizontalLayout_32.addWidget(self.customAttrEnum_rBtn)
 
-        self.radioButton_5 = QRadioButton(self.groupBox_17)
-        self.customAttrType_bGrp.addButton(self.radioButton_5)
-        self.radioButton_5.setObjectName(u"radioButton_5")
+        self.customAttrVector_rBtn = QRadioButton(self.groupBox_17)
+        self.customAttrType_bGrp.addButton(self.customAttrVector_rBtn)
+        self.customAttrVector_rBtn.setObjectName(u"customAttrVector_rBtn")
 
-        self.horizontalLayout_32.addWidget(self.radioButton_5)
+        self.horizontalLayout_32.addWidget(self.customAttrVector_rBtn)
+
+        self.customAttrString_rBtn = QRadioButton(self.groupBox_17)
+        self.customAttrType_bGrp.addButton(self.customAttrString_rBtn)
+        self.customAttrString_rBtn.setObjectName(u"customAttrString_rBtn")
+
+        self.horizontalLayout_32.addWidget(self.customAttrString_rBtn)
 
 
         self.horizontalLayout_41.addLayout(self.horizontalLayout_32)
@@ -1307,43 +1405,45 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_35.addWidget(self.label_10)
 
-        self.lineEdit_2 = QLineEdit(self.groupBox_15)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.customAttrValue_lineEdit = QLineEdit(self.groupBox_15)
+        self.customAttrValue_lineEdit.setObjectName(u"customAttrValue_lineEdit")
 
-        self.horizontalLayout_35.addWidget(self.lineEdit_2)
+        self.horizontalLayout_35.addWidget(self.customAttrValue_lineEdit)
 
 
         self.horizontalLayout_36.addLayout(self.horizontalLayout_35)
 
         self.horizontalLayout_33 = QHBoxLayout()
         self.horizontalLayout_33.setObjectName(u"horizontalLayout_33")
-        self.checkBox_11 = QCheckBox(self.groupBox_15)
-        self.checkBox_11.setObjectName(u"checkBox_11")
+        self.customAttrMin_chkBox = QCheckBox(self.groupBox_15)
+        self.customAttrMin_chkBox.setObjectName(u"customAttrMin_chkBox")
 
-        self.horizontalLayout_33.addWidget(self.checkBox_11)
+        self.horizontalLayout_33.addWidget(self.customAttrMin_chkBox)
 
-        self.doubleSpinBox = QDoubleSpinBox(self.groupBox_15)
-        self.doubleSpinBox.setObjectName(u"doubleSpinBox")
-        self.doubleSpinBox.setEnabled(False)
+        self.customAttrMinVal_spinBox = QDoubleSpinBox(self.groupBox_15)
+        self.customAttrMinVal_spinBox.setObjectName(u"customAttrMinVal_spinBox")
+        self.customAttrMinVal_spinBox.setEnabled(False)
+        self.customAttrMinVal_spinBox.setMaximum(9999.000000000000000)
 
-        self.horizontalLayout_33.addWidget(self.doubleSpinBox)
+        self.horizontalLayout_33.addWidget(self.customAttrMinVal_spinBox)
 
 
         self.horizontalLayout_36.addLayout(self.horizontalLayout_33)
 
         self.horizontalLayout_34 = QHBoxLayout()
         self.horizontalLayout_34.setObjectName(u"horizontalLayout_34")
-        self.checkBox_12 = QCheckBox(self.groupBox_15)
-        self.checkBox_12.setObjectName(u"checkBox_12")
+        self.customAttrMax_chkBox = QCheckBox(self.groupBox_15)
+        self.customAttrMax_chkBox.setObjectName(u"customAttrMax_chkBox")
 
-        self.horizontalLayout_34.addWidget(self.checkBox_12)
+        self.horizontalLayout_34.addWidget(self.customAttrMax_chkBox)
 
-        self.doubleSpinBox_2 = QDoubleSpinBox(self.groupBox_15)
-        self.doubleSpinBox_2.setObjectName(u"doubleSpinBox_2")
-        self.doubleSpinBox_2.setEnabled(False)
-        self.doubleSpinBox_2.setValue(1.000000000000000)
+        self.customAttrMaxVal_spinBox = QDoubleSpinBox(self.groupBox_15)
+        self.customAttrMaxVal_spinBox.setObjectName(u"customAttrMaxVal_spinBox")
+        self.customAttrMaxVal_spinBox.setEnabled(False)
+        self.customAttrMaxVal_spinBox.setMaximum(9999.000000000000000)
+        self.customAttrMaxVal_spinBox.setValue(1.000000000000000)
 
-        self.horizontalLayout_34.addWidget(self.doubleSpinBox_2)
+        self.horizontalLayout_34.addWidget(self.customAttrMaxVal_spinBox)
 
 
         self.horizontalLayout_36.addLayout(self.horizontalLayout_34)
@@ -1358,11 +1458,11 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_24.addWidget(self.label_3)
 
-        self.lineEdit = QLineEdit(self.groupBox_15)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setEnabled(False)
+        self.customAttrEnumNames_lineEdit = QLineEdit(self.groupBox_15)
+        self.customAttrEnumNames_lineEdit.setObjectName(u"customAttrEnumNames_lineEdit")
+        self.customAttrEnumNames_lineEdit.setEnabled(False)
 
-        self.verticalLayout_24.addWidget(self.lineEdit)
+        self.verticalLayout_24.addWidget(self.customAttrEnumNames_lineEdit)
 
 
         self.verticalLayout_25.addLayout(self.verticalLayout_24)
@@ -1372,35 +1472,35 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_42 = QHBoxLayout()
         self.horizontalLayout_42.setObjectName(u"horizontalLayout_42")
-        self.pushButton_2 = QPushButton(self.groupBox_15)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy2.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy2)
+        self.customAttrApply_Btn = QPushButton(self.groupBox_15)
+        self.customAttrApply_Btn.setObjectName(u"customAttrApply_Btn")
+        sizePolicy2.setHeightForWidth(self.customAttrApply_Btn.sizePolicy().hasHeightForWidth())
+        self.customAttrApply_Btn.setSizePolicy(sizePolicy2)
 
-        self.horizontalLayout_42.addWidget(self.pushButton_2)
+        self.horizontalLayout_42.addWidget(self.customAttrApply_Btn)
 
-        self.checkBox_13 = QCheckBox(self.groupBox_15)
-        self.checkBox_13.setObjectName(u"checkBox_13")
-        self.checkBox_13.setChecked(True)
+        self.customAttrKeepVal_chkBox = QCheckBox(self.groupBox_15)
+        self.customAttrKeepVal_chkBox.setObjectName(u"customAttrKeepVal_chkBox")
+        self.customAttrKeepVal_chkBox.setChecked(True)
 
-        self.horizontalLayout_42.addWidget(self.checkBox_13)
+        self.horizontalLayout_42.addWidget(self.customAttrKeepVal_chkBox)
 
 
         self.verticalLayout_26.addLayout(self.horizontalLayout_42)
 
-        self.pushButton_4 = QPushButton(self.groupBox_15)
-        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.customAttrResetVal_Btn = QPushButton(self.groupBox_15)
+        self.customAttrResetVal_Btn.setObjectName(u"customAttrResetVal_Btn")
 
-        self.verticalLayout_26.addWidget(self.pushButton_4)
+        self.verticalLayout_26.addWidget(self.customAttrResetVal_Btn)
 
 
         self.verticalLayout_27.addWidget(self.groupBox_15)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 609, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_5 = QSpacerItem(20, 609, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_27.addItem(self.verticalSpacer_5)
 
-        self.tabWidget.addTab(self.tab, "")
+        self.tabWidget.addTab(self.tab_attr, "")
         self.tab_jnt = QWidget()
         self.tab_jnt.setObjectName(u"tab_jnt")
         self.verticalLayout_22 = QVBoxLayout(self.tab_jnt)
@@ -1675,7 +1775,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_22.addWidget(self.mirrorJnt_Btn)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_22.addItem(self.verticalSpacer_2)
 
@@ -1710,7 +1810,7 @@ class Ui_MainWindow(object):
 
         self.label_suffix = QLabel(self.groupBox_6)
         self.label_suffix.setObjectName(u"label_suffix")
-        sizePolicy9 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Preferred)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy9.setHorizontalStretch(0)
         sizePolicy9.setVerticalStretch(0)
         sizePolicy9.setHeightForWidth(self.label_suffix.sizePolicy().hasHeightForWidth())
@@ -1799,12 +1899,11 @@ class Ui_MainWindow(object):
         sizePolicy8.setHeightForWidth(self.btnMirrorX.sizePolicy().hasHeightForWidth())
         self.btnMirrorX.setSizePolicy(sizePolicy8)
         self.btnMirrorX.setMinimumSize(QSize(0, 24))
-        font1 = QFont()
-        font1.setFamily(u"Arial")
-        font1.setPointSize(10)
-        font1.setBold(False)
-        font1.setWeight(50)
-        self.btnMirrorX.setFont(font1)
+        font3 = QFont()
+        font3.setFamilies([u"Arial"])
+        font3.setPointSize(10)
+        font3.setBold(False)
+        self.btnMirrorX.setFont(font3)
         self.btnMirrorX.setStyleSheet(u"background-color: rgb(255, 70, 70);\n"
 "color: white;\n"
 "border: 0px;")
@@ -1816,7 +1915,7 @@ class Ui_MainWindow(object):
         sizePolicy8.setHeightForWidth(self.btn_mirrorY.sizePolicy().hasHeightForWidth())
         self.btn_mirrorY.setSizePolicy(sizePolicy8)
         self.btn_mirrorY.setMinimumSize(QSize(0, 24))
-        self.btn_mirrorY.setFont(font1)
+        self.btn_mirrorY.setFont(font3)
         self.btn_mirrorY.setStyleSheet(u"background-color: rgb(72, 216, 0);\n"
 "color: white;\n"
 "border: 0px;")
@@ -1828,7 +1927,7 @@ class Ui_MainWindow(object):
         sizePolicy8.setHeightForWidth(self.btn_mirrorZ.sizePolicy().hasHeightForWidth())
         self.btn_mirrorZ.setSizePolicy(sizePolicy8)
         self.btn_mirrorZ.setMinimumSize(QSize(0, 24))
-        self.btn_mirrorZ.setFont(font1)
+        self.btn_mirrorZ.setFont(font3)
         self.btn_mirrorZ.setStyleSheet(u"background-color: blue;\n"
 "color: white;\n"
 "border: 0px;")
@@ -1846,7 +1945,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_14.addWidget(self.parentAsChain_Btn)
 
-        self.verticalSpacer = QSpacerItem(20, 516, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 516, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_14.addItem(self.verticalSpacer)
 
@@ -1890,7 +1989,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_28.addWidget(self.groupBox_12)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 804, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_6 = QSpacerItem(20, 804, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_28.addItem(self.verticalSpacer_6)
 
@@ -1913,13 +2012,137 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_12.addLayout(self.verticalLayout_8)
 
+        QWidget.setTabOrder(self.spawnMult_spBox, self.asCrv)
+        QWidget.setTabOrder(self.asCrv, self.asJnt)
+        QWidget.setTabOrder(self.asJnt, self.asReplace)
+        QWidget.setTabOrder(self.asReplace, self.spawnAtPivot_rBtn)
+        QWidget.setTabOrder(self.spawnAtPivot_rBtn, self.spawnAtCenter_rBtn)
+        QWidget.setTabOrder(self.spawnAtCenter_rBtn, self.attrVisibility_chkBox)
+        QWidget.setTabOrder(self.attrVisibility_chkBox, self.createCtlSfx_lineEdit)
+        QWidget.setTabOrder(self.createCtlSfx_lineEdit, self.comboBox)
+        QWidget.setTabOrder(self.comboBox, self.btn_createCtl)
+        QWidget.setTabOrder(self.btn_createCtl, self.col_22)
+        QWidget.setTabOrder(self.col_22, self.col_25)
+        QWidget.setTabOrder(self.col_25, self.col_26)
+        QWidget.setTabOrder(self.col_26, self.col_28)
+        QWidget.setTabOrder(self.col_28, self.col_29)
+        QWidget.setTabOrder(self.col_29, self.attrScale_chkBox)
+        QWidget.setTabOrder(self.attrScale_chkBox, self.transY_chkBox)
+        QWidget.setTabOrder(self.transY_chkBox, self.spTransform)
+        QWidget.setTabOrder(self.spTransform, self.transX_chkBox)
+        QWidget.setTabOrder(self.transX_chkBox, self.transZ_chkBox)
+        QWidget.setTabOrder(self.transZ_chkBox, self.attrRotate_chkBox)
+        QWidget.setTabOrder(self.attrRotate_chkBox, self.attrTranslate_chkBox)
+        QWidget.setTabOrder(self.attrTranslate_chkBox, self.angle_box)
+        QWidget.setTabOrder(self.angle_box, self.tabWidget)
+        QWidget.setTabOrder(self.tabWidget, self.btn_rotateX)
+        QWidget.setTabOrder(self.btn_rotateX, self.btn_rotateY)
+        QWidget.setTabOrder(self.btn_rotateY, self.btn_rotateZ)
+        QWidget.setTabOrder(self.btn_rotateZ, self.sizeX)
+        QWidget.setTabOrder(self.sizeX, self.sizeY)
+        QWidget.setTabOrder(self.sizeY, self.sizeZ)
+        QWidget.setTabOrder(self.sizeZ, self.sizeStepSpinBox)
+        QWidget.setTabOrder(self.sizeStepSpinBox, self.resizeSlider)
+        QWidget.setTabOrder(self.resizeSlider, self.copyShp_Btn)
+        QWidget.setTabOrder(self.copyShp_Btn, self.saveShp_btn)
+        QWidget.setTabOrder(self.saveShp_btn, self.attrTransX_chkBox)
+        QWidget.setTabOrder(self.attrTransX_chkBox, self.attrTransY_chkBox)
+        QWidget.setTabOrder(self.attrTransY_chkBox, self.attrTransZ_chkBox)
+        QWidget.setTabOrder(self.attrTransZ_chkBox, self.attrRotateX_chkBox)
+        QWidget.setTabOrder(self.attrRotateX_chkBox, self.attrRotateY_chkBox)
+        QWidget.setTabOrder(self.attrRotateY_chkBox, self.attrRotateZ_chkBox)
+        QWidget.setTabOrder(self.attrRotateZ_chkBox, self.attrScaleX_chkBox)
+        QWidget.setTabOrder(self.attrScaleX_chkBox, self.attrScaleY_chkBox)
+        QWidget.setTabOrder(self.attrScaleY_chkBox, self.attrScaleZ_chkBox)
+        QWidget.setTabOrder(self.attrScaleZ_chkBox, self.attrAuto_chkBox)
+        QWidget.setTabOrder(self.attrAuto_chkBox, self.attrSet_Btn)
+        QWidget.setTabOrder(self.attrSet_Btn, self.customAttrCreate_rBtn)
+        QWidget.setTabOrder(self.customAttrCreate_rBtn, self.customAttrEdit_rBtn)
+        QWidget.setTabOrder(self.customAttrEdit_rBtn, self.customAttrList_cBox)
+        QWidget.setTabOrder(self.customAttrList_cBox, self.customAttrLoad_Btn)
+        QWidget.setTabOrder(self.customAttrLoad_Btn, self.customAttrName_lineEdit)
+        QWidget.setTabOrder(self.customAttrName_lineEdit, self.customAttrNiceName_lineEdit)
+        QWidget.setTabOrder(self.customAttrNiceName_lineEdit, self.customAttrKeyable_rBtn)
+        QWidget.setTabOrder(self.customAttrKeyable_rBtn, self.customAttrNonKeyable_rBtn)
+        QWidget.setTabOrder(self.customAttrNonKeyable_rBtn, self.customAttrHidden_rBtn)
+        QWidget.setTabOrder(self.customAttrHidden_rBtn, self.customAttrFloat_rBtn)
+        QWidget.setTabOrder(self.customAttrFloat_rBtn, self.customAttrInt_rBtn)
+        QWidget.setTabOrder(self.customAttrInt_rBtn, self.customAttrBool_rBtn)
+        QWidget.setTabOrder(self.customAttrBool_rBtn, self.customAttrEnum_rBtn)
+        QWidget.setTabOrder(self.customAttrEnum_rBtn, self.customAttrVector_rBtn)
+        QWidget.setTabOrder(self.customAttrVector_rBtn, self.customAttrValue_lineEdit)
+        QWidget.setTabOrder(self.customAttrValue_lineEdit, self.customAttrMin_chkBox)
+        QWidget.setTabOrder(self.customAttrMin_chkBox, self.customAttrMinVal_spinBox)
+        QWidget.setTabOrder(self.customAttrMinVal_spinBox, self.customAttrMax_chkBox)
+        QWidget.setTabOrder(self.customAttrMax_chkBox, self.customAttrMaxVal_spinBox)
+        QWidget.setTabOrder(self.customAttrMaxVal_spinBox, self.customAttrEnumNames_lineEdit)
+        QWidget.setTabOrder(self.customAttrEnumNames_lineEdit, self.customAttrApply_Btn)
+        QWidget.setTabOrder(self.customAttrApply_Btn, self.customAttrKeepVal_chkBox)
+        QWidget.setTabOrder(self.customAttrKeepVal_chkBox, self.customAttrResetVal_Btn)
+        QWidget.setTabOrder(self.customAttrResetVal_Btn, self.crJnt_Btn)
+        QWidget.setTabOrder(self.crJnt_Btn, self.parConstraint_chkBox)
+        QWidget.setTabOrder(self.parConstraint_chkBox, self.scaleCons_chkBox)
+        QWidget.setTabOrder(self.scaleCons_chkBox, self.orientCons_chkBox)
+        QWidget.setTabOrder(self.orientCons_chkBox, self.pointCons_chkBox)
+        QWidget.setTabOrder(self.pointCons_chkBox, self.chainJnt_chkBox)
+        QWidget.setTabOrder(self.chainJnt_chkBox, self.suffix_chkBox)
+        QWidget.setTabOrder(self.suffix_chkBox, self.jntSuffixName_lineEdit)
+        QWidget.setTabOrder(self.jntSuffixName_lineEdit, self.createSelJnt_Btn)
+        QWidget.setTabOrder(self.createSelJnt_Btn, self.orientPAxisX_rBtn)
+        QWidget.setTabOrder(self.orientPAxisX_rBtn, self.orientPAxisY_rBtn)
+        QWidget.setTabOrder(self.orientPAxisY_rBtn, self.orientPAxisZ_rBtn)
+        QWidget.setTabOrder(self.orientPAxisZ_rBtn, self.orientSecAxisX_rBtn)
+        QWidget.setTabOrder(self.orientSecAxisX_rBtn, self.orientSecAxisY_rBtn)
+        QWidget.setTabOrder(self.orientSecAxisY_rBtn, self.orientSecAxisZ_rBtn)
+        QWidget.setTabOrder(self.orientSecAxisZ_rBtn, self.orientWorldAxisX_rBtn)
+        QWidget.setTabOrder(self.orientWorldAxisX_rBtn, self.orientWorldAxisY_rBtn)
+        QWidget.setTabOrder(self.orientWorldAxisY_rBtn, self.orientWorldAxisZ_rBtn)
+        QWidget.setTabOrder(self.orientWorldAxisZ_rBtn, self.orientPrimeNeg_chkBox)
+        QWidget.setTabOrder(self.orientPrimeNeg_chkBox, self.orientSecNeg_chkBox)
+        QWidget.setTabOrder(self.orientSecNeg_chkBox, self.orientWorldNeg_chkBox)
+        QWidget.setTabOrder(self.orientWorldNeg_chkBox, self.orientChd_chkBox)
+        QWidget.setTabOrder(self.orientChd_chkBox, self.orientJntHelper_Btn)
+        QWidget.setTabOrder(self.orientJntHelper_Btn, self.orientJnt_Btn)
+        QWidget.setTabOrder(self.orientJnt_Btn, self.displayJntAxis_Btn)
+        QWidget.setTabOrder(self.displayJntAxis_Btn, self.axisChd_chkBox)
+        QWidget.setTabOrder(self.axisChd_chkBox, self.splitJnt_spBox)
+        QWidget.setTabOrder(self.splitJnt_spBox, self.splitJnt_Btn)
+        QWidget.setTabOrder(self.splitJnt_Btn, self.mirrorJnt_Btn)
+        QWidget.setTabOrder(self.mirrorJnt_Btn, self.prefix_rBtn)
+        QWidget.setTabOrder(self.prefix_rBtn, self.suffix_rBtn)
+        QWidget.setTabOrder(self.suffix_rBtn, self.suffix_edit)
+        QWidget.setTabOrder(self.suffix_edit, self.keepSuffix_chkBox)
+        QWidget.setTabOrder(self.keepSuffix_chkBox, self.zero_btn)
+        QWidget.setTabOrder(self.zero_btn, self.mirObj_chkBox)
+        QWidget.setTabOrder(self.mirObj_chkBox, self.mirWorld_chkBox)
+        QWidget.setTabOrder(self.mirWorld_chkBox, self.mirrorLR_edit)
+        QWidget.setTabOrder(self.mirrorLR_edit, self.btnMirrorX)
+        QWidget.setTabOrder(self.btnMirrorX, self.btn_mirrorY)
+        QWidget.setTabOrder(self.btn_mirrorY, self.btn_mirrorZ)
+        QWidget.setTabOrder(self.btn_mirrorZ, self.parentAsChain_Btn)
+        QWidget.setTabOrder(self.parentAsChain_Btn, self.avgLocName_lineEdit)
+        QWidget.setTabOrder(self.avgLocName_lineEdit, self.avgLocSpawn_Btn)
+        QWidget.setTabOrder(self.avgLocSpawn_Btn, self.oneLiner_lineEdit)
+        QWidget.setTabOrder(self.oneLiner_lineEdit, self.scrollArea)
+        QWidget.setTabOrder(self.scrollArea, self.spObject)
+        QWidget.setTabOrder(self.spObject, self.colorRandom_btn)
+        QWidget.setTabOrder(self.colorRandom_btn, self.sizeStepSpinBox_2)
 
         self.retranslateUi(MainWindow)
         self.customAttrEdit_rBtn.toggled.connect(self.customAttrList_cBox.setEnabled)
-        self.checkBox_11.toggled.connect(self.doubleSpinBox.setEnabled)
-        self.checkBox_12.toggled.connect(self.doubleSpinBox_2.setEnabled)
-        self.radioButton_4.toggled.connect(self.lineEdit.setEnabled)
-        self.radioButton_4.toggled.connect(self.lineEdit_2.setDisabled)
+        self.customAttrMin_chkBox.toggled.connect(self.customAttrMinVal_spinBox.setEnabled)
+        self.customAttrMax_chkBox.toggled.connect(self.customAttrMaxVal_spinBox.setEnabled)
+        self.customAttrEnum_rBtn.toggled.connect(self.customAttrEnumNames_lineEdit.setEnabled)
+        self.customAttrEnum_rBtn.toggled.connect(self.customAttrValue_lineEdit.setDisabled)
+        self.attrTranslate_chkBox.toggled.connect(self.attrTransY_chkBox.setEnabled)
+        self.attrTranslate_chkBox.toggled.connect(self.attrTransX_chkBox.setEnabled)
+        self.attrTranslate_chkBox.toggled.connect(self.attrTransZ_chkBox.setEnabled)
+        self.attrRotate_chkBox.toggled.connect(self.attrRotateX_chkBox.setEnabled)
+        self.attrRotate_chkBox.toggled.connect(self.attrRotateY_chkBox.setEnabled)
+        self.attrRotate_chkBox.toggled.connect(self.attrRotateZ_chkBox.setEnabled)
+        self.attrScale_chkBox.toggled.connect(self.attrScaleX_chkBox.setEnabled)
+        self.attrScale_chkBox.toggled.connect(self.attrScaleY_chkBox.setEnabled)
+        self.attrScale_chkBox.toggled.connect(self.attrScaleZ_chkBox.setEnabled)
 
         self.tabWidget.setCurrentIndex(0)
         self.toolBox.setCurrentIndex(1)
@@ -1956,7 +2179,7 @@ class Ui_MainWindow(object):
         self.asJnt.setText(QCoreApplication.translate("MainWindow", u"as Joint", None))
         self.asReplace.setText(QCoreApplication.translate("MainWindow", u"Replace", None))
         self.label_14.setText(QCoreApplication.translate("MainWindow", u"At:", None))
-        self.spawnAtEach_rBtn.setText(QCoreApplication.translate("MainWindow", u"Each", None))
+        self.spawnAtPivot_rBtn.setText(QCoreApplication.translate("MainWindow", u"Pivot", None))
         self.spawnAtCenter_rBtn.setText(QCoreApplication.translate("MainWindow", u"Center", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Spawn Mult:", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Suffix: ", None))
@@ -2040,19 +2263,20 @@ class Ui_MainWindow(object):
         self.copyShp_Btn.setText(QCoreApplication.translate("MainWindow", u"Copy Shape", None))
         self.saveShp_btn.setText(QCoreApplication.translate("MainWindow", u"Save Selected Shape", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_ctrl), QCoreApplication.translate("MainWindow", u"Controllers", None))
-        self.groupBox_11.setTitle(QCoreApplication.translate("MainWindow", u"Transform Attributes", None))
-        self.attrTranslate_grpBox.setTitle(QCoreApplication.translate("MainWindow", u"Translate", None))
-        self.attrTransX_chkBox.setText(QCoreApplication.translate("MainWindow", u"X", None))
+        self.groupBox_11.setTitle(QCoreApplication.translate("MainWindow", u"Lock n Hide Transform Attrs", None))
+        self.attrTranslate_chkBox.setText(QCoreApplication.translate("MainWindow", u"Translate", None))
         self.attrTransY_chkBox.setText(QCoreApplication.translate("MainWindow", u"Y", None))
+        self.attrTransX_chkBox.setText(QCoreApplication.translate("MainWindow", u"X", None))
         self.attrTransZ_chkBox.setText(QCoreApplication.translate("MainWindow", u"Z", None))
-        self.attrRotate_grpBox.setTitle(QCoreApplication.translate("MainWindow", u"Rotate", None))
+        self.attrRotate_chkBox.setText(QCoreApplication.translate("MainWindow", u"Rotate", None))
         self.attrRotateX_chkBox.setText(QCoreApplication.translate("MainWindow", u"X", None))
         self.attrRotateY_chkBox.setText(QCoreApplication.translate("MainWindow", u"Y", None))
         self.attrRotateZ_chkBox.setText(QCoreApplication.translate("MainWindow", u"Z", None))
-        self.attrScale_grpBox.setTitle(QCoreApplication.translate("MainWindow", u"Scale", None))
+        self.attrScale_chkBox.setText(QCoreApplication.translate("MainWindow", u"Scale", None))
         self.attrScaleX_chkBox.setText(QCoreApplication.translate("MainWindow", u"X", None))
         self.attrScaleY_chkBox.setText(QCoreApplication.translate("MainWindow", u"Y", None))
         self.attrScaleZ_chkBox.setText(QCoreApplication.translate("MainWindow", u"Z", None))
+        self.attrVisibility_chkBox.setText(QCoreApplication.translate("MainWindow", u"Visibility", None))
 #if QT_CONFIG(tooltip)
         self.attrAuto_chkBox.setToolTip(QCoreApplication.translate("MainWindow", u"automatically apply to selection when the values changed", None))
 #endif // QT_CONFIG(tooltip)
@@ -2075,32 +2299,33 @@ class Ui_MainWindow(object):
 
         self.customAttrLoad_Btn.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.label_11.setText(QCoreApplication.translate("MainWindow", u"Name:", None))
-        self.lineEdit_3.setPlaceholderText(QCoreApplication.translate("MainWindow", u"myAttribute", None))
+        self.customAttrName_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"myAttribute", None))
         self.label_12.setText(QCoreApplication.translate("MainWindow", u"Nice Name:", None))
-        self.lineEdit_4.setPlaceholderText(QCoreApplication.translate("MainWindow", u"My Attribute", None))
+        self.customAttrNiceName_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"My Attribute", None))
         self.groupBox_16.setTitle(QCoreApplication.translate("MainWindow", u"Keyable", None))
-        self.radioButton_8.setText(QCoreApplication.translate("MainWindow", u"Keyable", None))
-        self.radioButton_9.setText(QCoreApplication.translate("MainWindow", u"Non-Keyable", None))
-        self.radioButton_10.setText(QCoreApplication.translate("MainWindow", u"Hidden", None))
+        self.customAttrKeyable_rBtn.setText(QCoreApplication.translate("MainWindow", u"Keyable", None))
+        self.customAttrNonKeyable_rBtn.setText(QCoreApplication.translate("MainWindow", u"Non-Keyable", None))
+        self.customAttrHidden_rBtn.setText(QCoreApplication.translate("MainWindow", u"Hidden", None))
         self.groupBox_17.setTitle(QCoreApplication.translate("MainWindow", u"Type", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Float", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Int", None))
-        self.radioButton_3.setText(QCoreApplication.translate("MainWindow", u"Boolean", None))
-        self.radioButton_4.setText(QCoreApplication.translate("MainWindow", u"Enum", None))
-        self.radioButton_5.setText(QCoreApplication.translate("MainWindow", u"Vector", None))
+        self.customAttrFloat_rBtn.setText(QCoreApplication.translate("MainWindow", u"Float", None))
+        self.customAttrInt_rBtn.setText(QCoreApplication.translate("MainWindow", u"Int", None))
+        self.customAttrBool_rBtn.setText(QCoreApplication.translate("MainWindow", u"Boolean", None))
+        self.customAttrEnum_rBtn.setText(QCoreApplication.translate("MainWindow", u"Enum", None))
+        self.customAttrVector_rBtn.setText(QCoreApplication.translate("MainWindow", u"Vector", None))
+        self.customAttrString_rBtn.setText(QCoreApplication.translate("MainWindow", u"String", None))
         self.label_10.setText(QCoreApplication.translate("MainWindow", u"Value:", None))
-        self.lineEdit_2.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.checkBox_11.setText(QCoreApplication.translate("MainWindow", u"min", None))
-        self.checkBox_12.setText(QCoreApplication.translate("MainWindow", u"max", None))
+        self.customAttrValue_lineEdit.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.customAttrMin_chkBox.setText(QCoreApplication.translate("MainWindow", u"min", None))
+        self.customAttrMax_chkBox.setText(QCoreApplication.translate("MainWindow", u"max", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Enum Names", None))
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"separate with comma (,)", None))
+        self.customAttrEnumNames_lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"separate with comma (,)", None))
 #if QT_CONFIG(tooltip)
-        self.pushButton_2.setToolTip(QCoreApplication.translate("MainWindow", u"create/apply edits on selected", None))
+        self.customAttrApply_Btn.setToolTip(QCoreApplication.translate("MainWindow", u"create/apply edits on selected", None))
 #endif // QT_CONFIG(tooltip)
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
-        self.checkBox_13.setText(QCoreApplication.translate("MainWindow", u"Keep Values", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"Reset Values", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Attributes", None))
+        self.customAttrApply_Btn.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+        self.customAttrKeepVal_chkBox.setText(QCoreApplication.translate("MainWindow", u"Keep Values", None))
+        self.customAttrResetVal_Btn.setText(QCoreApplication.translate("MainWindow", u"Reset Values", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_attr), QCoreApplication.translate("MainWindow", u"Attributes", None))
         self.crJnt_Btn.setText(QCoreApplication.translate("MainWindow", u"Create Joints", None))
         self.groupBox_9.setTitle(QCoreApplication.translate("MainWindow", u"Create Joint on Selected", None))
         self.parConstraint_chkBox.setText(QCoreApplication.translate("MainWindow", u"ParentConstraint", None))

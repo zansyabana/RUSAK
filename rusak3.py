@@ -42,8 +42,6 @@ SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(SCRIPT_DIRECTORY)
 
 
-import rusakUI
-importlib.reload(rusakUI)
 try:
     import shiboken2 as sb
 except:
@@ -55,9 +53,12 @@ import maya.mel as mel
 import json
 try:
     from PySide2.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
+    import rusakUI2 as rusakUI
 
 except:
     from PySide6.QtWidgets import QLineEdit, QSpinBox, QDoubleSpinBox, QRadioButton, QCheckBox, QComboBox
+    import rusakUI6 as rusakUI
+importlib.reload(rusakUI)
 
 
 def getMayaWindow():
@@ -84,6 +85,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
         except Exception:
             pass
         self.resizeSliderVal = 0
+
         self.ui.shp_Circle.clicked.connect(partial(self.createControl,'circle'))
         self.ui.shp_Sphere.clicked.connect(partial(self.createControl,'sphere'))
         self.ui.shp_Square.clicked.connect(partial(self.createControl,'square'))
@@ -134,6 +136,26 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
         self.ui.saveShp_btn.clicked.connect(self.saveSelectedShape)
 
         self.ui.asReplace.toggled.connect(self.ctrlSfxEnableDisable)
+        self.ui.attrSet_Btn.clicked.connect(self.setChannelBoxTransforms)
+
+        self.ui.attrTranslate_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrRotate_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrScale_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrTransX_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrTransY_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrTransZ_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrRotateX_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrRotateY_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrRotateZ_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrScaleX_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrScaleY_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrScaleZ_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+        self.ui.attrVisibility_chkBox.toggled.connect(self.toggleChannelBoxTransforms)
+
+        # custom attribute creation
+        self.ui.customAttrApply_Btn.clicked.connect(self.createCustomAttribute)
+        self.ui.customAttrResetVal_Btn.clicked.connect(self.resetCustomAttributeFields)
+        self.ui.customAttrLoad_Btn.clicked.connect(self.loadCustomAttrOnSelection)
 
     def ctrlSfxEnableDisable(self):
         if self.ui.asReplace.isChecked():
@@ -168,7 +190,7 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
             spawn_mult = 1.0
 
         suffix = self.ui.createCtlSfx_lineEdit.text()
-        print(spawn_mult)
+        # print(spawn_mult)
         if slt == []:
             dummyGrp = pm.group(em=True,w=True)
             if self.ui.asJnt.isChecked():
@@ -186,17 +208,22 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
            
             pm.delete(dummyGrp)
         else:
+            if self.ui.spawnAtCenter_rBtn.isChecked():
+                atCenter=True
+            else:
+                atCenter=False
+
             for i in slt:
                 if self.ui.asJnt.isChecked():
-                    crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=True)
+                    crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=True,atCenter=atCenter)
                     crvs.append(crv)
                     crv.rename(i+"_"+suffix)
                 elif self.ui.asReplace.isChecked():
-                    crv = fs.createControls().crCtl(i, crvShp=shp,asReplace=True)
+                    crv = fs.createControls().crCtl(i, crvShp=shp,asReplace=True,atCenter=atCenter)
                     crvs.append(crv)
 
                 else:
-                    crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=False)
+                    crv = fs.createControls().crCtl(i,crvShp=shp,asJnt=False,atCenter=atCenter)
                     crvs.append(crv)
                     crv.rename(i+"_"+suffix)
 
@@ -578,6 +605,184 @@ class MainWindow(MayaQWidgetDockableMixin, QWidget):
         childs = self.ui.axisChd_chkBox.isChecked()
         fs.toggleJointAxis(childs)
         
+    def setChannelBoxTransforms(self):
+        translates = self.ui.attrTranslate_chkBox.isChecked()
+        rotates = self.ui.attrRotate_chkBox.isChecked()
+        scales = self.ui.attrScale_chkBox.isChecked()
+
+        if translates:
+            translateX = self.ui.attrTransX_chkBox.isChecked()
+            translateY = self.ui.attrTransY_chkBox.isChecked()
+            translateZ = self.ui.attrTransZ_chkBox.isChecked()
+        else:
+            translateX = False
+            translateY = False
+            translateZ = False
+        if rotates:
+            rotateX = self.ui.attrRotateX_chkBox.isChecked()
+            rotateY = self.ui.attrRotateY_chkBox.isChecked()
+            rotateZ = self.ui.attrRotateZ_chkBox.isChecked()
+        else:
+            rotateX = False
+            rotateY = False
+            rotateZ = False
+        if scales:
+            scaleX = self.ui.attrScaleX_chkBox.isChecked()
+            scaleY = self.ui.attrScaleY_chkBox.isChecked()
+            scaleZ = self.ui.attrScaleZ_chkBox.isChecked()
+        else:
+            scaleX = False
+            scaleY = False
+            scaleZ = False
+
+        slt = pm.selected()
+        for i in slt:
+            attrsDict = {
+                'translateX': translateX,
+                'translateY': translateY,
+                'translateZ': translateZ,
+                'rotateX': rotateX,
+                'rotateY': rotateY,
+                'rotateZ': rotateZ,
+                'scaleX': scaleX,
+                'scaleY': scaleY,
+                'scaleZ': scaleZ,
+                'visibility': self.ui.attrVisibility_chkBox.isChecked(),
+                }
+
+            for atr,value in attrsDict.items():
+                # print(atr,value)
+                try:
+                    atrNode = pm.PyNode(f'{i}.{atr}')
+                    # atrNode.set(lock=(not value))
+                    # atrNode.set(cb=value)
+                    pm.setAttr(atrNode, e=True, keyable=value, channelBox=value,lock=not value)
+                    atrNode.set(keyable=value)
+                except:
+                    pass
+    def toggleChannelBoxTransforms(self):
+        if self.ui.attrAuto_chkBox.isChecked():
+            self.setChannelBoxTransforms()
+
+    def createCustomAttribute(self):
+        attrName = self.ui.customAttrName_lineEdit.text()
+        attrNiceName = self.ui.customAttrNiceName_lineEdit.text()
+        hasMin = self.ui.customAttrMin_chkBox.isChecked()
+        hasMax = self.ui.customAttrMax_chkBox.isChecked()
+        minVal = self.ui.customAttrMinVal_spinBox.value()
+        maxVal = self.ui.customAttrMaxVal_spinBox.value()
+        attrValue = self.ui.customAttrValue_lineEdit.text()
+
+        #get attribute type
+        if self.ui.customAttrInt_rBtn.isChecked():
+            attrType = 'long'
+        elif self.ui.customAttrFloat_rBtn.isChecked():
+            attrType = 'double'
+        elif self.ui.customAttrBool_rBtn.isChecked():
+            attrType = 'bool'
+        elif self.ui.customAttrEnum_rBtn.isChecked():
+            attrType = 'enum'
+        elif self.ui.customAttrString_rBtn.isChecked():
+            attrType = 'string'
+        elif self.ui.customAttrVector_rBtn.isChecked():
+            attrType = 'double3'
+
+        # get attribute keyable, non-keyable, channel box
+        if self.ui.customAttrKeyable_rBtn.isChecked():
+            isKeyable = True
+        else:
+            isKeyable = False
+        if self.ui.customAttrHidden_rBtn.isChecked():
+            hidden = True
+        else:
+            hidden = False
+
+        slt = pm.selected()
+        for i in slt:
+            try:
+                keysDict = {
+                    'longName': attrName,
+                    'attributeType': attrType,
+                    'keyable': isKeyable,
+                }
+                if attrNiceName:
+                    keysDict['niceName'] = attrNiceName
+                if attrType == 'enum':
+                    # get enum names from line edit, split by comma
+                    enumNames = self.ui.customAttrEnumNames_lineEdit.text()
+                    enumNamesList = [name.strip() for name in enumNames.split(',') if name.strip()]
+                    keysDict['enumName'] = ':'.join(enumNamesList)
+                if attrType == 'long':
+                    if attrValue:
+                        try:
+                            intVal = int(attrValue)
+                            keysDict['defaultValue'] = intVal
+                        except:
+                            pass
+                elif attrType == 'double':
+                    if attrValue:
+                        try:
+                            floatVal = float(attrValue)
+                            keysDict['defaultValue'] = floatVal
+                        except:
+                            pass
+                elif attrType == 'bool':
+                    if attrValue != 'False' and attrValue != 'false' and attrValue != '0' and attrValue != '':
+                        boolVal = True
+                    else:
+                        boolVal = False
+                    keysDict['defaultValue'] = boolVal
+                if attrType in ['long','double']:
+                    if hasMin:
+                        keysDict['hasMinValue'] = True
+                        keysDict['minValue'] = minVal
+                    if hasMax:
+                        keysDict['hasMaxValue'] = True
+                        keysDict['maxValue'] = maxVal
+                pm.addAttr(i, **keysDict)
+                newAttr = f'{i}.{attrName}'
+                print("newAttr:", newAttr)
+                print("Hidden:", hidden)
+                print("isKeyable:", isKeyable)
+                if hidden:
+                    pm.setAttr(newAttr, lock=True, keyable=False, channelBox=False)
+                if not isKeyable and not hidden:
+                    pm.setAttr(newAttr, channelBox=True)
+
+            except Exception as e:
+                print(f"Error adding attribute: {e}")
+
+        if not self.ui.customAttrKeepVal_chkBox.isChecked():
+            self.resetCustomAttributeFields()
+    def resetCustomAttributeFields(self):
+        self.ui.customAttrName_lineEdit.setText("")
+        self.ui.customAttrNiceName_lineEdit.setText("")
+        self.ui.customAttrMin_chkBox.setChecked(False)
+        self.ui.customAttrMax_chkBox.setChecked(False)
+        self.ui.customAttrMinVal_spinBox.setValue(0)
+        self.ui.customAttrMaxVal_spinBox.setValue(1)
+        self.ui.customAttrFloat_rBtn.setChecked(True)
+        self.ui.customAttrKeyable_rBtn.setChecked(True)
+        self.ui.customAttrEnumNames_lineEdit.setText("")
+
+    def loadCustomAttrOnSelection(self):
+        #get custom attributes available from all selected object
+        slt = pm.selected()
+        customAttrs = []
+        for i in slt:
+            allAttrs = pm.listAttr(i, userDefined=True)
+            for attr in allAttrs:
+                if slt.index(i) == 0:
+                    customAttrs.append(attr)
+                else:
+                    if attr not in customAttrs:
+                        customAttrs.remove(attr)
+                    for attr2 in customAttrs:
+                        if attr2 not in allAttrs:
+                            customAttrs.remove(attr2)
+        self.ui.customAttrList_cBox.clear()
+        self.ui.customAttrList_cBox.addItems(customAttrs)
+        return customAttrs
         
 def main():
     global ui
